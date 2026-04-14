@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#570008",
+                    "on-primary-container": "#00214e",
+                    "on-tertiary": "#e2f6ff",
+                    "outline": "#747779",
+                    "secondary-fixed": "#73f2dd",
+                    "secondary-fixed-dim": "#63e3cf",
+                    "on-tertiary-container": "#003e4e",
+                    "primary-dim": "#004da4",
+                    "surface": "#f5f7f9",
+                    "surface-container-low": "#eef1f3",
+                    "on-primary-fixed": "#000000",
+                    "surface-container-highest": "#d9dde0",
+                    "inverse-primary": "#4a8eff",
+                    "tertiary-fixed": "#4dc9f1",
+                    "tertiary-dim": "#00576c",
+                    "error-container": "#fb5151",
+                    "on-secondary": "#c1fff2",
+                    "primary-fixed-dim": "#5091ff",
+                    "on-tertiary-fixed-variant": "#00485a",
+                    "secondary": "#00675c",
+                    "on-background": "#2c2f31",
+                    "on-error": "#ffefee",
+                    "secondary-dim": "#005a50",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#0b0f10",
+                    "error-dim": "#9f0519",
+                    "tertiary-container": "#4dc9f1",
+                    "secondary-container": "#73f2dd",
+                    "on-primary": "#f0f2ff",
+                    "outline-variant": "#abadaf",
+                    "on-secondary-container": "#00594f",
+                    "surface-container": "#e5e9eb",
+                    "on-surface": "#2c2f31",
+                    "inverse-on-surface": "#9a9d9f",
+                    "on-secondary-fixed-variant": "#006358",
+                    "on-primary-fixed-variant": "#002a60",
+                    "surface-dim": "#d0d5d8",
+                    "surface-bright": "#f5f7f9",
+                    "surface-container-high": "#dfe3e6",
+                    "on-tertiary-fixed": "#002732",
+                    "primary-container": "#6c9fff",
+                    "tertiary": "#00647c",
+                    "on-secondary-fixed": "#00443c",
+                    "tertiary-fixed-dim": "#39bce2",
+                    "primary": "#0058ba",
+                    "on-surface-variant": "#595c5e",
+                    "error": "#b31b25",
+                    "background": "#f5f7f9",
+                    "surface-tint": "#0058ba",
+                    "surface-variant": "#d9dde0",
+                    "primary-fixed": "#6c9fff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">menu</span>
+<span class="text-xl font-extrabold tracking-tighter text-blue-800">The LMS Arrahmah</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" data-alt="close up portrait of a professional woman with a warm smile and sophisticated style in a bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSDQTRC4kU_pmRBawFXmwtSLe0Z0Ai_CJk_dwSrW6lj4S15SSJR_lKSWwBwYGwiodF8Xn3IWOoIxcO_wkhFXhMQdBHrZ4VINmD8a7Z9gljYSL-EGJp244X0rV9KKAU8Z5D5QDquM1hqorSuR1nFb7jQ-PuBVIQc6r6bmosAIaoH9mpLwg4hvjIGJZqqXx74jKE_ZhXlUSi_WqAnVbvsP-UImSHSPZAJkzTvggIP5MXz8-9v-EdsDHH2bqpxpuYrDEYW0da8PvHv0Fn"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-md mx-auto">
+<!-- Hero Profile Section -->
+<section class="mb-10 text-center relative">
+<div class="relative inline-block mb-6">
+<div class="w-32 h-32 rounded-xl overflow-hidden shadow-2xl mx-auto rotate-3 hover:rotate-0 transition-transform duration-500">
+<img alt="Elena Sterling" class="w-full h-full object-cover" data-alt="Portrait of Elena Sterling, a young female scholar with glasses, looking thoughtful in a modern minimalist workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDzX9w9fQaSCptTz7lJS7yVliCAjUu9VnDV0khCVqO9lH0gzunpKijs8Sv1Y7ynIAd6KFO6pktcElFOTa8k0uQp8ct4vb3qto9RCywb626cek-2gom8kMEUAdQKlJvR9fD5nd0hYbN29jMVsFfWxQ9hpchWGdurJpQdKfTNCmEBjNqXg_MP18DsQrTWdV-NS7aI66Hnm6VU3BrRtF-7UNda7CEYvw7pndrCazBGENGR2L2Nn1pWEPlr7o5jXY-Hfq9aEMFVIdqhrKu"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-lg">PRO SCHOLAR</div>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Elena Sterling</h1>
+<p class="text-on-surface-variant font-medium">Advanced Cognitive Psychology Student</p>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 gap-4 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm col-span-2 flex items-center justify-between overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-label-md text-secondary font-semibold uppercase tracking-wider mb-1">Scholar Score</p>
+<h2 class="text-4xl font-extrabold tracking-tighter">12,840</h2>
+</div>
+<div class="w-20 h-20 bg-secondary-container/20 rounded-full absolute -right-4 -top-4 blur-xl"></div>
+<span class="material-symbols-outlined text-secondary-dim text-5xl opacity-20" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Hours</span>
+</div>
+<h3 class="text-2xl font-bold">342</h3>
+<div class="h-1 w-full bg-surface-container-low mt-3 rounded-full">
+<div class="h-1 bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-tertiary text-xl">analytics</span>
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Rank</span>
+</div>
+<h3 class="text-2xl font-bold">Top 4%</h3>
+<div class="h-1 w-full bg-surface-container-low mt-3 rounded-full">
+<div class="h-1 bg-tertiary rounded-full" style="width: 96%"></div>
+</div>
+</div>
+</section>
+<!-- Skill Mastery -->
+<section class="mb-10">
+<h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+                Skill Mastery
+                <span class="h-px flex-1 bg-surface-container"></span>
+</h3>
+<div class="flex flex-wrap gap-4">
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-primary-container/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="psychology" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Cognition</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-secondary-container/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary" data-icon="neurology" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Neural</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-tertiary-container/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Methodology</span>
+</div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-outline" data-icon="science" style="font-variation-settings: 'FILL' 0;">science</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Ethics</span>
+</div>
+</div>
+</section>
+<!-- Active Course Trajectories -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<h3 class="text-lg font-bold">Active Course Trajectories</h3>
+<span class="text-[11px] font-bold text-primary">VIEW ALL</span>
+</div>
+<div class="space-y-4">
+<!-- Course Item -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-primary">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-bold text-on-surface">Neural Architecture 101</h4>
+<p class="text-[12px] text-on-surface-variant">Module 4: Synaptic Density</p>
+</div>
+<span class="text-xs font-bold text-primary">82%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-low rounded-full">
+<div class="h-1.5 bg-primary rounded-full" style="width: 82%"></div>
+</div>
+</div>
+<!-- Course Item -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-tertiary">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-bold text-on-surface">Advanced Memory Systems</h4>
+<p class="text-[12px] text-on-surface-variant">Module 2: Episodic Recall</p>
+</div>
+<span class="text-xs font-bold text-tertiary">45%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-low rounded-full">
+<div class="h-1.5 bg-tertiary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Earned Certificates -->
+<section class="mb-12">
+<h3 class="text-lg font-bold mb-6">Earned Certificates</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar">
+<div class="min-w-[180px] bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
+<div class="w-16 h-16 mb-4 relative">
+<div class="absolute inset-0 bg-blue-100 rounded-full animate-pulse opacity-50"></div>
+<span class="material-symbols-outlined text-primary text-4xl relative z-10" style="font-variation-settings: 'FILL' 1; display: block; margin-top: 12px;">military_tech</span>
+</div>
+<h5 class="text-sm font-bold leading-tight mb-2">Cognitive Core foundations</h5>
+<p class="text-[10px] text-slate-400 font-medium">May 2024</p>
+</div>
+<div class="min-w-[180px] bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center opacity-70">
+<div class="w-16 h-16 mb-4 relative">
+<span class="material-symbols-outlined text-secondary text-4xl opacity-50" style="font-variation-settings: 'FILL' 1; display: block; margin-top: 12px;">verified</span>
+</div>
+<h5 class="text-sm font-bold leading-tight mb-2">Social Behavior Lab</h5>
+<p class="text-[10px] text-slate-400 font-medium">Feb 2024</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.04)] rounded-t-[3rem] border-t border-slate-100">
+<div class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-[11px] font-semibold">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-inter text-[11px] font-semibold">Courses</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-inter text-[11px] font-semibold">Catalog</span>
+</div>
+<!-- Active Tab: Profile -->
+<div class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-2xl px-5 py-2 scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-inter text-[11px] font-semibold">Profile</span>
+</div>
+</nav>
+</body></html>

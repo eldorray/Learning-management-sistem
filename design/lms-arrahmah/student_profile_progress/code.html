@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile | The LMS Arrahmah</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#00675c",
+                    "outline-variant": "#abadaf",
+                    "tertiary-fixed-dim": "#39bce2",
+                    "tertiary-dim": "#00576c",
+                    "on-tertiary": "#e2f6ff",
+                    "surface-container-highest": "#d9dde0",
+                    "inverse-on-surface": "#9a9d9f",
+                    "surface-variant": "#d9dde0",
+                    "tertiary-container": "#4dc9f1",
+                    "error-container": "#fb5151",
+                    "on-tertiary-fixed": "#002732",
+                    "primary-fixed-dim": "#5091ff",
+                    "on-background": "#2c2f31",
+                    "on-secondary": "#c1fff2",
+                    "secondary-fixed": "#73f2dd",
+                    "on-secondary-container": "#00594f",
+                    "tertiary": "#00647c",
+                    "on-primary": "#f0f2ff",
+                    "error": "#b31b25",
+                    "on-tertiary-container": "#003e4e",
+                    "primary-fixed": "#6c9fff",
+                    "surface-container-high": "#dfe3e6",
+                    "on-error": "#ffefee",
+                    "on-surface": "#2c2f31",
+                    "inverse-surface": "#0b0f10",
+                    "surface": "#f5f7f9",
+                    "error-dim": "#9f0519",
+                    "secondary-fixed-dim": "#63e3cf",
+                    "secondary-dim": "#005a50",
+                    "secondary-container": "#73f2dd",
+                    "on-primary-fixed": "#000000",
+                    "surface-bright": "#f5f7f9",
+                    "on-error-container": "#570008",
+                    "on-secondary-fixed": "#00443c",
+                    "primary-container": "#6c9fff",
+                    "on-secondary-fixed-variant": "#006358",
+                    "outline": "#747779",
+                    "on-surface-variant": "#595c5e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#d0d5d8",
+                    "tertiary-fixed": "#4dc9f1",
+                    "on-primary-fixed-variant": "#002a60",
+                    "on-tertiary-fixed-variant": "#00485a",
+                    "surface-container": "#e5e9eb",
+                    "on-primary-container": "#00214e",
+                    "surface-tint": "#0058ba",
+                    "surface-container-low": "#eef1f3",
+                    "primary": "#0058ba",
+                    "background": "#f5f7f9",
+                    "primary-dim": "#004da4",
+                    "inverse-primary": "#4a8eff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, .brand-font {
+        font-family: 'Manrope', sans-serif;
+      }
+      .asymmetric-layout {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 2rem;
+      }
+      @media (max-width: 1024px) {
+        .asymmetric-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex fixed left-0 h-full w-64 bg-slate-50 dark:bg-slate-950 flex-col py-6 space-y-2 z-50">
+<div class="px-8 mb-8">
+<h1 class="text-xl font-extrabold text-slate-900 dark:text-slate-50">LMS Arrahmah</h1>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-widest">Cognitive Sanctuary</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-semibold">Dashboard</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-semibold">My Courses</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-semibold">Catalog</span>
+</a>
+<a class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm rounded-full mx-2 px-4 py-3 font-bold flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-semibold">Profile</span>
+</a>
+</nav>
+<div class="px-4 py-4 mt-auto">
+<button class="w-full bg-primary text-on-primary rounded-full py-3 px-4 font-bold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+                Focus Mode
+            </button>
+</div>
+<div class="border-t border-slate-100 dark:border-slate-900 pt-4 px-2 space-y-1">
+<a class="text-slate-500 px-4 py-2 hover:bg-slate-100 rounded-full flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-sm">Support</span>
+</a>
+<a class="text-slate-500 px-4 py-2 hover:bg-slate-100 rounded-full flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- Top Navigation -->
+<header class="bg-[#f5f7f9]/80 backdrop-blur-xl sticky top-0 z-40 px-8 py-4 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-black tracking-tighter text-blue-600">The LMS Arrahmah</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<span class="material-symbols-outlined text-slate-400 mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search courses..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Student avatar" class="w-full h-full object-cover" data-alt="portrait of a focused young student with a friendly expression in a bright modern library setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi2mO3shY1jL93wKSMRqqQBLcm4EeH1uRptoLf6XXZweBDEWLaMk9ldp8kdvGMgOn7W-tTuJemF_4GR4pOhRfSbW1LMKYgnTjRH25hzo9IwbL6qREuT_IEcLZp-6fp6QFzINxvnnCOywVYiyInY9mouz2b0DpHb2lpD01LWaVruX9giHKZVl1Hs9LB_gaCRlu2FaoUAMrvMrlphC5Wyx1o98MGjBLWwwmxi4nX54x27A1l0gpr82VPikq3R5cXoaCOYRZQ1Oq7biQ_"/>
+</div>
+</div>
+</div>
+</header>
+<div class="max-w-7xl mx-auto px-8 py-10">
+<!-- Hero Profile Section -->
+<section class="mb-12 relative">
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-12 text-on-primary flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<div class="relative w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden shadow-2xl rotate-3 bg-white p-2">
+<img alt="Student" class="w-full h-full object-cover rounded-lg" data-alt="close up professional headshot of a young scholar with glasses smiling in a sunlit academic environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQysz2Ztls99PnDiYqcB8JN8RAENr3QUhm8clZANSYlTaB2k6Fqk-LANcO7uXuqnIlk-l4no-D1yeK5JrmyeKNOhOferiLUBtxRPnCvenlYpfT61x73UD3Wuy5zjBuhSiNLpwQrqRj4uCmo8tFlZ2FYK_pbZlibccctYKRAlWU1mFAGbk45HrpmFJUnttWUaoHuslrNU_jwkv5MiNhk0o0tue_jDCZQXJr5UNyYiT1LNnBgqdFb2K9Su7hEiLT6JACcAmmhdAVO5F7"/>
+</div>
+<div class="flex-1 text-center md:text-left z-10">
+<span class="bg-white/20 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md mb-4 inline-block">ACADEMIC LEVEL: INTERMEDIATE</span>
+<h3 class="text-4xl md:text-5xl font-black tracking-tight mb-2">Elena Sterling</h3>
+<p class="text-lg text-on-primary/80 max-w-xl font-medium leading-relaxed">Cognitive Science enthusiast specializing in Human-Computer Interaction. Aspiring to bridge the gap between neurological patterns and digital interfaces.</p>
+<div class="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
+<div class="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm font-semibold">Oxford, UK</span>
+</div>
+<div class="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm" data-icon="link">link</span>
+<span class="text-sm font-semibold">scholar.lucid/elenas</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="asymmetric-layout">
+<!-- Main Activity Stream -->
+<div class="space-y-10">
+<!-- Progress Overview Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Total Learning</span>
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+</div>
+<div class="text-4xl font-black text-on-surface mb-1">128.5</div>
+<div class="text-sm font-medium text-slate-500">Total Hours Invested</div>
+<div class="mt-4 h-1.5 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Avg. Score</span>
+<span class="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span>
+</div>
+<div class="text-4xl font-black text-on-surface mb-1">94%</div>
+<div class="text-sm font-medium text-slate-500">Across 12 Modules</div>
+<div class="mt-4 h-1.5 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[94%] rounded-full shadow-[0_0_8px_rgba(0,103,92,0.4)]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-slate-500 font-bold text-xs uppercase tracking-widest">Global Rank</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="trophy">trophy</span>
+</div>
+<div class="text-4xl font-black text-on-surface mb-1">Top 5%</div>
+<div class="text-sm font-medium text-slate-500">UC Scholastic Leaderboard</div>
+<div class="mt-4 flex items-center -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-400"></div>
+<span class="text-[10px] font-bold text-slate-400 ml-4">+428 students</span>
+</div>
+</div>
+</div>
+<!-- Course Completion Breakdown -->
+<div class="bg-surface-container-low p-10 rounded-xl">
+<h4 class="text-2xl font-extrabold tracking-tight mb-8 flex items-center gap-3">
+<span class="w-2 h-8 bg-primary rounded-full"></span>
+                            Active Course Trajectories
+                        </h4>
+<div class="space-y-8">
+<!-- Course 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl rounded-tl-xl rounded-tr-none flex flex-col md:flex-row gap-6 items-start shadow-sm border border-outline-variant/5">
+<div class="w-24 h-24 flex-shrink-0 bg-blue-50 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="psychology">psychology</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="text-xl font-bold">Neural Architectures 101</h5>
+<p class="text-sm text-slate-500 mt-1">Foundations of Biological Computation</p>
+</div>
+<span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full">85% COMPLETE</span>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary-container/20">
+                                                Advanced Phase
+                                            </div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-primary">
+                                                    17/20 Lessons
+                                                </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-surface-container-low">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary transition-all duration-500" style="width:85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl rounded-tl-xl rounded-tr-none flex flex-col md:flex-row gap-6 items-start shadow-sm border border-outline-variant/5">
+<div class="w-24 h-24 flex-shrink-0 bg-teal-50 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="design_services">design_services</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="text-xl font-bold">Heuristic UI Patterns</h5>
+<p class="text-sm text-slate-500 mt-1">Cognitive Psychology in Interface Design</p>
+</div>
+<span class="bg-tertiary-container/30 text-on-tertiary-container text-xs font-bold px-3 py-1 rounded-full">42% COMPLETE</span>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-secondary bg-secondary-container/20">
+                                                Intermediate Phase
+                                            </div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-secondary">
+                                                    6/14 Lessons
+                                                </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-surface-container-low">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-secondary transition-all duration-500" style="width:42%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Rail: Awards & Badges -->
+<aside class="space-y-8">
+<!-- Earned Certificates -->
+<div class="bg-surface-container-lowest border border-outline-variant/10 p-8 rounded-xl shadow-sm">
+<h4 class="text-lg font-black tracking-tight mb-6">Earned Certificates</h4>
+<div class="space-y-6">
+<div class="flex gap-4 items-center group cursor-pointer">
+<div class="w-12 h-16 bg-slate-100 rounded flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary opacity-40" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">Ethics in AI: Advanced Certification</p>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">MAY 2024</p>
+</div>
+</div>
+<div class="flex gap-4 items-center group cursor-pointer">
+<div class="w-12 h-16 bg-slate-100 rounded flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary opacity-40" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">Data Visualization for Analysts</p>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">MAR 2024</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-surface-container-high text-primary font-bold text-sm rounded-full hover:bg-primary hover:text-white transition-all">
+                            View All Credentials
+                        </button>
+</div>
+<!-- Skill Badges -->
+<div class="bg-surface-container-lowest border border-outline-variant/10 p-8 rounded-xl shadow-sm">
+<h4 class="text-lg font-black tracking-tight mb-6">Skill Mastery</h4>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square bg-blue-50 rounded-full flex items-center justify-center group relative cursor-help" title="Cognitive Analysis">
+<span class="material-symbols-outlined text-blue-600" data-icon="biotech" data-weight="fill" style="font-variation-settings: 'FILL' 1;">biotech</span>
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Neuroscience</div>
+</div>
+<div class="aspect-square bg-teal-50 rounded-full flex items-center justify-center group relative cursor-help" title="Deep Focus">
+<span class="material-symbols-outlined text-teal-600" data-icon="self_improvement" data-weight="fill" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+</div>
+<div class="aspect-square bg-purple-50 rounded-full flex items-center justify-center group relative cursor-help" title="Critical Logic">
+<span class="material-symbols-outlined text-purple-600" data-icon="account_tree" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+</div>
+<div class="aspect-square bg-orange-50 rounded-full flex items-center justify-center group relative cursor-help" title="Rapid Learner">
+<span class="material-symbols-outlined text-orange-600" data-icon="speed" data-weight="fill" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<div class="aspect-square bg-red-50 rounded-full flex items-center justify-center group relative cursor-help">
+<span class="material-symbols-outlined text-red-600" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="aspect-square bg-slate-100 rounded-full flex items-center justify-center border-2 border-dashed border-slate-200">
+<span class="material-symbols-outlined text-slate-300 text-xs" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Milestones -->
+<div class="bg-gradient-to-br from-tertiary to-tertiary-dim p-8 rounded-xl text-on-tertiary relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="text-sm font-bold uppercase tracking-widest mb-4">Next Milestone</h4>
+<p class="text-xl font-bold mb-4">Master Architect Path</p>
+<div class="flex items-end gap-2 mb-6">
+<span class="text-3xl font-black">2.4k</span>
+<span class="text-sm opacity-80 mb-1">XP left to Level 15</span>
+</div>
+<div class="w-full h-1 bg-white/20 rounded-full mb-2">
+<div class="h-full bg-tertiary-container w-2/3 rounded-full"></div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10 rotate-12" data-icon="stars">stars</span>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg px-6 py-3 flex justify-between items-center z-50 border-t border-slate-100">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] font-bold">Courses</span>
+</a>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] font-bold">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-blue-600" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

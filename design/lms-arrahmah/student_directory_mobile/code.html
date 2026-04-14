@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#570008",
+                    "on-primary-container": "#00214e",
+                    "on-tertiary": "#e2f6ff",
+                    "outline": "#747779",
+                    "secondary-fixed": "#73f2dd",
+                    "secondary-fixed-dim": "#63e3cf",
+                    "on-tertiary-container": "#003e4e",
+                    "primary-dim": "#004da4",
+                    "surface": "#f5f7f9",
+                    "surface-container-low": "#eef1f3",
+                    "on-primary-fixed": "#000000",
+                    "surface-container-highest": "#d9dde0",
+                    "inverse-primary": "#4a8eff",
+                    "tertiary-fixed": "#4dc9f1",
+                    "tertiary-dim": "#00576c",
+                    "error-container": "#fb5151",
+                    "on-secondary": "#c1fff2",
+                    "primary-fixed-dim": "#5091ff",
+                    "on-tertiary-fixed-variant": "#00485a",
+                    "secondary": "#00675c",
+                    "on-background": "#2c2f31",
+                    "on-error": "#ffefee",
+                    "secondary-dim": "#005a50",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#0b0f10",
+                    "error-dim": "#9f0519",
+                    "tertiary-container": "#4dc9f1",
+                    "secondary-container": "#73f2dd",
+                    "on-primary": "#f0f2ff",
+                    "outline-variant": "#abadaf",
+                    "on-secondary-container": "#00594f",
+                    "surface-container": "#e5e9eb",
+                    "on-surface": "#2c2f31",
+                    "inverse-on-surface": "#9a9d9f",
+                    "on-secondary-fixed-variant": "#006358",
+                    "on-primary-fixed-variant": "#002a60",
+                    "surface-dim": "#d0d5d8",
+                    "surface-bright": "#f5f7f9",
+                    "surface-container-high": "#dfe3e6",
+                    "on-tertiary-fixed": "#002732",
+                    "primary-container": "#6c9fff",
+                    "tertiary": "#00647c",
+                    "on-secondary-fixed": "#00443c",
+                    "tertiary-fixed-dim": "#39bce2",
+                    "primary": "#0058ba",
+                    "on-surface-variant": "#595c5e",
+                    "error": "#b31b25",
+                    "background": "#f5f7f9",
+                    "surface-tint": "#0058ba",
+                    "surface-variant": "#d9dde0",
+                    "primary-fixed": "#6c9fff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": [
+                            "Manrope"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Inter"
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7f9;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 20px 40px rgba(44, 47, 49, 0.06);
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased pb-32">
+<!-- TopAppBar Section -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 transition-all scale-95 active:scale-90 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-400" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-200 font-manrope">The LMS Arrahmah</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/15">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional academic administrator in a modern office with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3l3Fko-Wv7yXsIukeBjqJCjS1Hqwqk6BR-hlKDormAeAbHrtY2qA2EPONa6uaLx1IWnI37ZyN4b0ciq1LOh-2-riRPEiqQnnNr6p9rxyA7KR_q4YOPOWttUYZc7NxkH8SePuiZ-hrUdRWD_olJmiN45t5K40roKsImuqql-FieOdyvlmHY6ejF4ZGqYySXC6PytxWF6HyjmpiY__PdFAK4t34-BTCoPojNNpeUHPNthsMUafWHcOxHfXX8J_6rL6yY5-JvcjiAIOj"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 px-6 max-w-lg mx-auto">
+<!-- Page Introduction & Floating Action -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<span class="text-secondary font-semibold text-[11px] uppercase tracking-widest block mb-1">Administration</span>
+<h2 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Student Directory</h2>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-dim text-on-primary rounded-full px-5 py-3 flex items-center gap-2 hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_add">person_add</span>
+<span class="font-bold text-sm">Enroll</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="relative mb-8 group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-none rounded-2xl py-4 pl-12 pr-4 editorial-shadow focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline/60 transition-all" placeholder="Search by name or email..." type="text"/>
+</div>
+<!-- Student List Container (Asymmetric Layout via Spacing) -->
+<div class="space-y-6">
+<!-- Student Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-[3rem] p-6 editorial-shadow border border-outline-variant/5">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="portrait of a young student with curly hair smiling in a sunlit outdoor campus environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1B_tFafXhueJXCTcdEevj_rXgE9T5_qXtwapeVV53MuaQgKsoFNbWSVLdGcMGdeXDA9hWp3DliZWIkuOuvOuXIZRc2dIETQ5Rq4nbtiQLhIWjtM0yes_Ky3K_o1Smy5IWccWC4HtfxVcZDfiL15utx2FriKgeMqb0ee66hxbGb9vBJ5EYJXaK0Rj44G1GwZEut-zwNmTlm02FF51pKgKCTfLS3aPpHikWhNfoW6TGeR7uXEX2ZiPrHaevQ2TboUkV1lSCkn9T2G9N"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Alexandrea Chen</h3>
+<p class="font-body text-sm text-outline">a.chen@scholar.edu</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-center text-[11px] font-label text-secondary font-bold uppercase tracking-wider">
+<span>Modern Epistemology</span>
+<span class="text-primary">82%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary rounded-full w-[82%]"></div>
+</div>
+</div>
+</div>
+<!-- Student Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-[3rem] p-6 editorial-shadow border border-outline-variant/5">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="modern headshot of a student wearing glasses looking thoughtful in a studio setting with soft grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGJ2s2cJMlOCLhSzXr8JZ7jpKv_wWaDhVT4tjjBz2HkR7vX3HQhJcYH9EPXGPMTHtX05u21ClK_BxdH9IC_aD49ZGji8aBDeoZqEVjKFfnGXCV34uwZz5yfSZLvWlu5AFWgWgwRI9jxk2wCmhmGNh5lB41Cl9bnU0wVyqfYJzaF0W6uQXhVpV_WV0pC57gbbIpA_mBEkdKMXnvcJqj7SCtAaQCRRaconl0Cv0fDcatk0yveMZ-7GVFYnsrEP8Ah1jy9QIrjfMN2Fdo"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Marcus Thorne</h3>
+<p class="font-body text-sm text-outline">m.thorne@scholar.edu</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-center text-[11px] font-label text-secondary font-bold uppercase tracking-wider">
+<span>Cognitive Architecture</span>
+<span class="text-primary">45%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary rounded-full w-[45%]"></div>
+</div>
+</div>
+</div>
+<!-- Student Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-[3rem] p-6 editorial-shadow border border-outline-variant/5">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a young woman with long dark hair smiling softly against a blurred neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpXWTfSm1G_uNmUdhOdIWKkub47j_xKCAiFkzb6AJVCw7JAkJRr822e9pmgyYahp9NWHsHWT5FGXRYrREofMIWJz3zNq0CPWIQket3hwLWPT68IIUVImKGcOLuak1yocpqYfWWYxZDGARvDIWZAAgMfX_M7Z1QRuRLos4mKFZWy2VDspGGLoJaGfe5zOaquYqTdCLdaxRQ_3KbcltSjFWpr6-wJAMliyqtPi3UIOF_eaV2vL9YYz9rxc_rbXqqdAo-w7l0hGIxnMFC"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Elena Rodriguez</h3>
+<p class="font-body text-sm text-outline">e.rod@scholar.edu</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-center text-[11px] font-label text-secondary font-bold uppercase tracking-wider">
+<span>The Art of Logic</span>
+<span class="text-primary">94%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary rounded-full w-[94%]"></div>
+</div>
+</div>
+</div>
+<!-- Student Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-[3rem] p-6 editorial-shadow border border-outline-variant/5">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="portrait of a young man with short dark hair in a casual white t-shirt looking directly at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuX-pkmbT1AmwOwOQRvkkC-lWBpMeF2hlpyXHWrMyhZyhnPqJK8iNRdwR8mnlf05_5aPyMU_lDBcrXjRjRXEM8dtARqDEXqq4ha2aV2xGG4qXofkJEcyydpk5gN-2rYIRrWH6iJPjk9mU0WOESzTOiLv579Ln5t-o3AvZyvtozgWhVlXiwkiBfy_8P0_5UzUJj3FXoU4KGDwA2qnW_CaYkCa0kF5AQDa5ckk58buXbqQ9BRiMa9l4JnGXa-S42zsWahPEjZlZ2IlHk"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight">Jordan Smith</h3>
+<p class="font-body text-sm text-outline">j.smith@scholar.edu</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="space-y-2 mt-6">
+<div class="flex justify-between items-center text-[11px] font-label text-secondary font-bold uppercase tracking-wider">
+<span>Digital Humanities</span>
+<span class="text-primary">12%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary rounded-full w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Section -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.04)] rounded-t-[3rem] border-t border-slate-100 dark:border-slate-800">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-[11px] font-semibold">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-inter text-[11px] font-semibold">Courses</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-inter text-[11px] font-semibold">Catalog</span>
+</div>
+<!-- Active Tab: Profile (Closest to Admin/Directory context) -->
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-5 py-2 scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[11px] font-semibold">Profile</span>
+</div>
+</nav>
+<!-- Hidden Drawer Simulation (Overlay) -->
+<!-- This would normally be toggled via JS; rendering a collapsed/hidden-ready version for structure -->
+<div class="fixed inset-0 bg-on-surface/10 backdrop-blur-sm z-[60] hidden">
+<aside class="h-full w-80 rounded-r-[3rem] bg-slate-50 dark:bg-slate-900 flex flex-col py-8 shadow-2xl transition-colors duration-200">
+<div class="px-8 mb-8 flex flex-col items-start">
+<div class="w-12 h-12 rounded-full mb-4 bg-teal-100 flex items-center justify-center">
+<span class="material-symbols-outlined text-teal-600" data-icon="shield_person">shield_person</span>
+</div>
+<h4 class="font-bold text-lg text-slate-900 dark:text-slate-100 font-manrope">Admin Console</h4>
+<p class="text-xs text-slate-500">Sanctuary Control • v2.4.0</p>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-4 text-slate-600 dark:text-slate-400 px-6 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-4 bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 rounded-r-full font-bold px-6 py-3 transition-colors duration-200 font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>User Management</span>
+</a>
+<a class="flex items-center gap-4 text-slate-600 dark:text-slate-400 px-6 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span>Course Editor</span>
+</a>
+<a class="flex items-center gap-4 text-slate-600 dark:text-slate-400 px-6 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-manrope font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-4 text-slate-600 dark:text-slate-400 px-6 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-manrope font-medium text-sm mt-auto border-t border-slate-100 pt-6" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The LMS Arrahmah - Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#00675c",
+                    "outline-variant": "#abadaf",
+                    "tertiary-fixed-dim": "#39bce2",
+                    "tertiary-dim": "#00576c",
+                    "on-tertiary": "#e2f6ff",
+                    "surface-container-highest": "#d9dde0",
+                    "inverse-on-surface": "#9a9d9f",
+                    "surface-variant": "#d9dde0",
+                    "tertiary-container": "#4dc9f1",
+                    "error-container": "#fb5151",
+                    "on-tertiary-fixed": "#002732",
+                    "primary-fixed-dim": "#5091ff",
+                    "on-background": "#2c2f31",
+                    "on-secondary": "#c1fff2",
+                    "secondary-fixed": "#73f2dd",
+                    "on-secondary-container": "#00594f",
+                    "tertiary": "#00647c",
+                    "on-primary": "#f0f2ff",
+                    "error": "#b31b25",
+                    "on-tertiary-container": "#003e4e",
+                    "primary-fixed": "#6c9fff",
+                    "surface-container-high": "#dfe3e6",
+                    "on-error": "#ffefee",
+                    "on-surface": "#2c2f31",
+                    "inverse-surface": "#0b0f10",
+                    "surface": "#f5f7f9",
+                    "error-dim": "#9f0519",
+                    "secondary-fixed-dim": "#63e3cf",
+                    "secondary-dim": "#005a50",
+                    "secondary-container": "#73f2dd",
+                    "on-primary-fixed": "#000000",
+                    "surface-bright": "#f5f7f9",
+                    "on-error-container": "#570008",
+                    "on-secondary-fixed": "#00443c",
+                    "primary-container": "#6c9fff",
+                    "on-secondary-fixed-variant": "#006358",
+                    "outline": "#747779",
+                    "on-surface-variant": "#595c5e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#d0d5d8",
+                    "tertiary-fixed": "#4dc9f1",
+                    "on-primary-fixed-variant": "#002a60",
+                    "on-tertiary-fixed-variant": "#00485a",
+                    "surface-container": "#e5e9eb",
+                    "on-primary-container": "#00214e",
+                    "surface-tint": "#0058ba",
+                    "surface-container-low": "#eef1f3",
+                    "primary": "#0058ba",
+                    "background": "#f5f7f9",
+                    "primary-dim": "#004da4",
+                    "inverse-primary": "#4a8eff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-nav {
+            background: rgba(245, 247, 249, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 h-full w-64 bg-slate-50 dark:bg-slate-950 flex flex-col py-6 space-y-2 hidden md:flex z-50">
+<div class="px-8 mb-8">
+<h1 class="text-xl font-extrabold text-slate-900 dark:text-slate-50">LMS Arrahmah</h1>
+<p class="text-xs text-on-surface-variant/70 tracking-widest uppercase font-bold mt-1">Cognitive Sanctuary</p>
+</div>
+<nav class="flex-grow">
+<!-- Dashboard (Inactive) -->
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center space-x-3 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-semibold">Dashboard</span>
+</a>
+<!-- My Courses (Inactive) -->
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center space-x-3 group" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-semibold">My Courses</span>
+</a>
+<!-- Catalog (Active) -->
+<a class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm rounded-full mx-2 px-4 py-3 font-bold flex items-center space-x-3" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-semibold">Catalog</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center space-x-3 group" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-semibold">Profile</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant/10">
+<button class="w-full bg-gradient-to-br from-primary to-primary-dim text-on-primary rounded-full py-3 font-bold shadow-lg shadow-primary/20 flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+<span>Focus Mode</span>
+</button>
+</div>
+<div class="mt-auto px-2 space-y-1">
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center space-x-3" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-semibold">Support</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mx-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-full transition-all flex items-center space-x-3" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-semibold">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopAppBar (Shared Component Implementation) -->
+<header class="bg-[#f5f7f9]/80 backdrop-blur-xl dark:bg-slate-900/80 sticky top-0 z-40 shadow-sm dark:shadow-none flex justify-between items-center w-full px-8 py-4">
+<div class="flex-1 flex items-center">
+<div class="relative w-full max-w-xl">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2.5 pl-12 pr-6 focus:ring-2 focus:ring-primary/20 text-on-surface" placeholder="Explore knowledge..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6 ml-8">
+<button class="text-slate-500 hover:text-blue-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-blue-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-primary-container">
+<img alt="Student avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional young man with a friendly smile, soft natural office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_g-vBmlVvV8vpEjglccjcBcMuuTbN8yd9R0DPUpQfqPpnRleyDHAaVOKlVKp8ZIvWU_J16y_pIE_81heqqAW8Zj4M330SuDfSFDlGodmvkc1k2JMq3nMqZ8KSmQG9pQJM-IdeBY8aci2yqWgjTuAyutms1SJ3zuyiYTJxj1o7aB5yjTvprFZJag-ZuyyKuzt3O2j2F0dPJZPw87Ppnx8pbiV4Ngr-_14mR129olc8B2nvJMfLbLuRuwQzCQZWgBtB3BjNvVke56vX"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Hero Header Section (Asymmetric Editorial Style) -->
+<section class="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+<div class="lg:col-span-8">
+<span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">Knowledge Repository</span>
+<h2 class="text-5xl md:text-6xl font-black tracking-tighter text-on-surface leading-[0.9] mb-6">
+                        Cultivate your <br/>
+<span class="text-primary italic">intellectual capital.</span>
+</h2>
+<p class="text-lg text-on-surface-variant max-w-md leading-relaxed">
+                        Curated learning paths designed for clarity, depth, and cognitive mastery. Select your domain and begin.
+                    </p>
+</div>
+<div class="lg:col-span-4 flex justify-end">
+<div class="bg-tertiary-container/20 p-6 rounded-xl border border-tertiary-container/30 max-w-xs rotate-2">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-2">auto_awesome</span>
+<p class="text-sm font-semibold text-on-tertiary-container italic">"True learning is the constant disruption of the known."</p>
+</div>
+</div>
+</section>
+<!-- Filters Section (Glassmorphic Pill) -->
+<div class="mb-12 flex flex-wrap items-center gap-3">
+<button class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-bold shadow-md shadow-primary/20 scale-[1.02] transition-transform">
+                    All Disciplines
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-medium hover:bg-surface-container-high transition-colors">
+                    Design &amp; Aesthetics
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-medium hover:bg-surface-container-high transition-colors">
+                    Technology &amp; Logic
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-medium hover:bg-surface-container-high transition-colors">
+                    Business Philosophy
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-medium hover:bg-surface-container-high transition-colors">
+                    Humanities
+                </button>
+<div class="ml-auto flex items-center space-x-2 text-on-surface-variant">
+<span class="text-sm font-label">Sort by:</span>
+<select class="bg-transparent border-none font-bold text-on-surface focus:ring-0 cursor-pointer">
+<option>Most Recent</option>
+<option>Highest Rated</option>
+<option>Trending</option>
+</select>
+</div>
+</div>
+<!-- Bento Course Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Course Card 1: Main Feature -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl border border-outline-variant/10">
+<div class="h-64 overflow-hidden relative">
+<img alt="Tech Course" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="minimalist overhead shot of high-end vintage electronics and modern silicon hardware on a sleek dark surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKSC7w64HssLdIVUcQueoD_Hpo3Z26mO61jI0iiMT8-tj2kDELdyb6qa7kAjyyWS7L4_Sy2vE1ckl5jOM0jnG68ez70iUI2dijfmLVnPU5uQ_vcmoEkaZdSaYUoq8Cor1nzFXOwpA37bhYC4MNNSwJhtnayf8Asqcxyl6-5Pv3qOKdFQbyWmRi2mxJleJdkGpvZqFeHGSTR0gCjJWRRigzGf6EsmuIXX8nXprSjWk8-4y9zkDgQdb7TOVmDSX7GEYWPdW2q9UFUSck"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary">
+                            TECHNOLOGY
+                        </div>
+</div>
+<div class="p-8">
+<div class="flex items-center space-x-1 mb-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-sm text-on-surface-variant">(1.2k students)</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-on-surface mb-2 group-hover:text-primary transition-colors">Architectural Systems in Modern Web</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Master the complexity of distributed systems with a focus on cognitive load and system harmony.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Instructor" class="w-8 h-8 rounded-full" data-alt="professional headshot of a mature professor in a minimal grey studio setting, intellectual and composed" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2uc2l4bHSPWKxAfbvqGU75HEIbXTmY9qela29BefapvIibmaHLB3DzywdXP2qQ5hvt2UE04RJFLGMrS1n-IOuJp5zt1NgNajTQzrOEicQiIHzyDOlj-8EDG3crmJ6fXUmScqGnP0iAbc_Hz5cc71s6v0o3eS0OgmJsFe8s9lnatbmlYSS9qmIIqmqS-MQLquCU6KcTACja1iRXX7fzxeXEOq1q74YZuCaJGYeKfmHLbLY0YqlWPaRTUP0MxMORTTQZ6TlXxnekTTh"/>
+<span class="text-sm font-semibold">Dr. Julian Vance</span>
+</div>
+<span class="text-xl font-black text-on-surface">$149</span>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl border border-outline-variant/10">
+<div class="h-64 overflow-hidden relative">
+<img alt="Design Course" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="abstract composition of soft pastel architecture shadows and clean white geometric forms, high-end editorial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF4zyV3JSZe6WzHcnngGJ8iAErJGjAFq1SfncSn6WwTXzbx08N7Uxz5Hlo_PTIT-tIVFaeQRv8lcIvMy8srKta9-1hnS2pErB1w92YawzLht-CATd0WA86QhB7Bw9cSkcdcXsMXr0lkJ2KDk0CHUtIlDCw4A1RUIhDBjnNDuEO1fJFms6TAIQOwRHSbl6NCG02ZeVEyRadoYX1JQJdgSQISKrqd0mycTQe3XGg0oe3FtwV2quPCXuePs4AsnJae86aK9j8_ZSYGiSI"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-secondary">
+                            DESIGN
+                        </div>
+</div>
+<div class="p-8">
+<div class="flex items-center space-x-1 mb-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.8</span>
+<span class="text-sm text-on-surface-variant">(840 students)</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-on-surface mb-2 group-hover:text-primary transition-colors">Minimalism as a Strategy</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Explore the history and application of reductionist principles in digital and physical product design.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Instructor" class="w-8 h-8 rounded-full" data-alt="portrait of a creative woman with glasses in a bright sunlit studio with plants in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATb-jKVHBY_alV7n8J-J34v2ZZOEEvUxnneCYEd9yQrg5o9nx1kV8Nt3CSY9WTKXTJsXzasF35JB1LpKCs0Kr4hWO3mTL7BsYsjUfxhELqBBp1onj6P9n90O_YHDTIQMkc7I0u0qX6bgNk28LyPKE3wQ2DnC9gfpeJ5xrxzw4CRJ22KcoBbJYoyvf0W_GfCOP1EMF2x_R_O8EcFjN6UUSDH44JNFP_ejr_YBvm10ev-iy2VfQzv7GRM-5quN6jgzYYgv0maMdgiiRD"/>
+<span class="text-sm font-semibold">Elena Rossi</span>
+</div>
+<span class="text-xl font-black text-on-surface">$120</span>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl border border-outline-variant/10">
+<div class="h-64 overflow-hidden relative">
+<img alt="Business Course" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="sophisticated black and white photo of a skyscraper facade reflecting the sky, representing corporate precision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgYVbVKAZliHEFCzGcbh_IF10l5wjvCMbjxaOPrLVI0igfaq4R-owgV--TcAgtU0u8bXJn9p28RnQ9SZmGWrphS4lco9q287fA7jjuBRuWsxol_SCW7vEtWmqNvdXIYHzh3Hlaxp17lsQ9aD_gilSnTMoZXUqzYczkj6aBN5P5du0juTeRzp7aVKnEF1YuUU8nrvkTB3VYW9gbnjP3BJ1l_m7sFoITSrkQVFGhGbwKtG-UEWOhq76g-LFItvnR0zQblT01UNv4PxZx"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-on-tertiary-container">
+                            BUSINESS
+                        </div>
+</div>
+<div class="p-8">
+<div class="flex items-center space-x-1 mb-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">5.0</span>
+<span class="text-sm text-on-surface-variant">(310 students)</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-on-surface mb-2 group-hover:text-primary transition-colors">Venture Psychology</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Understanding the human element in capital markets and the neuroscience of risk management.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Instructor" class="w-8 h-8 rounded-full" data-alt="close-up of a charismatic business leader in a dark navy suit with soft cinematic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArgPM-OGYk5hx3u56Z3e6WgXa77ywvmjz43yO3j1W2TUZCMKIKEZuIXAuHcEfeAegC5SmFwPurGiY0CyTbY6Ol2GvAokp3omdfkdQSPHFwObw4z8qftky84zqOCkVNb-H9T-ABQ5pfJegbiFyARjR0JTRRlhiVn4gQkJj4MOKk8rRMYWvDgG1tWwHaWMD-rjnpbte7Pa7oRSTJtspGW_12b1bkqfbBNSwyIIz8cMYVc11XfWM_5z2JigSp6lndUl2QH4PV8mI4ad3H"/>
+<span class="text-sm font-semibold">Marcus Thorne</span>
+</div>
+<span class="text-sm font-bold px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full">ENROLLED</span>
+</div>
+</div>
+</div>
+<!-- Course Card 4 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl border border-outline-variant/10">
+<div class="h-64 overflow-hidden relative">
+<img alt="Philosophy Course" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="stack of thick antique books with a brass magnifying glass resting on top, warm library evening light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9vxp8TlAJrLTewqKFC9I5HTlLs_48cqsWt1dGixsjqCQTTtAKkDIZBkP0NF_g3Qivk_Rv5E_Goz8L_3LbqVl2JksFSUtwz07lFg-DPBi-u6zif5Vtx2w0b835mjt60jEtBtlRd-5oaVQyHrvgZ0HUEddXrPB-_7nCgzr5PzBfjkmNqvpaj9KpI7b82kK1FVZo9kARPtVSyeHQ8MsvML0agWAEeXqDCPvTWtETGKnhcRAT3Z0IR-Dk4lxFjS2lba7PP6YobG7jNMlm"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-tertiary">
+                            HUMANITIES
+                        </div>
+</div>
+<div class="p-8">
+<div class="flex items-center space-x-1 mb-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.7</span>
+<span class="text-sm text-on-surface-variant">(520 students)</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-on-surface mb-2 group-hover:text-primary transition-colors">Ethics in the AI Era</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Navigating the moral landscape of artificial intelligence through the lens of classical philosophy.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Instructor" class="w-8 h-8 rounded-full" data-alt="portrait of a thoughtful academic woman in a minimalist white studio, wearing a simple linen shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dgUfZJI2rfX5rmEHgRrvj_QDH_CxxCSXEqc2aAI_CRBaBnUUT22S6ax27Xz8LFCtiehzeUVeiDzQ0uPSPg4g8hkb819FZmwCM8z2CbJxUeDFBmTkbCVDPB3jpZk56uH2WfvIVo5iY8p_hvWgVZlJhnyNxSwnXchyOAs4urzM6bj6s3Mhs0GAbDtX34ow5-0Iuzhl7MFl6DGapizE_lbfCfXPyvTuQSSoHREWp5518JT5GyNnpPIfckOgeLlLoYLLy8w6vghJQDVF"/>
+<span class="text-sm font-semibold">Prof. Sarah Chen</span>
+</div>
+<span class="text-xl font-black text-on-surface">$95</span>
+</div>
+</div>
+</div>
+<!-- Course Card 5 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl border border-outline-variant/10">
+<div class="h-64 overflow-hidden relative">
+<img alt="Data Course" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="complex neon data visualization lines flowing across a dark digital screen, glowing blue and cyan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYSXQf9-W3MNuigx6ouOB0WMHG0uBhKYZ0wrEs-fVj-fPEIsdlSyDdgx9YCxcodOpuGL9RaiWQ4bmeB7NvUb6YXzUxCz45oRixHdiQSsjqDF56yVaYuME51PTgaSL5iqfeJA7kVZjrY2P60mkV1ed3nBESgRkCFNjT2XS4xikNsVX9s5l1fx-PydBKR8bCaQC5HMfvWbxpwEqMZs_CXDBYF3XcA9Dk3AfCIc70bYZElCffe4Mest7MTQ1kzk2bVyoLLjPYkCKRP3Nw"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary">
+                            TECHNOLOGY
+                        </div>
+</div>
+<div class="p-8">
+<div class="flex items-center space-x-1 mb-3">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-sm text-on-surface-variant">(2.1k students)</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-on-surface mb-2 group-hover:text-primary transition-colors">Visual Storytelling with Data</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Learn to translate massive datasets into compelling, readable, and aesthetic narratives.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Instructor" class="w-8 h-8 rounded-full" data-alt="energetic man with a short beard in a casual creative office setting, focused and professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAydmMleSAYpa2UlMc2C8wUd6YDvvbOe-0YtOmY-XyIaJ7tX8qxdSGYgTUn_EpGr23TXR-uQ-R0P9szrSdAUqNnCVTrJx4pDtb6EiqjP1c_oqUWt9ReKaXDUP5EGmH_ww5l9AdbmRQwBPoxrpnQCjoBd5YDB41B-9XuVjjPsqEtujBCfGlKEirbnrPseqybbDwYo82wX5lqJ6bHFu68B_lUS3YTbqhN5FN7dvdOXg_1cSl275PH31r8gLIc-ztrZkDtuG6C1855e-D5"/>
+<span class="text-sm font-semibold">David Koller</span>
+</div>
+<span class="text-xl font-black text-on-surface">$165</span>
+</div>
+</div>
+</div>
+<!-- Course Card 6: Coming Soon / Placeholder Aesthetic -->
+<div class="group relative bg-surface-container rounded-xl overflow-hidden flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 p-12 text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-3xl">add_circle</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface-variant">Suggest a Subject</h3>
+<p class="text-sm text-on-surface-variant/60 max-w-[200px]">Tell us what you'd like to study next in our sanctuary.</p>
+</div>
+</div>
+<!-- Pagination / Load More (Glassmorphic) -->
+<div class="mt-20 flex justify-center">
+<button class="bg-surface-container-low text-primary px-12 py-4 rounded-full font-bold hover:bg-surface-container-high transition-all flex items-center space-x-3">
+<span>Unlock More Pathways</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-24 py-16 px-8 bg-surface-container-low border-t border-outline-variant/5">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+<div>
+<h4 class="font-headline font-black text-2xl text-primary tracking-tighter">The LMS Arrahmah</h4>
+<p class="text-on-surface-variant text-sm mt-2">Elevating education to a high-art experience.</p>
+</div>
+<div class="flex space-x-12">
+<div>
+<span class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Foundation</span>
+<ul class="space-y-2 text-sm text-on-surface font-semibold">
+<li><a class="hover:text-primary" href="#">Philosophy</a></li>
+<li><a class="hover:text-primary" href="#">Curators</a></li>
+<li><a class="hover:text-primary" href="#">Library</a></li>
+</ul>
+</div>
+<div>
+<span class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Support</span>
+<ul class="space-y-2 text-sm text-on-surface font-semibold">
+<li><a class="hover:text-primary" href="#">Sanctuary Rules</a></li>
+<li><a class="hover:text-primary" href="#">Contact</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between text-xs text-on-surface-variant/60 font-medium">
+<p>© 2024 The LMS Arrahmah. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a href="#">Privacy Protocol</a>
+<a href="#">Terms of Engagement</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Mobile Navigation (Shared Component) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-nav z-50 flex justify-around items-center py-4 px-6 border-t-0 rounded-t-xl shadow-2xl">
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[10px] font-bold mt-1">My Books</span>
+</a>
+<a class="flex flex-col items-center text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] font-bold mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

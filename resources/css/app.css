@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@source '../views';
+@source '../../app/Livewire/**/*.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+    /* Design System Colors - The LMS Arrahmah */
+    --color-background: #f5f7f9;
+    --color-surface: #f5f7f9;
+    --color-surface-bright: #f5f7f9;
+    --color-surface-dim: #d0d5d8;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #eef1f3;
+    --color-surface-container: #e5e9eb;
+    --color-surface-container-high: #dfe3e6;
+    --color-surface-container-highest: #d9dde0;
+    --color-surface-variant: #d9dde0;
+    --color-surface-tint: #0058ba;
+
+    --color-on-surface: #2c2f31;
+    --color-on-surface-variant: #595c5e;
+    --color-on-background: #2c2f31;
+    --color-inverse-surface: #0b0f10;
+    --color-inverse-on-surface: #9a9d9f;
+
+    --color-primary: #0058ba;
+    --color-primary-dim: #004da4;
+    --color-primary-container: #6c9fff;
+    --color-primary-fixed: #6c9fff;
+    --color-primary-fixed-dim: #5091ff;
+    --color-inverse-primary: #4a8eff;
+    --color-on-primary: #f0f2ff;
+    --color-on-primary-container: #00214e;
+    --color-on-primary-fixed: #000000;
+    --color-on-primary-fixed-variant: #002a60;
+
+    --color-secondary: #00675c;
+    --color-secondary-dim: #005a50;
+    --color-secondary-container: #73f2dd;
+    --color-secondary-fixed: #73f2dd;
+    --color-secondary-fixed-dim: #63e3cf;
+    --color-on-secondary: #c1fff2;
+    --color-on-secondary-container: #00594f;
+    --color-on-secondary-fixed: #00443c;
+    --color-on-secondary-fixed-variant: #006358;
+
+    --color-tertiary: #00647c;
+    --color-tertiary-dim: #00576c;
+    --color-tertiary-container: #4dc9f1;
+    --color-tertiary-fixed: #4dc9f1;
+    --color-tertiary-fixed-dim: #39bce2;
+    --color-on-tertiary: #e2f6ff;
+    --color-on-tertiary-container: #003e4e;
+    --color-on-tertiary-fixed: #002732;
+    --color-on-tertiary-fixed-variant: #00485a;
+
+    --color-error: #b31b25;
+    --color-error-dim: #9f0519;
+    --color-error-container: #fb5151;
+    --color-on-error: #ffefee;
+    --color-on-error-container: #570008;
+
+    --color-outline: #747779;
+    --color-outline-variant: #abadaf;
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius: 1rem;
+    --radius-lg: 2rem;
+    --radius-xl: 3rem;
+    --radius-full: 9999px;
+}
+
+@layer base {
+    body {
+        font-family: "Inter", sans-serif;
+        color: var(--color-on-surface);
+        background-color: var(--color-surface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-headline {
+        font-family: "Manrope", sans-serif;
+    }
+
+    ::selection {
+        background-color: var(--color-primary-container);
+        color: var(--color-on-primary-container);
+    }
+}
+
+@layer components {
+    .material-symbols-outlined {
+        font-variation-settings:
+            "FILL" 0,
+            "wght" 400,
+            "GRAD" 0,
+            "opsz" 24;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .glass-nav {
+        background: rgba(245, 247, 249, 0.8);
+        backdrop-filter: blur(20px);
+    }
+
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+    }
+
+    .asymmetric-card {
+        border-top-left-radius: 3rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-primary-dim)
+        );
+        color: var(--color-on-primary);
+        font-weight: 700;
+        border-radius: var(--radius-full);
+        padding: 0.5rem 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 88, 186, 0.2);
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.02);
+    }
+
+    .btn-secondary {
+        background-color: var(--color-surface-container-high);
+        color: var(--color-primary);
+        font-weight: 700;
+        border-radius: var(--radius-full);
+        padding: 0.5rem 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+        transform: scale(1.02);
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-full);
+        color: #595c5e;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .nav-item:hover {
+        color: var(--color-primary);
+        transform: translateX(4px);
+    }
+
+    .nav-item.active {
+        background-color: white;
+        color: var(--color-primary);
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(0, 88, 186, 0.08);
+    }
+
+    .card {
+        background-color: var(--color-surface-container-lowest);
+        border-radius: var(--radius);
+        border: 1px solid rgba(171, 173, 175, 0.1);
+        box-shadow: 0 2px 8px rgba(44, 47, 49, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(44, 47, 49, 0.08);
+    }
+
+    .progress-bar {
+        height: 0.5rem;
+        border-radius: var(--radius-full);
+        background-color: var(--color-surface-container-high);
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        border-radius: var(--radius-full);
+        background-color: var(--color-secondary);
+        transition: width 0.5s ease;
+    }
+}

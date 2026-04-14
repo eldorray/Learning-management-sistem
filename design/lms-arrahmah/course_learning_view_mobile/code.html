@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Learning View - The LMS Arrahmah</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#570008",
+                    "on-primary-container": "#00214e",
+                    "on-tertiary": "#e2f6ff",
+                    "outline": "#747779",
+                    "secondary-fixed": "#73f2dd",
+                    "secondary-fixed-dim": "#63e3cf",
+                    "on-tertiary-container": "#003e4e",
+                    "primary-dim": "#004da4",
+                    "surface": "#f5f7f9",
+                    "surface-container-low": "#eef1f3",
+                    "on-primary-fixed": "#000000",
+                    "surface-container-highest": "#d9dde0",
+                    "inverse-primary": "#4a8eff",
+                    "tertiary-fixed": "#4dc9f1",
+                    "tertiary-dim": "#00576c",
+                    "error-container": "#fb5151",
+                    "on-secondary": "#c1fff2",
+                    "primary-fixed-dim": "#5091ff",
+                    "on-tertiary-fixed-variant": "#00485a",
+                    "secondary": "#00675c",
+                    "on-background": "#2c2f31",
+                    "on-error": "#ffefee",
+                    "secondary-dim": "#005a50",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#0b0f10",
+                    "error-dim": "#9f0519",
+                    "tertiary-container": "#4dc9f1",
+                    "secondary-container": "#73f2dd",
+                    "on-primary": "#f0f2ff",
+                    "outline-variant": "#abadaf",
+                    "on-secondary-container": "#00594f",
+                    "surface-container": "#e5e9eb",
+                    "on-surface": "#2c2f31",
+                    "inverse-on-surface": "#9a9d9f",
+                    "on-secondary-fixed-variant": "#006358",
+                    "on-primary-fixed-variant": "#002a60",
+                    "surface-dim": "#d0d5d8",
+                    "surface-bright": "#f5f7f9",
+                    "surface-container-high": "#dfe3e6",
+                    "on-tertiary-fixed": "#002732",
+                    "primary-container": "#6c9fff",
+                    "tertiary": "#00647c",
+                    "on-secondary-fixed": "#00443c",
+                    "tertiary-fixed-dim": "#39bce2",
+                    "primary": "#0058ba",
+                    "on-surface-variant": "#595c5e",
+                    "error": "#b31b25",
+                    "background": "#f5f7f9",
+                    "surface-tint": "#0058ba",
+                    "surface-variant": "#d9dde0",
+                    "primary-fixed": "#6c9fff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 w-full">
+<button class="text-blue-700 dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all scale-95 active:scale-90 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-extrabold tracking-tighter text-blue-800 dark:text-blue-200 font-manrope">The LMS Arrahmah</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="close up professional portrait of a smiling educator with soft studio lighting and a clean neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACDsyoiO65GELzGEApBWM87jXPFekByf1SmxwXvK5xzadB6Bu9sadHpTEeb0lsVHQk5yScAqqTolkY8G-cvpAOYflabc69TEkLg_y0NLk0ef0agporw_lnh7k3h46IqsC5YCt3gVG_i6eFka0pRB3ms4dNOy1Y-IC8hGLp_16HMTXpmLH6DGizvbOWDebxBBR3N-FPfRK6FfeahDnSYRt2JaZfGC-iiqKsuw_ClpUhZk2hjHs8VhKdJd598ej1_JfTEAOkPVbhD7gp"/>
+</div>
+</header>
+<main class="pt-16 pb-32">
+<!-- Video Player Section -->
+<section class="w-full bg-black aspect-video relative group sticky top-16 z-40">
+<img class="w-full h-full object-cover opacity-80" data-alt="modern minimalist home office with a high-end computer screen showing educational code snippets and cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOietKN0RJ87RrQVLztuGXCq5NW828GEbAaFHPbltPjzUttyh6apINjDa3kAwaDWY6N81h7KZRIiNUxbNdsgwhlJqY4nvdDTaDc0jVlITL88sFPCxJqf0rMyk9aGkuAg9v0qbla03hYiUdMvgcnGJPLudF22Lo9N8YGWkE_HQSv7LuNEgqqvybeG4NBOIWDSPIreIEbgi_wthef1xTY7ZAdrhAX2UPOi45GrweOX3w7qR6Of7zn-0104zMbSvW_ekPnK2yDHzXMt0F"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-16 h-16 bg-primary/90 text-on-primary rounded-full flex items-center justify-center scale-100 hover:scale-110 transition-transform shadow-xl">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Video Progress -->
+<div class="absolute bottom-0 left-0 w-full h-1.5 bg-surface-container-highest/30">
+<div class="h-full bg-primary" style="width: 35%;"></div>
+</div>
+</section>
+<!-- Course Header Information -->
+<section class="px-6 py-8">
+<div class="mb-2 flex items-center gap-2">
+<span class="px-3 py-1 bg-tertiary-container/20 text-tertiary font-label text-xs font-bold rounded-full uppercase tracking-wider">Module 4</span>
+<span class="text-on-surface-variant text-xs font-medium">12:45 remaining</span>
+</div>
+<h2 class="text-2xl font-headline font-extrabold tracking-tight text-on-surface mb-2">Cognitive Architecture: Designing for Focus</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">Learn how to build interfaces that minimize distraction and maximize information retention through neural mapping.</p>
+</section>
+<!-- Dynamic Tabs -->
+<section class="px-6 mb-8">
+<div class="flex items-center gap-6 overflow-x-auto no-scrollbar border-b border-outline-variant/15 pb-4">
+<button class="text-primary font-bold text-sm whitespace-nowrap relative after:absolute after:-bottom-[17px] after:left-0 after:w-full after:h-0.5 after:bg-primary">Overview</button>
+<button class="text-on-surface-variant font-medium text-sm whitespace-nowrap hover:text-primary transition-colors">Resources</button>
+<button class="text-on-surface-variant font-medium text-sm whitespace-nowrap hover:text-primary transition-colors">Notes</button>
+<button class="text-on-surface-variant font-medium text-sm whitespace-nowrap hover:text-primary transition-colors">Discussion</button>
+</div>
+</section>
+<!-- Expandable Content -->
+<div class="px-6 space-y-4">
+<!-- Course Syllabus -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<button class="w-full flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Course Syllabus</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">expand_more</span>
+</button>
+<div class="mt-4 space-y-4">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-semibold text-on-surface">1. Foundations of UX</h4>
+<p class="text-xs text-on-surface-variant">15 mins</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-primary/10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-primary">2. Cognitive Architecture</h4>
+<p class="text-xs text-primary/70">Playing Now</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center"></div>
+<div class="flex-1">
+<h4 class="text-sm font-semibold text-on-surface">3. Visual Hierarchy</h4>
+<p class="text-xs text-on-surface-variant">22 mins</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Learning Objectives -->
+<div class="bg-surface-container-low rounded-xl p-5">
+<button class="w-full flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">target</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Learning Objectives</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">expand_less</span>
+</button>
+<ul class="mt-4 space-y-3">
+<li class="flex items-start gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">verified</span>
+                        Understand the pre-attentive attributes of visual processing.
+                    </li>
+<li class="flex items-start gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">verified</span>
+                        Implement the 'F' and 'Z' patterns in interface layouts.
+                    </li>
+<li class="flex items-start gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">verified</span>
+                        Design for cognitive load reduction using whitespace.
+                    </li>
+</ul>
+</div>
+</div>
+</main>
+<!-- Focus Mode Floating Toggle -->
+<div class="fixed bottom-24 left-0 w-full flex justify-center z-50 pointer-events-none">
+<button class="pointer-events-auto bg-surface-container-lowest/80 backdrop-blur-2xl border border-outline-variant/10 px-6 py-3 rounded-full flex items-center gap-3 shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">visibility_off</span>
+<span class="font-headline font-bold text-sm text-on-surface">Enable Focus Mode</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.04)] border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-inter text-[11px] font-semibold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-5 py-2 scale-105 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-inter text-[11px] font-semibold">Courses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-inter text-[11px] font-semibold">Catalog</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-blue-500 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[11px] font-semibold">Profile</span>
+</a>
+</nav>
+</body></html>
