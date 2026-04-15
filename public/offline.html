@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tidak Ada Koneksi — LMS Arrahmah</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0058ba 0%, #00214e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            max-width: 360px;
+            width: 100%;
+        }
+        img { width: 80px; height: 80px; margin: 0 auto 1.5rem; display: block; border-radius: 1rem; }
+        h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+        p { font-size: 0.9rem; opacity: 0.75; line-height: 1.6; margin-bottom: 1.75rem; }
+        button {
+            background: white;
+            color: #0058ba;
+            border: none;
+            border-radius: 999px;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="/icons/icon-192x192.png" alt="LMS Arrahmah">
+        <h1>Tidak Ada Koneksi</h1>
+        <p>Periksa koneksi internet kamu, lalu coba lagi. Beberapa halaman yang sudah dibuka sebelumnya mungkin masih bisa diakses.</p>
+        <button onclick="location.reload()">Coba Lagi</button>
+    </div>
+</body>
+</html>

@@ -7,7 +7,18 @@
     <title>{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }} — Platform Pembelajaran Ar-Rahmah</title>
     @if(\App\Models\Setting::get('app_favicon'))
     <link rel="icon" href="{{ asset('storage/' . \App\Models\Setting::get('app_favicon')) }}" type="image/png">
+    @else
+    <link rel="icon" href="/icons/icon-192x192.png" type="image/png">
     @endif
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0058ba">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LMS Arrahmah">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
     <meta name="description"
         content="Platform pembelajaran digital Ar-Rahmah. Kursus berkualitas tinggi dalam bidang Teknologi, Agama, Bahasa, dan Manajemen. Belajar kapan saja, di mana saja.">
 
@@ -117,6 +128,29 @@
 </head>
 
 <body class="bg-[#f5f7f9] text-[#2c2f31] antialiased">
+
+    {{-- ── PWA Install Banner ───────────────────────────────────── --}}
+    <div id="pwa-install-banner"
+         class="hidden fixed bottom-0 inset-x-0 z-[9999] items-end justify-center p-4 md:items-center md:p-0">
+        <div class="w-full max-w-sm mx-auto bg-[#00214e] text-white rounded-t-2xl md:rounded-2xl shadow-2xl p-5 flex items-center gap-4 border border-white/10 md:mb-6">
+            <img src="/icons/icon-72x72.png" alt="LMS Arrahmah"
+                 class="w-14 h-14 rounded-xl flex-shrink-0 shadow-md">
+            <div class="flex-1 min-w-0">
+                <p class="font-bold text-sm leading-snug">Pasang LMS Arrahmah</p>
+                <p class="text-xs text-white/60 mt-0.5">Akses lebih cepat, bisa dipakai offline!</p>
+            </div>
+            <div class="flex flex-col gap-2 flex-shrink-0">
+                <button onclick="triggerPwaInstall()"
+                    class="bg-[#6c9fff] hover:bg-[#4d80e0] text-[#00214e] font-bold text-xs px-4 py-2 rounded-full transition-colors">
+                    Pasang
+                </button>
+                <button onclick="document.getElementById('pwa-install-banner').remove()"
+                    class="text-white/50 hover:text-white/80 text-xs text-center transition-colors">
+                    Nanti
+                </button>
+            </div>
+        </div>
+    </div>
 
     @php
         $publishedCourses = \App\Models\Course::where('is_published', true)

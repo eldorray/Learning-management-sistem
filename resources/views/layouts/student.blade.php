@@ -7,7 +7,17 @@
     <title>{{ $title ?? config('app.name', 'LMS Arrahmah') }} | {{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</title>
     @if(\App\Models\Setting::get('app_favicon'))
     <link rel="icon" href="{{ asset('storage/' . \App\Models\Setting::get('app_favicon')) }}" type="image/png">
+    @else
+    <link rel="icon" href="/icons/icon-192x192.png" type="image/png">
     @endif
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0058ba">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LMS Arrahmah">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
