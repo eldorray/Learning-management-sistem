@@ -16,6 +16,7 @@ use App\Livewire\Admin\InstructorDirectory;
 use App\Livewire\Admin\CourseStudents;
 use App\Livewire\Admin\AppSettings;
 use App\Livewire\Admin\TahfidzManagement;
+use App\Livewire\Admin\ParentDirectory;
 use App\Livewire\Admin\Profile as AdminProfile;
 use App\Livewire\Instructor\TahfidzHalaqoh;
 use App\Livewire\ParentPortal\Dashboard as ParentDashboard;
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Admin-only routes
     Route::middleware('admin_only')->group(function () {
         Route::get('/instructors', InstructorDirectory::class)->name('instructors');
+        Route::get('/parents', ParentDirectory::class)->name('parents');
         Route::get('/tahfidz', TahfidzManagement::class)->name('tahfidz');
         Route::get('/settings', AppSettings::class)->name('settings');
     });
