@@ -42,6 +42,8 @@ class Login extends Component
                 $user = Auth::user();
                 if ($user->isAdmin() || $user->isInstructor()) {
                     $this->redirect(route('admin.dashboard'), navigate: true);
+                } elseif ($user->isParent()) {
+                    $this->redirect(route('parent.dashboard'), navigate: true);
                 } else {
                     $this->redirect(route('student.dashboard'), navigate: true);
                 }

@@ -180,6 +180,11 @@
                                             <span class="material-symbols-outlined text-sm">visibility</span>
                                         </button>
                                         @if (!$isInstructor)
+                                            <button wire:click="openParentModal({{ $student->id }})"
+                                                class="p-1.5 text-[#595c5e] hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+                                                title="Hubungkan Orang Tua">
+                                                <span class="material-symbols-outlined text-sm">family_restroom</span>
+                                            </button>
                                             <button wire:click="openEditForm({{ $student->id }})"
                                                 class="p-1.5 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
                                                 <span class="material-symbols-outlined text-sm">edit</span>
@@ -455,6 +460,26 @@
                         <span
                             class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->guardian_name ?? '-' }}</span>
                     </div>
+
+                    {{-- Linked Parent Accounts --}}
+                    @if ($viewingStudent->parents->isNotEmpty())
+                        <div class="py-2.5 border-b border-[#f5f7f9]">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-[#595c5e] text-sm">supervisor_account</span>
+                                <span class="text-sm text-[#595c5e] w-28 shrink-0">Akun Ortu</span>
+                            </div>
+                            <div class="ml-9 space-y-2">
+                                @foreach ($viewingStudent->parents as $linkedParent)
+                                    <div class="flex items-center justify-between bg-amber-50 rounded-lg px-3 py-2">
+                                        <div>
+                                            <p class="text-xs font-bold text-[#2c2f31]">{{ $linkedParent->name }}</p>
+                                            <p class="text-xs text-[#595c5e]">{{ $linkedParent->email }} &middot; {{ $linkedParent->pivot->hubungan === 'wali' ? 'Wali' : 'Orang Tua' }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <div class="flex items-start gap-3 py-2.5 border-b border-[#f5f7f9]">
                         <span class="material-symbols-outlined text-[#595c5e] text-sm mt-0.5">location_on</span>
                         <span class="text-sm text-[#595c5e] w-28 shrink-0">Alamat</span>
@@ -586,6 +611,113 @@
                                 Import Sekarang
                             </button>
                         @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    {{-- ════════════════════════════════════════════════════════
+         LINK PARENT MODAL
+         ════════════════════════════════════════════════════════ --}}
+    @if ($showParentModal)
+        <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4"
+            wire:click.self="$set('showParentModal', false)">
+            <div class="bg-white rounded-t-2xl sm:rounded-xl shadow-2xl w-full sm:max-w-lg max-h-[85vh] overflow-y-auto">
+                {{-- Header --}}
+                <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between sticky top-0 bg-white z-10">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">family_restroom</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline font-bold text-lg text-[#2c2f31]">Hubungkan Orang Tua</h3>
+                            @if ($parentLinkStudent)
+                                <p class="text-xs text-[#595c5e]">{{ $parentLinkStudent->name }}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <button wire:click="$set('showParentModal', false)"
+                        class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
+                        <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                    </button>
+                </div>
+
+                <div class="p-6 space-y-5">
+                    {{-- Currently linked parents --}}
+                    @if ($parentLinkStudent && $parentLinkStudent->parents->isNotEmpty())
+                        <div>
+                            <p class="text-xs font-semibold text-[#595c5e] uppercase tracking-wide mb-2">Orang Tua / Wali Terhubung</p>
+                            <div class="space-y-2">
+                                @foreach ($parentLinkStudent->parents as $linkedParent)
+                                    <div class="flex items-center justify-between bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-amber-600 text-sm">person</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-[#2c2f31]">{{ $linkedParent->name }}</p>
+                                                <p class="text-xs text-[#595c5e]">{{ $linkedParent->email }} &middot;
+                                                    <span class="font-medium">{{ $linkedParent->pivot->hubungan === 'wali' ? 'Wali' : 'Orang Tua' }}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button wire:click="unlinkParent({{ $parentLinkStudent->id }}, {{ $linkedParent->id }})"
+                                            class="p-1.5 text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors"
+                                            title="Hapus relasi">
+                                            <span class="material-symbols-outlined text-sm">link_off</span>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="border-t border-[#eef1f3]"></div>
+                    @else
+                        <div class="bg-[#eef1f3] rounded-xl px-4 py-3 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#595c5e] text-sm">info</span>
+                            <p class="text-sm text-[#595c5e]">Belum ada orang tua / wali yang terhubung.</p>
+                        </div>
+                    @endif
+
+                    {{-- Add parent form --}}
+                    <div>
+                        <p class="text-xs font-semibold text-[#595c5e] uppercase tracking-wide mb-3">Tambah Orang Tua / Wali</p>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Email Akun Orang Tua</label>
+                                <input type="email" wire:model="parentEmail"
+                                    placeholder="email@example.com"
+                                    class="w-full px-4 py-3 bg-[#eef1f3] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 focus:border-[#0058ba]/30 text-sm placeholder-[#abadaf] transition-all">
+                                @error('parentEmail')
+                                    <p class="text-[#b31b25] text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                                <p class="text-xs text-[#595c5e] mt-1">Masukkan email akun yang sudah terdaftar dengan role <strong>Orang Tua</strong>.</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Hubungan</label>
+                                <select wire:model="parentHubungan"
+                                    class="w-full px-4 py-3 bg-[#eef1f3] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 focus:border-[#0058ba]/30 text-sm transition-all">
+                                    <option value="orang_tua">Orang Tua</option>
+                                    <option value="wali">Wali</option>
+                                </select>
+                                @error('parentHubungan')
+                                    <p class="text-[#b31b25] text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Action buttons --}}
+                    <div class="flex gap-3 pt-2">
+                        <button wire:click="$set('showParentModal', false)"
+                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                            Tutup
+                        </button>
+                        <button wire:click="linkParent"
+                            class="flex-1 py-3 bg-gradient-to-br from-amber-500 to-amber-600 text-white font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">link</span>
+                            Hubungkan
+                        </button>
                     </div>
                 </div>
             </div>

@@ -56,6 +56,27 @@ class User extends Authenticatable
         return $this->role === 'student';
     }
 
+    public function isParent(): bool
+    {
+        return $this->role === 'parent';
+    }
+
+    // Orang tua → anak-anaknya (siswa)
+    public function children(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'parent_student', 'parent_id', 'student_id')
+            ->withPivot('hubungan')
+            ->withTimestamps();
+    }
+
+    // Siswa → orang tua / wali
+    public function parents(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'parent_student', 'student_id', 'parent_id')
+            ->withPivot('hubungan')
+            ->withTimestamps();
+    }
+
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class);

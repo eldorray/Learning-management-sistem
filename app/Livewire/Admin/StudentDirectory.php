@@ -27,9 +27,15 @@ class StudentDirectory extends Component
     public bool $showForm = false;
     public bool $showDeleteModal = false;
     public bool $showDetailModal = false;
+    public bool $showParentModal = false;
     public ?int $editingStudentId = null;
     public ?int $deletingStudentId = null;
     public ?int $viewingStudentId = null;
+    public ?int $parentLinkStudentId = null;
+
+    // Parent linking
+    public string $parentEmail    = '';
+    public string $parentHubungan = 'orang_tua';
 
     // Form fields
     public string $name = '';
@@ -213,6 +219,49 @@ class StudentDirectory extends Component
         $this->deletingStudentId = null;
     }
 
+    // ─── PARENT LINKING ───────────────────────────────
+
+    public function openParentModal(int $studentId): void
+    {
+        $this->parentLinkStudentId = $studentId;
+        $this->parentEmail         = '';
+        $this->parentHubungan      = 'orang_tua';
+        $this->showParentModal     = true;
+    }
+
+    public function linkParent(): void
+    {
+        $this->validate([
+            'parentEmail'    => 'required|email|exists:users,email',
+            'parentHubungan' => 'required|in:orang_tua,wali',
+        ]);
+
+        $parent = User::where('email', $this->parentEmail)
+            ->where('role', 'parent')
+            ->first();
+
+        if (!$parent) {
+            $this->addError('parentEmail', 'Email tidak ditemukan atau bukan akun Orang Tua.');
+            return;
+        }
+
+        $parent->children()->syncWithoutDetaching([
+            $this->parentLinkStudentId => ['hubungan' => $this->parentHubungan],
+        ]);
+
+        $this->showParentModal = false;
+        session()->flash('success', 'Orang tua berhasil dihubungkan ke siswa.');
+    }
+
+    public function unlinkParent(int $studentId, int $parentId): void
+    {
+        $parent = User::find($parentId);
+        if ($parent) {
+            $parent->children()->detach($studentId);
+        }
+        session()->flash('success', 'Relasi orang tua dihapus.');
+    }
+
     // ─── IMPORT / EXPORT ──────────────────────────────
 
     // ─── HasImportExport contract ─────────────────────
@@ -333,10 +382,19 @@ class StudentDirectory extends Component
                 ->sort();
         }
 
-        $viewingStudent = $this->viewingStudentId ? User::withCount(['enrollments', 'enrollments as completed_count' => fn ($q) => $q->where('status', 'completed')])->find($this->viewingStudentId) : null;
+        $viewingStudent = $this->viewingStudentId
+            ? User::withCount(['enrollments', 'enrollments as completed_count' => fn ($q) => $q->where('status', 'completed')])
+                  ->with('parents')
+                  ->find($this->viewingStudentId)
+            : null;
+
+        $parentLinkStudent = $this->parentLinkStudentId
+            ? User::with('parents')->find($this->parentLinkStudentId)
+            : null;
 
         return view('livewire.admin.student-directory', compact(
-            'students', 'totalStudents', 'activeThisMonth', 'classGroups', 'viewingStudent', 'isInstructor'
+            'students', 'totalStudents', 'activeThisMonth', 'classGroups',
+            'viewingStudent', 'isInstructor', 'parentLinkStudent'
         ))->layout('layouts.admin', ['title' => 'Direktori Siswa']);
     }
 }

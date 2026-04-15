@@ -18,12 +18,17 @@ use App\Livewire\Admin\AppSettings;
 use App\Livewire\Admin\TahfidzManagement;
 use App\Livewire\Admin\Profile as AdminProfile;
 use App\Livewire\Instructor\TahfidzHalaqoh;
+use App\Livewire\ParentPortal\Dashboard as ParentDashboard;
 
 // Root redirect
 Route::get('/', function () {
     if (auth()->check()) {
-        if (auth()->user()->isAdmin() || auth()->user()->isInstructor()) {
+        $user = auth()->user();
+        if ($user->isAdmin() || $user->isInstructor()) {
             return redirect()->route('admin.dashboard');
+        }
+        if ($user->isParent()) {
+            return redirect()->route('parent.dashboard');
         }
         return redirect()->route('student.dashboard');
     }
@@ -63,4 +68,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('/tahfidz', TahfidzManagement::class)->name('tahfidz');
         Route::get('/settings', AppSettings::class)->name('settings');
     });
+});
+
+// Parent Routes — read-only monitoring
+Route::middleware(['auth', 'parent'])->prefix('ortu')->name('parent.')->group(function () {
+    Route::get('/dashboard', ParentDashboard::class)->name('dashboard');
 });

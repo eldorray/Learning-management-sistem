@@ -209,5 +209,8 @@ class DatabaseSeeder extends Seeder
         // Seed Surahs + Tahfidz sample data
         $this->call(SurahSeeder::class);
         $this->call(TahfidzSeeder::class);
+
+        // Seed parent accounts linked to students
+        $this->call(ParentSeeder::class);
     }
 }
