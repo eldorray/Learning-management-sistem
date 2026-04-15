@@ -10,7 +10,8 @@ class Lesson extends Model
 {
     protected $fillable = [
         'module_id', 'course_id', 'title', 'content',
-        'video_url', 'type', 'duration_minutes', 'order', 'is_preview',
+        'video_url', 'document_path', 'document_name',
+        'type', 'duration_minutes', 'order', 'is_preview',
     ];
 
     protected $casts = [
@@ -47,8 +48,23 @@ class Lesson extends Model
         return match ($this->type) {
             'video' => 'play_circle',
             'quiz' => 'quiz',
+            'document' => 'description',
             default => 'article',
         };
+    }
+
+    public function getDocumentUrlAttribute(): ?string
+    {
+        if ($this->document_path) {
+            return asset('storage/' . $this->document_path);
+        }
+        return null;
+    }
+
+    public function getDocumentExtensionAttribute(): ?string
+    {
+        if (!$this->document_name) return null;
+        return strtolower(pathinfo($this->document_name, PATHINFO_EXTENSION));
     }
 
     /**

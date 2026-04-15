@@ -26,6 +26,15 @@
                 <p class="text-xs text-[#595c5e]">Rata-rata</p>
                 <p class="text-xl font-headline font-bold text-amber-600">{{ round($avgProgress) }}%</p>
             </div>
+            @if($pendingEssayCount > 0)
+            <div class="bg-white px-5 py-3 rounded-xl border border-amber-200 shadow-sm text-center relative">
+                <div class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
+                    <span class="text-white text-[10px] font-bold">!</span>
+                </div>
+                <p class="text-xs text-[#595c5e]">Esai Pending</p>
+                <p class="text-xl font-headline font-bold text-amber-600">{{ $pendingEssayCount }}</p>
+            </div>
+            @endif
         </div>
     </section>
 
@@ -188,6 +197,12 @@
                             @if($lesson->type === 'quiz' && isset($studentQuizResults[$lesson->id]))
                             @php $qr = $studentQuizResults[$lesson->id]; @endphp
                             <div class="flex items-center gap-2">
+                                @if($qr['ungraded_essays'] > 0)
+                                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 flex items-center gap-1">
+                                    <span class="material-symbols-outlined" style="font-size:12px">rate_review</span>
+                                    {{ $qr['ungraded_essays'] }} esai
+                                </span>
+                                @endif
                                 <span class="text-xs font-bold px-2 py-0.5 rounded-full
                                     {{ ($qr['total_points'] > 0 && ($qr['earned_points'] / $qr['total_points']) >= 0.6) ? 'bg-[#73f2dd]/30 text-[#00675c]' : 'bg-red-50 text-[#b31b25]' }}">
                                     {{ $qr['earned_points'] }}/{{ $qr['total_points'] }} poin
@@ -232,9 +247,19 @@
                     <h3 class="font-headline font-bold text-lg text-[#2c2f31]">{{ $answersLesson->title }}</h3>
                     <p class="text-sm text-[#595c5e]">{{ $answersStudent->name }}</p>
                 </div>
-                <button wire:click="$set('showAnswersModal', false)" class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">close</span>
-                </button>
+                <div class="flex items-center gap-2">
+                    @if($hasEssayQuestions)
+                    <button wire:click="gradeAllEssays" wire:confirm="Simpan semua nilai esai?"
+                            class="px-4 py-2 bg-gradient-to-br from-[#00675c] to-[#005a50] text-white font-bold rounded-full text-xs hover:scale-[1.02] transition-transform shadow-sm flex items-center gap-1.5">
+                        <span wire:loading.remove wire:target="gradeAllEssays" class="material-symbols-outlined text-sm">grading</span>
+                        <span wire:loading wire:target="gradeAllEssays" class="inline-block animate-spin text-sm">⟳</span>
+                        Simpan Semua Nilai
+                    </button>
+                    @endif
+                    <button wire:click="$set('showAnswersModal', false)" class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
+                        <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                    </button>
+                </div>
             </div>
 
             <div class="p-6 space-y-5">
@@ -243,8 +268,13 @@
                     $answer = $quizAnswersDetail->get($question->id);
                     $selectedOptionId = $answer?->quiz_option_id;
                     $isCorrect = $answer?->is_correct ?? false;
+                    $isEssay = $question->type === 'essay';
+                    $isGraded = $answer?->graded_at !== null;
                 @endphp
-                <div class="bg-[#f5f7f9] rounded-xl p-4 {{ $answer ? ($isCorrect ? 'ring-1 ring-[#00675c]/20' : 'ring-1 ring-[#b31b25]/20') : '' }}">
+                <div class="bg-[#f5f7f9] rounded-xl p-4
+                    {{ $isEssay
+                        ? ($isGraded ? 'ring-1 ring-[#0058ba]/20' : ($answer?->essay_answer ? 'ring-2 ring-amber-400/40' : ''))
+                        : ($answer ? ($isCorrect ? 'ring-1 ring-[#00675c]/20' : 'ring-1 ring-[#b31b25]/20') : '') }}">
 
                     <!-- Question -->
                     <div class="flex items-center justify-between mb-3">
@@ -252,19 +282,35 @@
                             <span class="w-7 h-7 bg-[#0058ba] text-white text-xs font-bold rounded-full flex items-center justify-center">{{ $qIndex + 1 }}</span>
                             <span class="text-xs font-semibold text-[#595c5e]">{{ $question->getTypeLabel() }} · {{ $question->points }} poin</span>
                         </div>
-                        @if($answer)
-                        <span class="text-xs font-bold px-2 py-0.5 rounded-full {{ $isCorrect ? 'bg-[#73f2dd]/30 text-[#00675c]' : 'bg-red-50 text-[#b31b25]' }}">
-                            {{ $isCorrect ? '✓ Benar' : '✗ Salah' }} · {{ $answer->points_earned }}p
-                        </span>
+                        @if($isEssay)
+                            @if($isGraded)
+                            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-[#0058ba]/10 text-[#0058ba] flex items-center gap-1">
+                                <span class="material-symbols-outlined" style="font-size:12px">check_circle</span>
+                                Dinilai · {{ $answer->points_earned }}p
+                            </span>
+                            @elseif($answer?->essay_answer)
+                            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 flex items-center gap-1 animate-pulse">
+                                <span class="material-symbols-outlined" style="font-size:12px">rate_review</span>
+                                Menunggu Penilaian
+                            </span>
+                            @else
+                            <span class="text-xs text-[#595c5e] italic">Tidak dijawab</span>
+                            @endif
                         @else
-                        <span class="text-xs text-[#595c5e] italic">Tidak dijawab</span>
+                            @if($answer)
+                            <span class="text-xs font-bold px-2 py-0.5 rounded-full {{ $isCorrect ? 'bg-[#73f2dd]/30 text-[#00675c]' : 'bg-red-50 text-[#b31b25]' }}">
+                                {{ $isCorrect ? '✓ Benar' : '✗ Salah' }} · {{ $answer->points_earned }}p
+                            </span>
+                            @else
+                            <span class="text-xs text-[#595c5e] italic">Tidak dijawab</span>
+                            @endif
                         @endif
                     </div>
 
                     <p class="text-sm font-semibold text-[#2c2f31] mb-3">{{ $question->question }}</p>
 
-                    <!-- Options -->
-                    @if($question->type !== 'essay')
+                    <!-- Options (for non-essay) -->
+                    @if(!$isEssay)
                     <div class="space-y-1.5">
                         @foreach($question->options as $option)
                         @php
@@ -290,11 +336,69 @@
                     </div>
                     @endif
 
-                    <!-- Essay Answer -->
-                    @if($question->type === 'essay' && $answer?->essay_answer)
-                    <div class="bg-white border border-[#abadaf]/10 rounded-lg p-3 mt-2">
-                        <p class="text-xs font-semibold text-[#595c5e] mb-1">Jawaban Siswa:</p>
-                        <p class="text-sm text-[#2c2f31]">{{ $answer->essay_answer }}</p>
+                    <!-- Essay Answer & Grading Form -->
+                    @if($isEssay && $answer?->essay_answer)
+                    <div class="space-y-3 mt-2">
+                        {{-- Student's essay answer --}}
+                        <div class="bg-white border border-[#abadaf]/10 rounded-lg p-4">
+                            <p class="text-xs font-semibold text-[#595c5e] mb-2 flex items-center gap-1">
+                                <span class="material-symbols-outlined" style="font-size:14px">description</span>
+                                Jawaban Siswa:
+                            </p>
+                            <p class="text-sm text-[#2c2f31] leading-relaxed whitespace-pre-wrap">{{ $answer->essay_answer }}</p>
+                        </div>
+
+                        {{-- Grading Form --}}
+                        <div class="bg-white border-2 border-[#0058ba]/10 rounded-xl p-4 space-y-3">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="material-symbols-outlined text-[#0058ba] text-sm">grading</span>
+                                <span class="text-sm font-bold text-[#0058ba]">Penilaian Esai</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-3">
+                                {{-- Score input --}}
+                                <div>
+                                    <label class="block text-xs font-semibold text-[#2c2f31] mb-1">Skor</label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number"
+                                               wire:model="essayScores.{{ $answer->id }}"
+                                               min="0" max="{{ $question->points }}"
+                                               class="w-full px-3 py-2 bg-[#eef1f3] border-none rounded-lg text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                        <span class="text-xs text-[#595c5e] flex-shrink-0">/{{ $question->points }}</span>
+                                    </div>
+                                </div>
+
+                                {{-- Feedback textarea --}}
+                                <div>
+                                    <label class="block text-xs font-semibold text-[#2c2f31] mb-1">Feedback <span class="font-normal text-[#595c5e]">(opsional)</span></label>
+                                    <textarea wire:model="essayFeedback.{{ $answer->id }}"
+                                              rows="2"
+                                              placeholder="Berikan catatan untuk siswa..."
+                                              class="w-full px-3 py-2 bg-[#eef1f3] border-none rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    @if($isGraded)
+                                    <p class="text-[10px] text-[#595c5e]">
+                                        Terakhir dinilai oleh {{ $answer->grader?->name ?? 'Unknown' }}
+                                        · {{ $answer->graded_at->diffForHumans() }}
+                                    </p>
+                                    @endif
+                                </div>
+                                <button wire:click="gradeEssay({{ $answer->id }})"
+                                        class="px-4 py-2 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-white font-bold rounded-full text-xs hover:scale-[1.02] transition-transform shadow-sm flex items-center gap-1.5">
+                                    <span wire:loading.remove wire:target="gradeEssay({{ $answer->id }})" class="material-symbols-outlined" style="font-size:14px">save</span>
+                                    <span wire:loading wire:target="gradeEssay({{ $answer->id }})" class="inline-block animate-spin text-xs">⟳</span>
+                                    Simpan Nilai
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif($isEssay && !$answer?->essay_answer)
+                    <div class="bg-[#eef1f3] rounded-lg p-3 mt-2 text-center">
+                        <p class="text-xs text-[#595c5e] italic">Siswa belum menjawab pertanyaan ini.</p>
                     </div>
                     @endif
 
@@ -311,9 +415,16 @@
                 @endforeach
             </div>
 
-            <div class="p-6 border-t border-[#eef1f3]">
+            <div class="p-6 border-t border-[#eef1f3] flex items-center gap-3">
+                @if($hasEssayQuestions)
+                <button wire:click="gradeAllEssays" wire:confirm="Simpan semua nilai esai?"
+                        class="flex-1 py-3 bg-gradient-to-br from-[#00675c] to-[#005a50] text-white font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm flex items-center justify-center gap-2 text-sm">
+                    <span class="material-symbols-outlined text-sm">grading</span>
+                    Simpan Semua Nilai Esai
+                </button>
+                @endif
                 <button wire:click="$set('showAnswersModal', false)"
-                        class="w-full py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                        class="{{ $hasEssayQuestions ? 'flex-1' : 'w-full' }} py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors text-sm">
                     Tutup
                 </button>
             </div>

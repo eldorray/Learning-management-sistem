@@ -7,10 +7,12 @@ use App\Models\Lesson;
 use App\Models\QuizQuestion;
 use App\Models\QuizOption;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class LessonEditor extends Component
 {
-    use AuthorizesCourseOwnership;
+    use AuthorizesCourseOwnership, WithFileUploads;
     public Lesson $lesson;
 
     // Lesson form fields
@@ -20,6 +22,8 @@ class LessonEditor extends Component
     public string $lessonVideoUrl = '';
     public int $lessonDuration = 0;
     public bool $lessonIsPreview = false;
+    public $lessonDocument = null;
+    public ?string $existingDocumentName = null;
 
     // Quiz question form
     public bool $showQuestionForm = false;
@@ -46,30 +50,64 @@ class LessonEditor extends Component
         $this->lessonVideoUrl = $this->lesson->video_url ?? '';
         $this->lessonDuration = $this->lesson->duration_minutes;
         $this->lessonIsPreview = $this->lesson->is_preview;
+        $this->existingDocumentName = $this->lesson->document_name;
     }
 
     // ── Lesson save ─────────────────────────────────────────────────
 
     public function saveLesson(): void
     {
-        $this->validate([
+        $rules = [
             'lessonTitle'    => 'required|min:2|max:255',
-            'lessonType'     => 'required|in:text,video,quiz',
+            'lessonType'     => 'required|in:text,video,quiz,document',
             'lessonContent'  => 'nullable',
             'lessonVideoUrl' => 'nullable|url',
             'lessonDuration' => 'integer|min:0',
-        ]);
+        ];
+
+        if ($this->lessonDocument) {
+            $rules['lessonDocument'] = 'file|max:20480|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar';
+        }
+
+        $this->validate($rules);
+
+        // Handle document upload
+        $documentPath = $this->lesson->document_path;
+        $documentName = $this->lesson->document_name;
+        if ($this->lessonDocument) {
+            // Delete old document if exists
+            if ($documentPath) {
+                Storage::disk('public')->delete($documentPath);
+            }
+            $documentPath = $this->lessonDocument->store('lesson-documents', 'public');
+            $documentName = $this->lessonDocument->getClientOriginalName();
+        }
 
         $this->lesson->update([
             'title'            => $this->lessonTitle,
             'type'             => $this->lessonType,
             'content'          => $this->lessonContent,
             'video_url'        => $this->lessonVideoUrl ?: null,
+            'document_path'    => $documentPath,
+            'document_name'    => $documentName,
             'duration_minutes' => $this->lessonDuration,
             'is_preview'       => $this->lessonIsPreview,
         ]);
 
+        $this->lessonDocument = null;
+        $this->existingDocumentName = $documentName;
         session()->flash('success', 'Pelajaran berhasil diperbarui!');
+        $this->refreshLesson();
+    }
+
+    public function removeDocument(): void
+    {
+        if ($this->lesson->document_path) {
+            Storage::disk('public')->delete($this->lesson->document_path);
+            $this->lesson->update(['document_path' => null, 'document_name' => null]);
+        }
+        $this->lessonDocument = null;
+        $this->existingDocumentName = null;
         $this->refreshLesson();
     }
 

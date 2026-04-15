@@ -81,8 +81,8 @@ class Analytics extends Component
     private function enrollmentTrend(?Collection $courseIds): \Illuminate\Support\Collection
     {
         $q = Enrollment::select(
-                DB::raw("CAST(strftime('%Y', created_at) AS INTEGER) as year"),
-                DB::raw("CAST(strftime('%m', created_at) AS INTEGER) as month"),
+                DB::raw("YEAR(created_at) as year"),
+                DB::raw("MONTH(created_at) as month"),
                 DB::raw('COUNT(*) as count')
             )
             ->where('created_at', '>=', now()->subMonths(6));

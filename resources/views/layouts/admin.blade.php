@@ -83,12 +83,22 @@
                 <span class="material-symbols-outlined">school</span>
                 <span class="text-sm font-medium">Direktori Guru</span>
             </a>
+            <a href="{{ route('admin.tahfidz') }}" @click="mobileOpen = false"
+               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.tahfidz') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span class="text-sm font-medium">Manajemen Tahfidz</span>
+            </a>
             <a href="{{ route('admin.settings') }}" @click="mobileOpen = false"
                class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.settings') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
                 <span class="material-symbols-outlined">settings</span>
                 <span class="text-sm font-medium">Pengaturan</span>
             </a>
             @endif
+            <a href="{{ route('admin.tahfidz.halaqoh') }}" @click="mobileOpen = false"
+               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.tahfidz.halaqoh') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
+                <span class="material-symbols-outlined">auto_stories</span>
+                <span class="text-sm font-medium">Halaqoh Tahfidz</span>
+            </a>
             <a href="{{ route('admin.analytics') }}" @click="mobileOpen = false"
                class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.analytics') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
                 <span class="material-symbols-outlined">insights</span>

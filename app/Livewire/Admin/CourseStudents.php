@@ -32,6 +32,10 @@ class CourseStudents extends Component
     public ?int $answersStudentId = null;
     public ?int $answersLessonId = null;
 
+    // Essay grading
+    public array $essayScores = [];   // [answer_id => points]
+    public array $essayFeedback = []; // [answer_id => feedback text]
+
     public function mount(int $courseId): void
     {
         $this->course = Course::with(['modules.lessons', 'instructor'])->findOrFail($courseId);
@@ -63,7 +67,116 @@ class CourseStudents extends Component
     {
         $this->answersStudentId = $studentId;
         $this->answersLessonId = $lessonId;
+        $this->essayScores = [];
+        $this->essayFeedback = [];
+
+        // Pre-fill existing essay scores and feedback
+        $answers = QuizAnswer::where('user_id', $studentId)
+            ->where('lesson_id', $lessonId)
+            ->get();
+
+        foreach ($answers as $answer) {
+            $question = $answer->question;
+            if ($question && $question->type === 'essay') {
+                $this->essayScores[$answer->id] = $answer->points_earned;
+                $this->essayFeedback[$answer->id] = $answer->essay_feedback ?? '';
+            }
+        }
+
         $this->showAnswersModal = true;
+    }
+
+    // ─── Grade Essay ─────────────────────────────────
+
+    public function gradeEssay(int $answerId): void
+    {
+        $answer = QuizAnswer::with('question')->findOrFail($answerId);
+
+        // Verify this answer belongs to the course
+        $lessonIds = $this->course->lessons()->pluck('id');
+        if (!$lessonIds->contains($answer->lesson_id)) {
+            abort(403);
+        }
+
+        $maxPoints = $answer->question->points;
+        $score = min(max(intval($this->essayScores[$answerId] ?? 0), 0), $maxPoints);
+        $feedback = trim($this->essayFeedback[$answerId] ?? '');
+
+        $answer->update([
+            'points_earned'  => $score,
+            'is_correct'     => $score >= ($maxPoints * 0.6),
+            'essay_feedback'  => $feedback ?: null,
+            'graded_by'      => auth()->id(),
+            'graded_at'      => now(),
+        ]);
+
+        // Recalculate total quiz score for this student+lesson
+        $allAnswers = QuizAnswer::where('user_id', $answer->user_id)
+            ->where('lesson_id', $answer->lesson_id)
+            ->get();
+
+        $totalEarned = $allAnswers->sum('points_earned');
+        $lesson = Lesson::with('quizQuestions')->find($answer->lesson_id);
+        $totalPossible = $lesson->quizQuestions->sum('points');
+        $percentage = $totalPossible > 0 ? ($totalEarned / $totalPossible) * 100 : 0;
+
+        // Auto-complete lesson if quiz passes 60%
+        if ($percentage >= 60) {
+            LessonProgress::updateOrCreate(
+                ['user_id' => $answer->user_id, 'lesson_id' => $answer->lesson_id],
+                ['course_id' => $this->course->id, 'is_completed' => true, 'completed_at' => now()]
+            );
+            $this->course->recalculateProgressFor($answer->user_id);
+        }
+
+        session()->flash('success', 'Nilai esai berhasil disimpan.');
+    }
+
+    public function gradeAllEssays(): void
+    {
+        if (!$this->answersStudentId || !$this->answersLessonId) return;
+
+        $answers = QuizAnswer::with('question')
+            ->where('user_id', $this->answersStudentId)
+            ->where('lesson_id', $this->answersLessonId)
+            ->get();
+
+        foreach ($answers as $answer) {
+            if ($answer->question->type !== 'essay') continue;
+            if (!isset($this->essayScores[$answer->id])) continue;
+
+            $maxPoints = $answer->question->points;
+            $score = min(max(intval($this->essayScores[$answer->id] ?? 0), 0), $maxPoints);
+            $feedback = trim($this->essayFeedback[$answer->id] ?? '');
+
+            $answer->update([
+                'points_earned'  => $score,
+                'is_correct'     => $score >= ($maxPoints * 0.6),
+                'essay_feedback'  => $feedback ?: null,
+                'graded_by'      => auth()->id(),
+                'graded_at'      => now(),
+            ]);
+        }
+
+        // Recalculate quiz score
+        $allAnswers = QuizAnswer::where('user_id', $this->answersStudentId)
+            ->where('lesson_id', $this->answersLessonId)
+            ->get();
+
+        $totalEarned = $allAnswers->sum('points_earned');
+        $lesson = Lesson::with('quizQuestions')->find($this->answersLessonId);
+        $totalPossible = $lesson->quizQuestions->sum('points');
+        $percentage = $totalPossible > 0 ? ($totalEarned / $totalPossible) * 100 : 0;
+
+        if ($percentage >= 60) {
+            LessonProgress::updateOrCreate(
+                ['user_id' => $this->answersStudentId, 'lesson_id' => $this->answersLessonId],
+                ['course_id' => $this->course->id, 'is_completed' => true, 'completed_at' => now()]
+            );
+            $this->course->recalculateProgressFor($this->answersStudentId);
+        }
+
+        session()->flash('success', 'Semua nilai esai berhasil disimpan.');
     }
 
     // ─── Remove Student ───────────────────────────────
@@ -130,6 +243,14 @@ class CourseStudents extends Component
         $completedCount = Enrollment::where('course_id', $this->course->id)->where('status', 'completed')->count();
         $avgProgress = Enrollment::where('course_id', $this->course->id)->avg('progress_percentage') ?? 0;
 
+        // Pending essay grading count
+        $lessonIds = $allLessons->pluck('id');
+        $pendingEssayCount = QuizAnswer::whereIn('lesson_id', $lessonIds)
+            ->whereHas('question', fn($q) => $q->where('type', 'essay'))
+            ->whereNotNull('essay_answer')
+            ->whereNull('graded_at')
+            ->count();
+
         // Student detail data
         $viewingStudent = null;
         $studentProgress = collect();
@@ -146,12 +267,16 @@ class CourseStudents extends Component
                     ->where('lesson_id', $quiz->id)
                     ->get();
                 if ($answers->isNotEmpty()) {
+                    $essayCount = $quiz->quizQuestions->where('type', 'essay')->count();
+                    $ungradedEssays = $answers->filter(fn($a) => $a->question?->type === 'essay' && $a->essay_answer && !$a->graded_at)->count();
                     $studentQuizResults[$quiz->id] = [
                         'lesson' => $quiz,
                         'total_points' => $quiz->quizQuestions->sum('points'),
                         'earned_points' => $answers->sum('points_earned'),
                         'correct_count' => $answers->where('is_correct', true)->count(),
                         'total_questions' => $quiz->quizQuestions->count(),
+                        'essay_count' => $essayCount,
+                        'ungraded_essays' => $ungradedEssays,
                     ];
                 }
             }
@@ -161,19 +286,24 @@ class CourseStudents extends Component
         $quizAnswersDetail = collect();
         $answersLesson = null;
         $answersStudent = null;
+        $hasEssayQuestions = false;
         if ($this->showAnswersModal && $this->answersStudentId && $this->answersLessonId) {
             $answersLesson = Lesson::with('quizQuestions.options')->find($this->answersLessonId);
             $answersStudent = User::find($this->answersStudentId);
-            $quizAnswersDetail = QuizAnswer::where('user_id', $this->answersStudentId)
+            $quizAnswersDetail = QuizAnswer::with('grader')
+                ->where('user_id', $this->answersStudentId)
                 ->where('lesson_id', $this->answersLessonId)
                 ->get()
                 ->keyBy('quiz_question_id');
+            $hasEssayQuestions = $answersLesson?->quizQuestions->contains('type', 'essay') ?? false;
         }
 
         return view('livewire.admin.course-students', compact(
             'enrollments', 'allLessons', 'quizLessons', 'totalEnrolled',
-            'completedCount', 'avgProgress', 'viewingStudent', 'studentProgress',
-            'studentQuizResults', 'quizAnswersDetail', 'answersLesson', 'answersStudent'
+            'completedCount', 'avgProgress', 'pendingEssayCount',
+            'viewingStudent', 'studentProgress',
+            'studentQuizResults', 'quizAnswersDetail', 'answersLesson', 'answersStudent',
+            'hasEssayQuestions'
         ))->layout('layouts.admin', ['title' => 'Siswa: ' . $this->course->title]);
     }
 }

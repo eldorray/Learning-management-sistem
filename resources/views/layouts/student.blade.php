@@ -75,6 +75,11 @@
                 <span class="material-symbols-outlined">explore</span>
                 <span>Katalog</span>
             </a>
+            <a href="{{ route('student.tahfidz') }}" @click="mobileOpen = false"
+               class="nav-item {{ request()->routeIs('student.tahfidz') ? 'active' : '' }}">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span>Tahfidz</span>
+            </a>
             <a href="{{ route('student.profile') }}" @click="mobileOpen = false"
                class="nav-item {{ request()->routeIs('student.profile') ? 'active' : '' }}">
                 <span class="material-symbols-outlined">person</span>
@@ -190,6 +195,11 @@
                class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.catalog') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
                 <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.catalog') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">explore</span>
                 <span class="text-[10px] font-semibold">Katalog</span>
+            </a>
+            <a href="{{ route('student.tahfidz') }}"
+               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.tahfidz') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
+                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.tahfidz') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">menu_book</span>
+                <span class="text-[10px] font-semibold">Tahfidz</span>
             </a>
             <a href="{{ route('student.profile') }}"
                class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.profile') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">

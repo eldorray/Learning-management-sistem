@@ -78,7 +78,7 @@
                             <span class="material-symbols-outlined text-[#0058ba] text-lg">{{ $currentLesson->type_icon }}</span>
                         </div>
                         <span class="text-xs uppercase tracking-widest font-semibold text-[#595c5e]">
-                            {{ match($currentLesson->type) { 'video' => 'Video', 'quiz' => 'Kuis', default => 'Artikel' } }}
+                            {{ match($currentLesson->type) { 'video' => 'Video', 'quiz' => 'Kuis', 'document' => 'Dokumen', default => 'Artikel' } }}
                             @if($currentLesson->type === 'quiz' && $currentLesson->quizQuestions->count() > 0)
                                 · {{ $currentLesson->quizQuestions->count() }} Soal
                             @elseif($currentLesson->duration_minutes > 0)
@@ -102,6 +102,26 @@
                 @if($currentLesson->content)
                 <div class="prose prose-slate max-w-none text-[#2c2f31] text-base md:text-lg leading-relaxed mb-8 md:mb-12">
                     {!! nl2br(e($currentLesson->content)) !!}
+                </div>
+                @endif
+
+                {{-- Document Attachment --}}
+                @if($currentLesson->document_path)
+                <div class="bg-white rounded-xl border border-[#abadaf]/10 shadow-sm p-5 md:p-6 mb-8 md:mb-12">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-emerald-600 text-2xl">description</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-[#2c2f31] text-sm md:text-base truncate">{{ $currentLesson->document_name }}</p>
+                            <p class="text-xs text-[#595c5e] mt-0.5">Lampiran dokumen · {{ strtoupper($currentLesson->document_extension) }}</p>
+                        </div>
+                        <a href="{{ $currentLesson->document_url }}" target="_blank" download
+                           class="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-gradient-to-br from-[#00675c] to-[#005a50] text-white font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm text-sm flex-shrink-0">
+                            <span class="material-symbols-outlined text-sm">download</span>
+                            <span class="hidden sm:inline">Unduh</span>
+                        </a>
+                    </div>
                 </div>
                 @endif
 
@@ -246,10 +266,38 @@
                                           {{ $quizSubmitted ? 'disabled' : '' }}
                                           class="w-full px-4 py-3 bg-[#f5f7f9] border border-[#abadaf]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none {{ $quizSubmitted ? 'cursor-not-allowed opacity-60' : '' }}"></textarea>
                                 @if($quizSubmitted)
-                                <p class="text-xs text-[#595c5e] mt-2 flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-xs">info</span>
-                                    Jawaban esai akan dinilai oleh pengajar.
-                                </p>
+                                    @php
+                                        $essayAnswer = \App\Models\QuizAnswer::where('user_id', auth()->id())
+                                            ->where('quiz_question_id', $question->id)
+                                            ->first();
+                                    @endphp
+                                    @if($essayAnswer?->graded_at)
+                                    <div class="mt-3 bg-[#0058ba]/5 border border-[#0058ba]/10 rounded-xl p-4 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-bold text-[#0058ba] flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-sm">grading</span>
+                                                Hasil Penilaian
+                                            </p>
+                                            <span class="text-xs font-bold px-2.5 py-1 rounded-full {{ $essayAnswer->is_correct ? 'bg-[#73f2dd]/30 text-[#00675c]' : 'bg-red-50 text-[#b31b25]' }}">
+                                                {{ $essayAnswer->points_earned }}/{{ $question->points }} poin
+                                            </span>
+                                        </div>
+                                        @if($essayAnswer->essay_feedback)
+                                        <div class="bg-white rounded-lg p-3">
+                                            <p class="text-xs font-semibold text-[#595c5e] mb-1">Catatan dari pengajar:</p>
+                                            <p class="text-sm text-[#2c2f31] leading-relaxed">{{ $essayAnswer->essay_feedback }}</p>
+                                        </div>
+                                        @endif
+                                        <p class="text-[10px] text-[#595c5e]">
+                                            Dinilai {{ $essayAnswer->graded_at->diffForHumans() }}
+                                        </p>
+                                    </div>
+                                    @else
+                                    <div class="mt-3 bg-amber-50 border border-amber-200/50 rounded-xl p-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-amber-500 text-sm">hourglass_top</span>
+                                        <p class="text-xs text-amber-700 font-semibold">Jawaban esai menunggu penilaian dari pengajar.</p>
+                                    </div>
+                                    @endif
                                 @endif
                             </div>
                             @endif

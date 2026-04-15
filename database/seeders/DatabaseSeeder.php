@@ -205,5 +205,9 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        // Seed Surahs + Tahfidz sample data
+        $this->call(SurahSeeder::class);
+        $this->call(TahfidzSeeder::class);
     }
 }

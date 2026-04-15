@@ -7,10 +7,12 @@ use App\Models\Course;
 use App\Models\Module;
 use App\Models\Lesson;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CourseBuilder extends Component
 {
-    use AuthorizesCourseOwnership;
+    use AuthorizesCourseOwnership, WithFileUploads;
     public Course $course;
 
     // Module form
@@ -23,11 +25,13 @@ class CourseBuilder extends Component
     public ?int $editingLessonId = null;
     public ?int $lessonModuleId = null;
     public string $lessonTitle = '';
-    public string $lessonType = 'text'; // text, video, quiz
+    public string $lessonType = 'text'; // text, video, quiz, document
     public string $lessonContent = '';
     public string $lessonVideoUrl = '';
     public int $lessonDuration = 0;
     public bool $lessonIsPreview = false;
+    public $lessonDocument = null; // file upload
+    public ?string $existingDocumentName = null;
 
     // Delete confirm
     public bool $showDeleteModuleModal = false;
@@ -147,6 +151,8 @@ class CourseBuilder extends Component
         $this->lessonVideoUrl = '';
         $this->lessonDuration = 0;
         $this->lessonIsPreview = false;
+        $this->lessonDocument = null;
+        $this->existingDocumentName = null;
         $this->expandedModuleId = $moduleId;
         $this->showLessonForm = true;
     }
@@ -162,18 +168,38 @@ class CourseBuilder extends Component
         $this->lessonVideoUrl = $lesson->video_url ?? '';
         $this->lessonDuration = $lesson->duration_minutes;
         $this->lessonIsPreview = $lesson->is_preview;
+        $this->lessonDocument = null;
+        $this->existingDocumentName = $lesson->document_name;
         $this->showLessonForm = true;
     }
 
     public function saveLesson(): void
     {
-        $this->validate([
+        $rules = [
             'lessonTitle'    => 'required|min:2|max:255',
-            'lessonType'     => 'required|in:text,video,quiz',
+            'lessonType'     => 'required|in:text,video,quiz,document',
             'lessonContent'  => 'nullable',
             'lessonVideoUrl' => 'nullable|url',
             'lessonDuration' => 'integer|min:0',
-        ]);
+        ];
+
+        if ($this->lessonDocument) {
+            $rules['lessonDocument'] = 'file|max:20480|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar';
+        }
+
+        $this->validate($rules);
+
+        // Handle document upload
+        $documentPath = null;
+        $documentName = null;
+        if ($this->lessonDocument) {
+            $documentPath = $this->lessonDocument->store('lesson-documents', 'public');
+            $documentName = $this->lessonDocument->getClientOriginalName();
+        } elseif ($this->editingLessonId) {
+            $existingLesson = Lesson::find($this->editingLessonId);
+            $documentPath = $existingLesson?->document_path;
+            $documentName = $existingLesson?->document_name;
+        }
 
         $data = [
             'module_id'        => $this->lessonModuleId,
@@ -182,6 +208,8 @@ class CourseBuilder extends Component
             'type'             => $this->lessonType,
             'content'          => $this->lessonContent,
             'video_url'        => $this->lessonVideoUrl ?: null,
+            'document_path'    => $documentPath,
+            'document_name'    => $documentName,
             'duration_minutes' => $this->lessonDuration,
             'is_preview'       => $this->lessonIsPreview,
         ];
@@ -197,6 +225,8 @@ class CourseBuilder extends Component
 
         $this->updateCourseLessonCount();
         $this->showLessonForm = false;
+        $this->lessonDocument = null;
+        $this->existingDocumentName = null;
         $this->refreshCourse();
 
         // If quiz type, redirect to quiz editor
@@ -214,12 +244,30 @@ class CourseBuilder extends Component
     public function deleteLesson(): void
     {
         if ($this->deletingLessonId) {
-            Lesson::findOrFail($this->deletingLessonId)->delete();
+            $lesson = Lesson::findOrFail($this->deletingLessonId);
+            // Clean up document file
+            if ($lesson->document_path) {
+                Storage::disk('public')->delete($lesson->document_path);
+            }
+            $lesson->delete();
             $this->refreshCourse();
             $this->updateCourseLessonCount();
         }
         $this->showDeleteLessonModal = false;
         $this->deletingLessonId = null;
+    }
+
+    public function removeDocument(): void
+    {
+        if ($this->editingLessonId) {
+            $lesson = Lesson::find($this->editingLessonId);
+            if ($lesson?->document_path) {
+                Storage::disk('public')->delete($lesson->document_path);
+                $lesson->update(['document_path' => null, 'document_name' => null]);
+            }
+        }
+        $this->lessonDocument = null;
+        $this->existingDocumentName = null;
     }
 
     public function moveLessonUp(int $lessonId): void

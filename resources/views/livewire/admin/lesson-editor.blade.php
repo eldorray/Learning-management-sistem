@@ -19,7 +19,7 @@
             <div>
                 <div class="flex items-center gap-2 mb-2">
                     <span class="w-8 h-8 rounded-lg flex items-center justify-center
-                        {{ $lesson->type === 'video' ? 'bg-purple-50 text-purple-600' : ($lesson->type === 'quiz' ? 'bg-amber-50 text-amber-600' : 'bg-[#eef1f3] text-[#595c5e]') }}">
+                        {{ $lesson->type === 'video' ? 'bg-purple-50 text-purple-600' : ($lesson->type === 'quiz' ? 'bg-amber-50 text-amber-600' : ($lesson->type === 'document' ? 'bg-emerald-50 text-emerald-600' : 'bg-[#eef1f3] text-[#595c5e]')) }}">
                         <span class="material-symbols-outlined text-sm">{{ $lesson->type_icon }}</span>
                     </span>
                     <span class="text-[#00675c] font-semibold uppercase tracking-widest text-xs">Lesson Editor</span>
@@ -68,14 +68,13 @@
                 <div>
                     <label class="block text-sm font-semibold text-[#2c2f31] mb-2">Tipe Pelajaran</label>
                     <div class="flex gap-3">
-                        @foreach(['text' => ['article', 'Teks'], 'video' => ['play_circle', 'Video'], 'quiz' => ['quiz', 'Kuis']] as $type => [$icon, $label])
+                        @foreach(['text' => ['article', 'Teks', 'text-[#595c5e]'], 'video' => ['play_circle', 'Video', 'text-purple-500'], 'document' => ['description', 'Dokumen', 'text-emerald-500'], 'quiz' => ['quiz', 'Kuis', 'text-amber-500']] as $type => [$icon, $label, $color])
                         <label class="relative cursor-pointer flex-1">
                             <input type="radio" wire:model.live="lessonType" value="{{ $type }}" class="peer sr-only">
                             <div class="p-3 rounded-xl border-2 text-center transition-all
                                         peer-checked:border-[#0058ba] peer-checked:bg-blue-50/50
                                         border-[#eef1f3] hover:border-[#abadaf]/40">
-                                <span class="material-symbols-outlined text-lg block mb-1
-                                    {{ $type === 'text' ? 'text-[#595c5e]' : ($type === 'video' ? 'text-purple-500' : 'text-amber-500') }}">
+                                <span class="material-symbols-outlined text-lg block mb-1 {{ $color }}">
                                     {{ $icon }}
                                 </span>
                                 <span class="text-xs font-semibold text-[#2c2f31]">{{ $label }}</span>
@@ -126,6 +125,55 @@
                           class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-y text-sm font-mono leading-relaxed"></textarea>
             </div>
             @endif
+
+            {{-- Document Upload Section --}}
+            <div>
+                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Lampiran Dokumen <span class="text-[#595c5e] font-normal">(opsional)</span></label>
+
+                @if($existingDocumentName && !$lessonDocument)
+                <div class="flex items-center gap-3 p-3 bg-[#eef1f3] rounded-xl">
+                    <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-emerald-600">description</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-semibold text-[#2c2f31] truncate">{{ $existingDocumentName }}</p>
+                        <p class="text-xs text-[#595c5e]">Dokumen saat ini</p>
+                    </div>
+                    <a href="{{ $lesson->document_url }}" target="_blank"
+                       class="p-2 text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors flex-shrink-0" title="Unduh">
+                        <span class="material-symbols-outlined text-sm">download</span>
+                    </a>
+                    <button type="button" wire:click="removeDocument" wire:confirm="Hapus dokumen ini?"
+                            class="p-2 text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors flex-shrink-0" title="Hapus">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                    </button>
+                </div>
+                @else
+                <div class="relative">
+                    <input type="file" wire:model="lessonDocument" id="editorDocumentInput"
+                           accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar"
+                           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <div class="border-2 border-dashed border-[#abadaf]/30 rounded-xl p-6 text-center hover:border-[#0058ba]/30 hover:bg-blue-50/20 transition-all">
+                        <span class="material-symbols-outlined text-3xl text-[#595c5e] block mb-2">cloud_upload</span>
+                        <p class="text-sm font-semibold text-[#2c2f31]">
+                            @if($lessonDocument)
+                                <span class="text-[#00675c] flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                                    {{ $lessonDocument->getClientOriginalName() }}
+                                </span>
+                            @else
+                                Klik atau seret file ke sini
+                            @endif
+                        </p>
+                        <p class="text-xs text-[#595c5e] mt-1">PDF, Word, Excel, PPT, TXT, ZIP · Max 20MB</p>
+                    </div>
+                </div>
+                @endif
+                @error('lessonDocument')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                <div wire:loading wire:target="lessonDocument" class="mt-2 flex items-center gap-2 text-xs text-[#0058ba]">
+                    <span class="inline-block animate-spin">⟳</span> Mengunggah dokumen...
+                </div>
+            </div>
 
             <div class="flex justify-end pt-2">
                 <button type="submit"

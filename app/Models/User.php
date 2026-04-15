@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->hasMany(LessonProgress::class);
     }
 
+    public function tahfidzRecords(): HasMany
+    {
+        return $this->hasMany(TahfidzRecord::class, 'student_id');
+    }
+
     public function getProgressForCourse(int $courseId): int
     {
         $enrollment = $this->enrollments()->where('course_id', $courseId)->first();
