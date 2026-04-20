@@ -4,6 +4,8 @@ namespace App\Livewire\Student;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Notification;
+use App\Support\AcademicYear;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -65,12 +67,22 @@ class CourseCatalog extends Component
         }
 
         Enrollment::create([
-            'user_id' => $user->id,
-            'course_id' => $course->id,
-            'enrolled_at' => now(),
-            'progress_percentage' => 0,
-            'status' => 'active',
+            'user_id'              => $user->id,
+            'course_id'            => $course->id,
+            'tahun_ajaran_id'      => AcademicYear::aktifId(),
+            'enrolled_at'          => now(),
+            'progress_percentage'  => 0,
+            'status'               => 'active',
         ]);
+
+        Notification::send(
+            userId: $user->id,
+            type: 'course_enrolled',
+            title: 'Berhasil mendaftar kursus!',
+            message: 'Kamu telah bergabung di kursus "' . $course->title . '". Selamat belajar!',
+            icon: 'auto_stories',
+            url: route('student.learn', $course->slug),
+        );
 
         $this->showCodeModal = false;
         $this->enrollmentCode = '';

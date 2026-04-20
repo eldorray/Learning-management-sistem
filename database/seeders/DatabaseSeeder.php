@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Notification;
 use App\Models\Lesson;
 use App\Models\LessonProgress;
 use App\Models\Module;
@@ -212,6 +213,18 @@ class DatabaseSeeder extends Seeder
                     'completed_at' => $progress >= 100 ? now()->subDays(rand(0, 10)) : null,
                 ]);
             }
+        }
+
+        // Sample notifications for demo student
+        $notifData = [
+            ['course_enrolled',  'Selamat datang di LMS Arrahmah!', 'Akun kamu sudah aktif. Mulai belajar sekarang dan raih prestasi terbaik!', 'school', '/dashboard'],
+            ['course_enrolled',  'Berhasil mendaftar kursus!', 'Kamu telah bergabung di kursus "Dasar-Dasar Pemrograman Web". Selamat belajar!', 'auto_stories', null],
+            ['tahfidz_graded',   'Setoran tahfidz dinilai!', 'Setoran ziyadah Al-Baqarah ayat 1-5 mendapat nilai rata-rata 88. Bagus!', 'menu_book', '/tahfidz'],
+            ['streak_reminder',  'Jaga streak belajarmu!', 'Kamu sudah 5 hari berturut belajar. Pertahankan agar tidak terputus!', 'local_fire_department', '/dashboard'],
+            ['achievement',      'Pencapaian baru diraih!', 'Kamu menyelesaikan 3 modul dalam seminggu. Luar biasa, terus semangat!', 'emoji_events', '/dashboard'],
+        ];
+        foreach ($notifData as [$type, $title, $message, $icon, $url]) {
+            Notification::send($demoStudent->id, $type, $title, $message, $icon, $url);
         }
 
         // Seed Surahs + Tahfidz sample data

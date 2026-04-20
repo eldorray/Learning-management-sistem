@@ -178,10 +178,7 @@
                 <div class="md:hidden">
                     <livewire:global-search />
                 </div>
-                <button class="p-2 rounded-full hover:bg-slate-100 transition-colors relative">
-                    <span class="material-symbols-outlined text-slate-600 text-xl">notifications</span>
-                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#b31b25] rounded-full"></span>
-                </button>
+                <livewire:notification-dropdown />
             </div>
         </header>
 

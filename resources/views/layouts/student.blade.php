@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? config('app.name', 'LMS Arrahmah') }} | {{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</title>
     @if(\App\Models\Setting::get('app_favicon'))
@@ -99,10 +99,7 @@
 
         <!-- Focus Mode Button -->
         <div class="space-y-3">
-            <a href="#" class="w-full bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] py-3.5 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-transform">
-                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
-                <span>Focus Mode</span>
-            </a>
+            <livewire:student.focus-mode />
 
             <!-- Divider -->
             <div class="border-t border-[#abadaf]/10 pt-3 space-y-1">
@@ -170,10 +167,7 @@
                 </div>
 
                 <!-- Notifications -->
-                <button class="p-2 rounded-full hover:bg-[#e5e9eb] transition-colors relative">
-                    <span class="material-symbols-outlined text-[#595c5e] text-xl">notifications</span>
-                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#b31b25] rounded-full"></span>
-                </button>
+                <livewire:notification-dropdown />
 
                 <!-- Avatar -->
                 <a href="{{ route('student.profile') }}" class="hidden sm:block">
@@ -185,37 +179,36 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="flex-1 overflow-y-auto pb-20 lg:pb-0">
+        <main class="flex-1 overflow-y-auto overflow-x-hidden pb-24 lg:pb-6"
+              style="padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));">
             {{ $slot }}
         </main>
 
         <!-- Bottom Navigation (Mobile Only) -->
-        <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-xl border-t border-slate-200 flex items-center justify-around px-2 py-2 safe-area-bottom">
-            <a href="{{ route('student.dashboard') }}"
-               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.dashboard') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
-                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.dashboard') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">dashboard</span>
-                <span class="text-[10px] font-semibold">Home</span>
-            </a>
-            <a href="{{ route('student.courses') }}"
-               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.courses') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
-                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.courses') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">auto_stories</span>
-                <span class="text-[10px] font-semibold">Kursus</span>
-            </a>
-            <a href="{{ route('student.catalog') }}"
-               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.catalog') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
-                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.catalog') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">explore</span>
-                <span class="text-[10px] font-semibold">Katalog</span>
-            </a>
-            <a href="{{ route('student.tahfidz') }}"
-               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.tahfidz') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
-                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.tahfidz') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">menu_book</span>
-                <span class="text-[10px] font-semibold">Tahfidz</span>
-            </a>
-            <a href="{{ route('student.profile') }}"
-               class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors {{ request()->routeIs('student.profile') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
-                <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('student.profile') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">person</span>
-                <span class="text-[10px] font-semibold">Profil</span>
-            </a>
+        <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-xl border-t border-slate-200 flex items-stretch"
+             style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+            @php
+                $navItems = [
+                    ['route' => 'student.dashboard', 'icon' => 'dashboard',         'label' => 'Home'],
+                    ['route' => 'student.courses',   'icon' => 'auto_stories',      'label' => 'Kursus'],
+                    ['route' => 'student.catalog',   'icon' => 'explore',           'label' => 'Katalog'],
+                    ['route' => 'student.tahfidz',   'icon' => 'menu_book',         'label' => 'Tahfidz'],
+                    ['route' => 'student.profile',   'icon' => 'person',            'label' => 'Profil'],
+                ];
+            @endphp
+            @foreach($navItems as $item)
+                @php $active = request()->routeIs($item['route']); @endphp
+                <a href="{{ route($item['route']) }}"
+                   wire:navigate
+                   class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors {{ $active ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
+                    <span class="material-symbols-outlined text-[22px] leading-none"
+                          style="{{ $active ? 'font-variation-settings: \'FILL\' 1;' : '' }}">{{ $item['icon'] }}</span>
+                    <span class="text-[10px] font-semibold leading-none">{{ $item['label'] }}</span>
+                    @if($active)
+                        <span class="w-1 h-1 bg-[#0058ba] rounded-full mt-0.5"></span>
+                    @endif
+                </a>
+            @endforeach
         </nav>
 
     </div>

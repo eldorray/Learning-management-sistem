@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Instructor;
 
+use App\Models\Notification;
 use App\Models\Surah;
 use App\Models\TahfidzGroup;
 use App\Models\TahfidzRecord;
@@ -126,6 +127,17 @@ class TahfidzHalaqoh extends Component
             'status'                 => 'approved',
             'tanggal_setoran'        => $this->setoranTanggal,
         ]);
+
+        $surah = Surah::find($this->setoranSurahId);
+        $avgScore = intdiv($this->setoranKelancaran + $this->setoranTajwid + $this->setoranMakhorijul, 3);
+        Notification::send(
+            userId: $this->setoranStudentId,
+            type: 'tahfidz_graded',
+            title: 'Setoran tahfidz dinilai!',
+            message: "Setoran {$this->setoranJenis} {$surah?->nama_latin} ayat {$this->setoranAyatMulai}-{$this->setoranAyatSelesai} mendapat nilai rata-rata {$avgScore}.",
+            icon: 'menu_book',
+            url: route('student.tahfidz'),
+        );
 
         $this->showSetoranModal = false;
         session()->flash('success', 'Setoran berhasil dicatat.');
