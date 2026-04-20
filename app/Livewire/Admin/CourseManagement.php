@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Course;
+use App\Support\AcademicYear;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -119,6 +120,7 @@ class CourseManagement extends Component
             $course->update($data);
             session()->flash('success', 'Kursus berhasil diperbarui!');
         } else {
+            $data['tahun_ajaran_id'] = AcademicYear::aktifId();
             Course::create($data);
             session()->flash('success', 'Kursus berhasil dibuat!');
         }
@@ -170,7 +172,9 @@ class CourseManagement extends Component
     public function render()
     {
         $user = auth()->user();
-        $query = Course::with('instructor')->withCount('enrollments');
+        $taId = AcademicYear::aktifId();
+        $query = Course::with('instructor')->withCount('enrollments')
+            ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId));
 
         // Instructor only sees their own courses
         if ($user->isInstructor()) {

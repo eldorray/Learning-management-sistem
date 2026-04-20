@@ -9,8 +9,13 @@ class TahfidzTarget extends Model
 {
     protected $fillable = [
         'tingkat_kelas', 'semester', 'surah_mulai_id', 'ayat_mulai',
-        'surah_selesai_id', 'ayat_selesai', 'keterangan',
+        'surah_selesai_id', 'ayat_selesai', 'keterangan', 'tahun_ajaran_id',
     ];
+
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class);
+    }
 
     public function surahMulai(): BelongsTo
     {

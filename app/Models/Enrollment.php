@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Enrollment extends Model
 {
     protected $fillable = [
-        'user_id', 'course_id', 'enrolled_at', 'completed_at',
+        'user_id', 'course_id', 'tahun_ajaran_id', 'enrolled_at', 'completed_at',
         'progress_percentage', 'status',
     ];
 
@@ -25,6 +25,11 @@ class Enrollment extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class);
     }
 
     public function isCompleted(): bool

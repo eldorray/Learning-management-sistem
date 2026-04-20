@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,11 +10,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Course extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'title', 'slug', 'description', 'short_description',
         'thumbnail', 'level', 'category', 'duration_minutes',
         'total_lessons', 'price', 'is_free', 'is_published', 'instructor_id',
-        'enrollment_code',
+        'enrollment_code', 'tahun_ajaran_id',
     ];
 
     protected static function booted(): void
@@ -42,6 +45,11 @@ class Course extends Model
         'is_published' => 'boolean',
         'price' => 'decimal:2',
     ];
+
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class);
+    }
 
     public function instructor(): BelongsTo
     {

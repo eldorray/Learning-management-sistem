@@ -11,7 +11,7 @@ class TahfidzRecord extends Model
         'student_id', 'instruktur_id', 'surah_id',
         'ayat_mulai', 'ayat_selesai', 'jenis_setoran',
         'score_kelancaran', 'score_tajwid', 'score_makhorijul_huruf',
-        'keterangan', 'status', 'tanggal_setoran',
+        'keterangan', 'status', 'tanggal_setoran', 'tahun_ajaran_id',
     ];
 
     protected $casts = ['tanggal_setoran' => 'date'];
@@ -29,6 +29,11 @@ class TahfidzRecord extends Model
     public function surah(): BelongsTo
     {
         return $this->belongsTo(Surah::class);
+    }
+
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class);
     }
 
     public function getScoreRataRataAttribute(): int

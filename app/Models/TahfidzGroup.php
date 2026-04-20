@@ -9,10 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TahfidzGroup extends Model
 {
     protected $fillable = [
-        'instruktur_id', 'nama_halaqoh', 'tingkat_kelas', 'deskripsi', 'is_active',
+        'instruktur_id', 'nama_halaqoh', 'tingkat_kelas', 'deskripsi', 'is_active', 'tahun_ajaran_id',
     ];
 
     protected $casts = ['is_active' => 'boolean'];
+
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class);
+    }
 
     public function instruktur(): BelongsTo
     {

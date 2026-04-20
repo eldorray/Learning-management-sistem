@@ -7,6 +7,7 @@ use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\LessonProgress;
 use App\Models\Module;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +17,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Seed tahun ajaran terlebih dahulu
+        $this->call(TahunAjaranSeeder::class);
+        $tahunAjaran = TahunAjaran::where('is_aktif', true)->first();
+
         // Admin
         $admin = User::create([
             'name' => 'Ahmad Fauzi',
@@ -147,6 +152,7 @@ class DatabaseSeeder extends Seeder
                 'is_free' => true,
                 'is_published' => true,
                 'instructor_id' => $instructor->id,
+                'tahun_ajaran_id' => $tahunAjaran?->id,
                 'total_lessons' => collect($courseData['modules'])->sum(fn($m) => count($m['lessons'])),
             ]);
 
@@ -182,6 +188,7 @@ class DatabaseSeeder extends Seeder
             Enrollment::create([
                 'user_id' => $demoStudent->id,
                 'course_id' => $course->id,
+                'tahun_ajaran_id' => $tahunAjaran?->id,
                 'enrolled_at' => now()->subDays(rand(5, 30)),
                 'progress_percentage' => $progress,
                 'status' => $progress >= 100 ? 'completed' : 'active',
@@ -198,6 +205,7 @@ class DatabaseSeeder extends Seeder
                 Enrollment::create([
                     'user_id' => $student->id,
                     'course_id' => $course->id,
+                    'tahun_ajaran_id' => $tahunAjaran?->id,
                     'enrolled_at' => now()->subDays(rand(1, 60)),
                     'progress_percentage' => $progress,
                     'status' => $progress >= 100 ? 'completed' : 'active',

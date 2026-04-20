@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\LoginLog;
 use App\Models\User;
+use App\Support\AcademicYear;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -23,32 +24,41 @@ class Dashboard extends Component
 
     private function stats(?Collection $courseIds): array
     {
+        $taId = AcademicYear::aktifId();
+
         if ($courseIds !== null) {
-            $studentIds         = Enrollment::whereIn('course_id', $courseIds)->distinct()->pluck('user_id');
-            $totalEnrollments   = Enrollment::whereIn('course_id', $courseIds)->count();
-            $completedEnrollments = Enrollment::whereIn('course_id', $courseIds)->where('status', 'completed')->count();
+            $enrollQ = fn () => Enrollment::whereIn('course_id', $courseIds)
+                ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId));
+
+            $studentIds           = $enrollQ()->distinct()->pluck('user_id');
+            $totalEnrollments     = $enrollQ()->count();
+            $completedEnrollments = $enrollQ()->where('status', 'completed')->count();
 
             return [
-                'totalCourses'         => Course::where('instructor_id', auth()->id())->count(),
-                'publishedCourses'     => Course::where('instructor_id', auth()->id())->where('is_published', true)->count(),
+                'totalCourses'         => Course::where('instructor_id', auth()->id())
+                    ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))->count(),
+                'publishedCourses'     => Course::where('instructor_id', auth()->id())->where('is_published', true)
+                    ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))->count(),
                 'totalStudents'        => $studentIds->count(),
                 'totalEnrollments'     => $totalEnrollments,
                 'completedEnrollments' => $completedEnrollments,
-                'newStudentsThisMonth' => Enrollment::whereIn('course_id', $courseIds)
+                'newStudentsThisMonth' => $enrollQ()
                     ->whereMonth('created_at', now()->month)
                     ->whereYear('created_at', now()->year)
                     ->distinct()->count('user_id'),
-                'avgProgress'          => Enrollment::whereIn('course_id', $courseIds)->avg('progress_percentage') ?? 0,
-                '_studentIds'          => $studentIds, // passed along for login log scoping
+                'avgProgress'          => $enrollQ()->avg('progress_percentage') ?? 0,
+                '_studentIds'          => $studentIds,
             ];
         }
 
-        $totalEnrollments     = Enrollment::count();
-        $completedEnrollments = Enrollment::where('status', 'completed')->count();
+        $enrollQ              = fn () => Enrollment::when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId));
+        $totalEnrollments     = $enrollQ()->count();
+        $completedEnrollments = $enrollQ()->where('status', 'completed')->count();
 
         return [
-            'totalCourses'         => Course::count(),
-            'publishedCourses'     => Course::where('is_published', true)->count(),
+            'totalCourses'         => Course::when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))->count(),
+            'publishedCourses'     => Course::where('is_published', true)
+                ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))->count(),
             'totalStudents'        => User::where('role', 'student')->count(),
             'totalEnrollments'     => $totalEnrollments,
             'completedEnrollments' => $completedEnrollments,
@@ -56,7 +66,7 @@ class Dashboard extends Component
                 ->whereMonth('created_at', now()->month)
                 ->whereYear('created_at', now()->year)
                 ->count(),
-            'avgProgress'          => Enrollment::avg('progress_percentage') ?? 0,
+            'avgProgress'          => $enrollQ()->avg('progress_percentage') ?? 0,
             '_studentIds'          => null,
         ];
     }

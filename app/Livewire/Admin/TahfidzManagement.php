@@ -7,6 +7,7 @@ use App\Models\TahfidzGroup;
 use App\Models\TahfidzRecord;
 use App\Models\TahfidzTarget;
 use App\Models\User;
+use App\Support\AcademicYear;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -61,32 +62,41 @@ class TahfidzManagement extends Component
 
     // ── Dashboard Stats ──────────────────────────────────────────────
 
+    private function taScope(\Illuminate\Database\Eloquent\Builder $q): \Illuminate\Database\Eloquent\Builder
+    {
+        $taId = AcademicYear::aktifId();
+        return $taId ? $q->where('tahun_ajaran_id', $taId) : $q;
+    }
+
     public function getTotalSetoranProperty(): int
     {
-        return TahfidzRecord::count();
+        return $this->taScope(TahfidzRecord::query())->count();
     }
 
     public function getTotalSiswaAktifProperty(): int
     {
-        return TahfidzRecord::distinct('student_id')->count('student_id');
+        return $this->taScope(TahfidzRecord::query())->distinct('student_id')->count('student_id');
     }
 
     public function getTotalHalaqohProperty(): int
     {
-        return TahfidzGroup::where('is_active', true)->count();
+        return $this->taScope(TahfidzGroup::where('is_active', true))->count();
     }
 
     public function getAvgScoreProperty(): int
     {
-        $avg = TahfidzRecord::avg(DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'));
+        $avg = $this->taScope(TahfidzRecord::query())
+            ->avg(DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'));
         return (int) round($avg ?? 0);
     }
 
     public function getTopStudentsProperty()
     {
+        $taId = AcademicYear::aktifId();
         return User::where('role', 'student')
-            ->withCount(['tahfidzRecords as total_setoran'])
-            ->withAvg('tahfidzRecords as avg_score', DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'))
+            ->withCount(['tahfidzRecords as total_setoran' => fn ($q) => $taId ? $q->where('tahun_ajaran_id', $taId) : $q])
+            ->withAvg(['tahfidzRecords as avg_score' => fn ($q) => $taId ? $q->where('tahun_ajaran_id', $taId) : $q],
+                DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'))
             ->having('total_setoran', '>', 0)
             ->orderByDesc('total_setoran')
             ->limit(5)
@@ -95,7 +105,7 @@ class TahfidzManagement extends Component
 
     public function getRecentRecordsProperty()
     {
-        return TahfidzRecord::with(['student', 'instruktur', 'surah'])
+        return $this->taScope(TahfidzRecord::with(['student', 'instruktur', 'surah']))
             ->latest('tanggal_setoran')
             ->limit(10)
             ->get();
@@ -103,7 +113,7 @@ class TahfidzManagement extends Component
 
     public function getSetoranByJenisProperty()
     {
-        return TahfidzRecord::select('jenis_setoran', DB::raw('count(*) as total'))
+        return $this->taScope(TahfidzRecord::select('jenis_setoran', DB::raw('count(*) as total')))
             ->groupBy('jenis_setoran')
             ->get()
             ->keyBy('jenis_setoran');
@@ -152,6 +162,7 @@ class TahfidzManagement extends Component
         if ($this->editTargetId) {
             TahfidzTarget::findOrFail($this->editTargetId)->update($data);
         } else {
+            $data['tahun_ajaran_id'] = AcademicYear::aktifId();
             TahfidzTarget::create($data);
         }
 
@@ -209,6 +220,7 @@ class TahfidzManagement extends Component
         if ($this->editGroupId) {
             TahfidzGroup::findOrFail($this->editGroupId)->update($data);
         } else {
+            $data['tahun_ajaran_id'] = AcademicYear::aktifId();
             TahfidzGroup::create($data);
         }
 
@@ -251,13 +263,22 @@ class TahfidzManagement extends Component
 
     public function render()
     {
+        $taId = AcademicYear::aktifId();
+        $tahunAjaran = AcademicYear::aktif();
+
         return view('livewire.admin.tahfidz-management', [
             'surahs'      => Surah::orderBy('nomor')->get(),
-            'targets'     => TahfidzTarget::with(['surahMulai', 'surahSelesai'])->orderBy('tingkat_kelas')->get(),
-            'groups'      => TahfidzGroup::with(['instruktur'])->withCount('students')->orderBy('nama_halaqoh')->get(),
+            'tahunAjaran' => $tahunAjaran,
+            'targets'     => TahfidzTarget::with(['surahMulai', 'surahSelesai'])
+                ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))
+                ->orderBy('tingkat_kelas')->get(),
+            'groups'      => TahfidzGroup::with(['instruktur'])->withCount('students')
+                ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))
+                ->orderBy('nama_halaqoh')->get(),
             'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
             'allStudents' => User::where('role', 'student')->orderBy('name')->get(),
             'records'     => TahfidzRecord::with(['student', 'instruktur', 'surah'])
+                ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))
                 ->when($this->searchRecord, fn($q) => $q->whereHas('student', fn($sq) => $sq->where('name', 'like', "%{$this->searchRecord}%")))
                 ->when($this->filterSurah, fn($q) => $q->where('surah_id', $this->filterSurah))
                 ->when($this->filterJenis, fn($q) => $q->where('jenis_setoran', $this->filterJenis))
