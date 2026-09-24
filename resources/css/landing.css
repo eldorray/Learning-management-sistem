@@ -1,0 +1,10 @@
+html, body { margin: 0; width: 100%; height: 100%; background: #05070a; }
+#kage-root, .shader-frame, .shader-frame > .landing-page-frame { width: 100%; height: calc(100vh - 56px - env(safe-area-inset-bottom, 0px)); height: calc(100dvh - 56px - env(safe-area-inset-bottom, 0px)); }
+.lms-access { position: fixed; z-index: 20; bottom: 0; left: 0; right: 0; min-height: 56px; box-sizing: border-box; padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 8px; background: #05070a; font: 400 13px system-ui, sans-serif; }
+.lms-access a, #pwa-install-banner button { color: #dfe7e0; background: #101813; border: 1px solid #526458; border-radius: 4px; padding: 10px 16px; text-decoration: none; cursor: pointer; }
+.lms-access a:hover, #pwa-install-banner button:hover { background: #25352b; }
+.lms-access a:focus-visible, #pwa-install-banner button:focus-visible { outline: 2px solid #e0231c; outline-offset: 4px; }
+#pwa-install-banner { position: fixed; right: 20px; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); z-index: 21; gap: 8px; }
+#pwa-install-banner.hidden { display: none; }
+#pwa-install-banner.flex { display: flex; }
+@media (max-width: 540px) { #pwa-install-banner { right: 12px; gap: 4px; } #pwa-install-banner button { padding: 10px 7px; font-size: 11px; } .lms-access a { padding: 10px; } }

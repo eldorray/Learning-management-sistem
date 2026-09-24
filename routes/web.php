@@ -36,6 +36,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/landing-pages/kage.html', fn () => response(\App\Support\LandingPageContent::render())
+    ->header('Content-Type', 'text/html; charset=UTF-8')
+    ->header('Cache-Control', 'no-store')
+    ->header('X-Content-Type-Options', 'nosniff'));
+Route::view('/landing-preview', 'welcome')->name('landing.preview');
+
 // Auth routes (provided by Laravel starter kit)
 require __DIR__.'/auth.php';
 
@@ -69,6 +75,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('/parents', ParentDirectory::class)->name('parents');
         Route::get('/tahfidz', TahfidzManagement::class)->name('tahfidz');
         Route::get('/settings', AppSettings::class)->name('settings');
+        Route::get('/landing-page', \App\Livewire\Admin\LandingPageSettings::class)->name('landing-page');
     });
 });
 

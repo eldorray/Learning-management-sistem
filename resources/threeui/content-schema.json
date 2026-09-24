@@ -1,0 +1,1816 @@
+{
+  "text_001": {
+    "type": "text",
+    "label": "Kage — Where stillness reveals the unseen",
+    "section": "Metadata",
+    "default": "Kage — Where stillness reveals the unseen",
+    "offset": 159,
+    "length": 43,
+    "source": "Kage — Where stillness reveals the unseen",
+    "encoding": "html"
+  },
+  "text_002": {
+    "type": "text",
+    "label": "影の道",
+    "section": "Identitas dan navigasi",
+    "default": "影の道",
+    "offset": 53735,
+    "length": 9,
+    "source": "影の道",
+    "encoding": "html"
+  },
+  "text_003": {
+    "type": "text",
+    "label": "Raising the mountain temple",
+    "section": "Identitas dan navigasi",
+    "default": "Raising the mountain temple",
+    "offset": 53843,
+    "length": 27,
+    "source": "Raising the mountain temple",
+    "encoding": "html"
+  },
+  "text_004": {
+    "type": "text",
+    "label": "%",
+    "section": "Identitas dan navigasi",
+    "default": "%",
+    "offset": 53907,
+    "length": 1,
+    "source": "%",
+    "encoding": "html"
+  },
+  "text_005": {
+    "type": "text",
+    "label": "KAGE",
+    "section": "Identitas dan navigasi",
+    "default": "KAGE",
+    "offset": 54433,
+    "length": 4,
+    "source": "KAGE",
+    "encoding": "html"
+  },
+  "text_006": {
+    "type": "text",
+    "label": "HIDDEN REALMS OF KYOTO",
+    "section": "Identitas dan navigasi",
+    "default": "HIDDEN REALMS OF KYOTO",
+    "offset": 54444,
+    "length": 22,
+    "source": "HIDDEN REALMS OF KYOTO",
+    "encoding": "html"
+  },
+  "text_007": {
+    "type": "text",
+    "label": "Temples",
+    "section": "Identitas dan navigasi",
+    "default": "Temples",
+    "offset": 54580,
+    "length": 7,
+    "source": "Temples",
+    "encoding": "html"
+  },
+  "text_008": {
+    "type": "text",
+    "label": "伽藍",
+    "section": "Identitas dan navigasi",
+    "default": "伽藍",
+    "offset": 54612,
+    "length": 6,
+    "source": "伽藍",
+    "encoding": "html"
+  },
+  "text_009": {
+    "type": "text",
+    "label": "Gardens",
+    "section": "Identitas dan navigasi",
+    "default": "Gardens",
+    "offset": 54689,
+    "length": 7,
+    "source": "Gardens",
+    "encoding": "html"
+  },
+  "text_010": {
+    "type": "text",
+    "label": "庭園",
+    "section": "Identitas dan navigasi",
+    "default": "庭園",
+    "offset": 54721,
+    "length": 6,
+    "source": "庭園",
+    "encoding": "html"
+  },
+  "text_011": {
+    "type": "text",
+    "label": "Rituals",
+    "section": "Identitas dan navigasi",
+    "default": "Rituals",
+    "offset": 54797,
+    "length": 7,
+    "source": "Rituals",
+    "encoding": "html"
+  },
+  "text_012": {
+    "type": "text",
+    "label": "神事",
+    "section": "Identitas dan navigasi",
+    "default": "神事",
+    "offset": 54829,
+    "length": 6,
+    "source": "神事",
+    "encoding": "html"
+  },
+  "text_013": {
+    "type": "text",
+    "label": "Afterlight",
+    "section": "Identitas dan navigasi",
+    "default": "Afterlight",
+    "offset": 54906,
+    "length": 10,
+    "source": "Afterlight",
+    "encoding": "html"
+  },
+  "text_014": {
+    "type": "text",
+    "label": "残光",
+    "section": "Identitas dan navigasi",
+    "default": "残光",
+    "offset": 54941,
+    "length": 6,
+    "source": "残光",
+    "encoding": "html"
+  },
+  "text_015": {
+    "type": "text",
+    "label": "Chapter 00 — The Hidden Gate",
+    "section": "Hero",
+    "default": "Chapter 00 — The Hidden Gate",
+    "offset": 55302,
+    "length": 31,
+    "source": " Chapter 00 — The Hidden Gate",
+    "encoding": "html"
+  },
+  "text_016": {
+    "type": "text",
+    "label": "Where stillness",
+    "section": "Hero",
+    "default": "Where stillness",
+    "offset": 55408,
+    "length": 15,
+    "source": "Where stillness",
+    "encoding": "html"
+  },
+  "text_017": {
+    "type": "text",
+    "label": "reveals the",
+    "section": "Hero",
+    "default": "reveals the",
+    "offset": 55474,
+    "length": 11,
+    "source": "reveals the",
+    "encoding": "html"
+  },
+  "text_018": {
+    "type": "text",
+    "label": "unseen.",
+    "section": "Hero",
+    "default": "unseen.",
+    "offset": 55536,
+    "length": 7,
+    "source": "unseen.",
+    "encoding": "html"
+  },
+  "text_019": {
+    "type": "text",
+    "label": "Enter Kyoto through its quiet thresholds, where ritual,\n      craft, a",
+    "section": "Hero",
+    "default": "Enter Kyoto through its quiet thresholds, where ritual,\n      craft, and memory shape the path.",
+    "offset": 55610,
+    "length": 95,
+    "source": "Enter Kyoto through its quiet thresholds, where ritual,\n      craft, and memory shape the path.",
+    "encoding": "html"
+  },
+  "text_020": {
+    "type": "text",
+    "label": "Scroll to enter",
+    "section": "Hero",
+    "default": "Scroll to enter",
+    "offset": 55828,
+    "length": 15,
+    "source": "Scroll to enter",
+    "encoding": "html"
+  },
+  "text_021": {
+    "type": "text",
+    "label": "01",
+    "section": "Hero",
+    "default": "01",
+    "offset": 56010,
+    "length": 2,
+    "source": "01",
+    "encoding": "html"
+  },
+  "text_022": {
+    "type": "text",
+    "label": "Thresholds",
+    "section": "Hero",
+    "default": "Thresholds",
+    "offset": 56048,
+    "length": 10,
+    "source": "Thresholds",
+    "encoding": "html"
+  },
+  "text_023": {
+    "type": "text",
+    "label": "Discover the hidden gates that open on to deeper paths.",
+    "section": "Hero",
+    "default": "Discover the hidden gates that open on to deeper paths.",
+    "offset": 56065,
+    "length": 55,
+    "source": "Discover the hidden gates that open on to deeper paths.",
+    "encoding": "html"
+  },
+  "text_024": {
+    "type": "text",
+    "label": "02",
+    "section": "Hero",
+    "default": "02",
+    "offset": 56219,
+    "length": 2,
+    "source": "02",
+    "encoding": "html"
+  },
+  "text_025": {
+    "type": "text",
+    "label": "Still Gardens",
+    "section": "Hero",
+    "default": "Still Gardens",
+    "offset": 56257,
+    "length": 13,
+    "source": "Still Gardens",
+    "encoding": "html"
+  },
+  "text_026": {
+    "type": "text",
+    "label": "Witness the courts where silence gently unfolds.",
+    "section": "Hero",
+    "default": "Witness the courts where silence gently unfolds.",
+    "offset": 56277,
+    "length": 48,
+    "source": "Witness the courts where silence gently unfolds.",
+    "encoding": "html"
+  },
+  "text_027": {
+    "type": "text",
+    "label": "03",
+    "section": "Hero",
+    "default": "03",
+    "offset": 56424,
+    "length": 2,
+    "source": "03",
+    "encoding": "html"
+  },
+  "text_028": {
+    "type": "text",
+    "label": "Sacred Craft",
+    "section": "Hero",
+    "default": "Sacred Craft",
+    "offset": 56462,
+    "length": 12,
+    "source": "Sacred Craft",
+    "encoding": "html"
+  },
+  "text_029": {
+    "type": "text",
+    "label": "Embrace the hands and heritage that shape devotion.",
+    "section": "Hero",
+    "default": "Embrace the hands and heritage that shape devotion.",
+    "offset": 56481,
+    "length": 51,
+    "source": "Embrace the hands and heritage that shape devotion.",
+    "encoding": "html"
+  },
+  "text_030": {
+    "type": "text",
+    "label": "04",
+    "section": "Hero",
+    "default": "04",
+    "offset": 56631,
+    "length": 2,
+    "source": "04",
+    "encoding": "html"
+  },
+  "text_031": {
+    "type": "text",
+    "label": "Night Rituals",
+    "section": "Hero",
+    "default": "Night Rituals",
+    "offset": 56669,
+    "length": 13,
+    "source": "Night Rituals",
+    "encoding": "html"
+  },
+  "text_032": {
+    "type": "text",
+    "label": "Explore the rites that awaken when the day is done.",
+    "section": "Hero",
+    "default": "Explore the rites that awaken when the day is done.",
+    "offset": 56689,
+    "length": 51,
+    "source": "Explore the rites that awaken when the day is done.",
+    "encoding": "html"
+  },
+  "text_033": {
+    "type": "text",
+    "label": "山門",
+    "section": "Hero",
+    "default": "山門",
+    "offset": 57269,
+    "length": 6,
+    "source": "山門",
+    "encoding": "html"
+  },
+  "text_034": {
+    "type": "text",
+    "label": "Sanmon — before the bell",
+    "section": "Hero",
+    "default": "Sanmon — before the bell",
+    "offset": 57282,
+    "length": 26,
+    "source": "Sanmon — before the bell",
+    "encoding": "html"
+  },
+  "text_035": {
+    "type": "text",
+    "label": "KAGE",
+    "section": "Hero",
+    "default": "KAGE",
+    "offset": 57370,
+    "length": 4,
+    "source": "KAGE",
+    "encoding": "html"
+  },
+  "text_036": {
+    "type": "text",
+    "label": "影の道",
+    "section": "Hero",
+    "default": "影の道",
+    "offset": 57444,
+    "length": 9,
+    "source": "影の道",
+    "encoding": "html"
+  },
+  "text_037": {
+    "type": "text",
+    "label": "01",
+    "section": "Gerbang",
+    "default": "01",
+    "offset": 58417,
+    "length": 2,
+    "source": "01",
+    "encoding": "html"
+  },
+  "text_038": {
+    "type": "text",
+    "label": "— The Sanmon",
+    "section": "Gerbang",
+    "default": "— The Sanmon",
+    "offset": 58423,
+    "length": 15,
+    "source": " — The Sanmon",
+    "encoding": "html"
+  },
+  "text_039": {
+    "type": "text",
+    "label": "山門",
+    "section": "Gerbang",
+    "default": "山門",
+    "offset": 58490,
+    "length": 6,
+    "source": "山門",
+    "encoding": "html"
+  },
+  "text_040": {
+    "type": "text",
+    "label": "Charred cypress, worn stone, one gate left open.",
+    "section": "Gerbang",
+    "default": "Charred cypress, worn stone, one gate left open.",
+    "offset": 58582,
+    "length": 48,
+    "source": "Charred cypress, worn stone, one gate left open.",
+    "encoding": "html"
+  },
+  "text_041": {
+    "type": "text",
+    "label": "Kage begins where the city stops: a mountain gate of cedar burned blac",
+    "section": "Gerbang",
+    "default": "Kage begins where the city stops: a mountain gate of cedar burned black,\n        standing in its own weather. The soot is not decoration. It is how a board is taught to survive a\n        hundred rainy seasons, and the first thing this place asks you to understand.",
+    "offset": 58699,
+    "length": 264,
+    "source": "Kage begins where the city stops: a mountain gate of cedar burned black,\n        standing in its own weather. The soot is not decoration. It is how a board is taught to survive a\n        hundred rainy seasons, and the first thing this place asks you to understand.",
+    "encoding": "html"
+  },
+  "text_042": {
+    "type": "text",
+    "label": "Climb the worn steps and the worship hall lifts out of the mist, its p",
+    "section": "Gerbang",
+    "default": "Climb the worn steps and the worship hall lifts out of the mist, its paper\n        screens lit from inside like a lantern the size of a house. Above the eaves a vermilion moon holds\n        its place, patient, half hidden. Nothing here is in a hurry. Neither, for the next ninety minutes,\n        are you.",
+    "offset": 59003,
+    "length": 305,
+    "source": "Climb the worn steps and the worship hall lifts out of the mist, its paper\n        screens lit from inside like a lantern the size of a house. Above the eaves a vermilion moon holds\n        its place, patient, half hidden. Nothing here is in a hurry. Neither, for the next ninety minutes,\n        are you.",
+    "encoding": "html"
+  },
+  "text_043": {
+    "type": "text",
+    "label": "Cross the threshold",
+    "section": "Gerbang",
+    "default": "Cross the threshold",
+    "offset": 59399,
+    "length": 19,
+    "source": "Cross the threshold",
+    "encoding": "html"
+  },
+  "text_044": {
+    "type": "text",
+    "label": "05",
+    "section": "Gerbang",
+    "default": "05",
+    "offset": 59651,
+    "length": 2,
+    "source": "05",
+    "encoding": "html"
+  },
+  "text_045": {
+    "type": "text",
+    "label": "Chapters",
+    "section": "Gerbang",
+    "default": "Chapters",
+    "offset": 59663,
+    "length": 8,
+    "source": "Chapters",
+    "encoding": "html"
+  },
+  "text_046": {
+    "type": "text",
+    "label": "92",
+    "section": "Gerbang",
+    "default": "92",
+    "offset": 59697,
+    "length": 2,
+    "source": "92",
+    "encoding": "html"
+  },
+  "text_047": {
+    "type": "text",
+    "label": "Minutes",
+    "section": "Gerbang",
+    "default": "Minutes",
+    "offset": 59709,
+    "length": 7,
+    "source": "Minutes",
+    "encoding": "html"
+  },
+  "text_048": {
+    "type": "text",
+    "label": "1611",
+    "section": "Gerbang",
+    "default": "1611",
+    "offset": 59742,
+    "length": 4,
+    "source": "1611",
+    "encoding": "html"
+  },
+  "text_049": {
+    "type": "text",
+    "label": "Hall raised",
+    "section": "Gerbang",
+    "default": "Hall raised",
+    "offset": 59756,
+    "length": 11,
+    "source": "Hall raised",
+    "encoding": "html"
+  },
+  "text_050": {
+    "type": "text",
+    "label": "∞",
+    "section": "Gerbang",
+    "default": "∞",
+    "offset": 59793,
+    "length": 3,
+    "source": "∞",
+    "encoding": "html"
+  },
+  "text_051": {
+    "type": "text",
+    "label": "Stillness",
+    "section": "Gerbang",
+    "default": "Stillness",
+    "offset": 59806,
+    "length": 9,
+    "source": "Stillness",
+    "encoding": "html"
+  },
+  "text_052": {
+    "type": "text",
+    "label": "02",
+    "section": "Galeri",
+    "default": "02",
+    "offset": 61042,
+    "length": 2,
+    "source": "02",
+    "encoding": "html"
+  },
+  "text_053": {
+    "type": "text",
+    "label": "— Still Gardens",
+    "section": "Galeri",
+    "default": "— Still Gardens",
+    "offset": 61048,
+    "length": 18,
+    "source": " — Still Gardens",
+    "encoding": "html"
+  },
+  "text_054": {
+    "type": "text",
+    "label": "庭園",
+    "section": "Galeri",
+    "default": "庭園",
+    "offset": 61118,
+    "length": 6,
+    "source": "庭園",
+    "encoding": "html"
+  },
+  "text_055": {
+    "type": "text",
+    "label": "Approach",
+    "section": "Galeri",
+    "default": "Approach",
+    "offset": 61616,
+    "length": 8,
+    "source": "Approach",
+    "encoding": "html"
+  },
+  "text_056": {
+    "type": "text",
+    "label": "参道",
+    "section": "Galeri",
+    "default": "参道",
+    "offset": 61645,
+    "length": 6,
+    "source": "参道",
+    "encoding": "html"
+  },
+  "text_057": {
+    "type": "text",
+    "label": "The long climb",
+    "section": "Galeri",
+    "default": "The long climb",
+    "offset": 61713,
+    "length": 14,
+    "source": "The long climb",
+    "encoding": "html"
+  },
+  "text_058": {
+    "type": "text",
+    "label": "01 / 03",
+    "section": "Galeri",
+    "default": "01 / 03",
+    "offset": 61740,
+    "length": 7,
+    "source": "01 / 03",
+    "encoding": "html"
+  },
+  "text_059": {
+    "type": "text",
+    "label": "Lanterns",
+    "section": "Galeri",
+    "default": "Lanterns",
+    "offset": 62231,
+    "length": 8,
+    "source": "Lanterns",
+    "encoding": "html"
+  },
+  "text_060": {
+    "type": "text",
+    "label": "灯籠",
+    "section": "Galeri",
+    "default": "灯籠",
+    "offset": 62260,
+    "length": 6,
+    "source": "灯籠",
+    "encoding": "html"
+  },
+  "text_061": {
+    "type": "text",
+    "label": "Lantern court",
+    "section": "Galeri",
+    "default": "Lantern court",
+    "offset": 62328,
+    "length": 13,
+    "source": "Lantern court",
+    "encoding": "html"
+  },
+  "text_062": {
+    "type": "text",
+    "label": "02 / 03",
+    "section": "Galeri",
+    "default": "02 / 03",
+    "offset": 62354,
+    "length": 7,
+    "source": "02 / 03",
+    "encoding": "html"
+  },
+  "text_063": {
+    "type": "text",
+    "label": "Moonwater",
+    "section": "Galeri",
+    "default": "Moonwater",
+    "offset": 62833,
+    "length": 9,
+    "source": "Moonwater",
+    "encoding": "html"
+  },
+  "text_064": {
+    "type": "text",
+    "label": "月影",
+    "section": "Galeri",
+    "default": "月影",
+    "offset": 62863,
+    "length": 6,
+    "source": "月影",
+    "encoding": "html"
+  },
+  "text_065": {
+    "type": "text",
+    "label": "The wet court",
+    "section": "Galeri",
+    "default": "The wet court",
+    "offset": 62931,
+    "length": 13,
+    "source": "The wet court",
+    "encoding": "html"
+  },
+  "text_066": {
+    "type": "text",
+    "label": "03 / 03",
+    "section": "Galeri",
+    "default": "03 / 03",
+    "offset": 62957,
+    "length": 7,
+    "source": "03 / 03",
+    "encoding": "html"
+  },
+  "text_067": {
+    "type": "text",
+    "label": "03",
+    "section": "Kurikulum",
+    "default": "03",
+    "offset": 63987,
+    "length": 2,
+    "source": "03",
+    "encoding": "html"
+  },
+  "text_068": {
+    "type": "text",
+    "label": "— Sacred Craft",
+    "section": "Kurikulum",
+    "default": "— Sacred Craft",
+    "offset": 63993,
+    "length": 17,
+    "source": " — Sacred Craft",
+    "encoding": "html"
+  },
+  "text_069": {
+    "type": "text",
+    "label": "手業",
+    "section": "Kurikulum",
+    "default": "手業",
+    "offset": 64062,
+    "length": 6,
+    "source": "手業",
+    "encoding": "html"
+  },
+  "text_070": {
+    "type": "text",
+    "label": "Five chapters. Ninety minutes. One quiet mind.",
+    "section": "Kurikulum",
+    "default": "Five chapters. Ninety minutes. One quiet mind.",
+    "offset": 64153,
+    "length": 46,
+    "source": "Five chapters. Ninety minutes. One quiet mind.",
+    "encoding": "html"
+  },
+  "text_071": {
+    "type": "text",
+    "label": "Each chapter is a walk, not a lecture. You arrive at the gate, climb t",
+    "section": "Kurikulum",
+    "default": "Each chapter is a walk, not a lecture. You arrive at the gate, climb the\n      steps, sit with the lantern, and leave with one thing worth keeping.",
+    "offset": 64241,
+    "length": 147,
+    "source": "Each chapter is a walk, not a lecture. You arrive at the gate, climb the\n      steps, sit with the lantern, and leave with one thing worth keeping.",
+    "encoding": "html"
+  },
+  "text_072": {
+    "type": "text",
+    "label": "01",
+    "section": "Kurikulum",
+    "default": "01",
+    "offset": 64500,
+    "length": 2,
+    "source": "01",
+    "encoding": "html"
+  },
+  "text_073": {
+    "type": "text",
+    "label": "The Hidden Gate",
+    "section": "Kurikulum",
+    "default": "The Hidden Gate",
+    "offset": 64520,
+    "length": 15,
+    "source": "The Hidden Gate",
+    "encoding": "html"
+  },
+  "text_074": {
+    "type": "text",
+    "label": "山門",
+    "section": "Kurikulum",
+    "default": "山門",
+    "offset": 64550,
+    "length": 6,
+    "source": "山門",
+    "encoding": "html"
+  },
+  "text_075": {
+    "type": "text",
+    "label": "Why a gate is a sentence, and what you agree to when you walk under on",
+    "section": "Kurikulum",
+    "default": "Why a gate is a sentence, and what you agree to when you walk under one.",
+    "offset": 64576,
+    "length": 72,
+    "source": "Why a gate is a sentence, and what you agree to when you walk under one.",
+    "encoding": "html"
+  },
+  "text_076": {
+    "type": "text",
+    "label": "14 min",
+    "section": "Kurikulum",
+    "default": "14 min",
+    "offset": 64675,
+    "length": 6,
+    "source": "14 min",
+    "encoding": "html"
+  },
+  "text_077": {
+    "type": "text",
+    "label": "02",
+    "section": "Kurikulum",
+    "default": "02",
+    "offset": 64788,
+    "length": 2,
+    "source": "02",
+    "encoding": "html"
+  },
+  "text_078": {
+    "type": "text",
+    "label": "Borrowed Scenery",
+    "section": "Kurikulum",
+    "default": "Borrowed Scenery",
+    "offset": 64808,
+    "length": 16,
+    "source": "Borrowed Scenery",
+    "encoding": "html"
+  },
+  "text_079": {
+    "type": "text",
+    "label": "借景",
+    "section": "Kurikulum",
+    "default": "借景",
+    "offset": 64839,
+    "length": 6,
+    "source": "借景",
+    "encoding": "html"
+  },
+  "text_080": {
+    "type": "text",
+    "label": "Shakkei: composing with a mountain you will never own.",
+    "section": "Kurikulum",
+    "default": "Shakkei: composing with a mountain you will never own.",
+    "offset": 64865,
+    "length": 54,
+    "source": "Shakkei: composing with a mountain you will never own.",
+    "encoding": "html"
+  },
+  "text_081": {
+    "type": "text",
+    "label": "18 min",
+    "section": "Kurikulum",
+    "default": "18 min",
+    "offset": 64946,
+    "length": 6,
+    "source": "18 min",
+    "encoding": "html"
+  },
+  "text_082": {
+    "type": "text",
+    "label": "03",
+    "section": "Kurikulum",
+    "default": "03",
+    "offset": 65059,
+    "length": 2,
+    "source": "03",
+    "encoding": "html"
+  },
+  "text_083": {
+    "type": "text",
+    "label": "Charred Cypress",
+    "section": "Kurikulum",
+    "default": "Charred Cypress",
+    "offset": 65079,
+    "length": 15,
+    "source": "Charred Cypress",
+    "encoding": "html"
+  },
+  "text_084": {
+    "type": "text",
+    "label": "焼杉",
+    "section": "Kurikulum",
+    "default": "焼杉",
+    "offset": 65109,
+    "length": 6,
+    "source": "焼杉",
+    "encoding": "html"
+  },
+  "text_085": {
+    "type": "text",
+    "label": "Yakisugi: burning a board black so the weather will let it live.",
+    "section": "Kurikulum",
+    "default": "Yakisugi: burning a board black so the weather will let it live.",
+    "offset": 65135,
+    "length": 64,
+    "source": "Yakisugi: burning a board black so the weather will let it live.",
+    "encoding": "html"
+  },
+  "text_086": {
+    "type": "text",
+    "label": "21 min",
+    "section": "Kurikulum",
+    "default": "21 min",
+    "offset": 65226,
+    "length": 6,
+    "source": "21 min",
+    "encoding": "html"
+  },
+  "text_087": {
+    "type": "text",
+    "label": "04",
+    "section": "Kurikulum",
+    "default": "04",
+    "offset": 65339,
+    "length": 2,
+    "source": "04",
+    "encoding": "html"
+  },
+  "text_088": {
+    "type": "text",
+    "label": "Lantern Light",
+    "section": "Kurikulum",
+    "default": "Lantern Light",
+    "offset": 65359,
+    "length": 13,
+    "source": "Lantern Light",
+    "encoding": "html"
+  },
+  "text_089": {
+    "type": "text",
+    "label": "灯籠",
+    "section": "Kurikulum",
+    "default": "灯籠",
+    "offset": 65387,
+    "length": 6,
+    "source": "灯籠",
+    "encoding": "html"
+  },
+  "text_090": {
+    "type": "text",
+    "label": "How a single ember decides the scale of everything around it.",
+    "section": "Kurikulum",
+    "default": "How a single ember decides the scale of everything around it.",
+    "offset": 65413,
+    "length": 61,
+    "source": "How a single ember decides the scale of everything around it.",
+    "encoding": "html"
+  },
+  "text_091": {
+    "type": "text",
+    "label": "17 min",
+    "section": "Kurikulum",
+    "default": "17 min",
+    "offset": 65501,
+    "length": 6,
+    "source": "17 min",
+    "encoding": "html"
+  },
+  "text_092": {
+    "type": "text",
+    "label": "05",
+    "section": "Kurikulum",
+    "default": "05",
+    "offset": 65614,
+    "length": 2,
+    "source": "05",
+    "encoding": "html"
+  },
+  "text_093": {
+    "type": "text",
+    "label": "The Vermilion Moon",
+    "section": "Kurikulum",
+    "default": "The Vermilion Moon",
+    "offset": 65634,
+    "length": 18,
+    "source": "The Vermilion Moon",
+    "encoding": "html"
+  },
+  "text_094": {
+    "type": "text",
+    "label": "朱月",
+    "section": "Kurikulum",
+    "default": "朱月",
+    "offset": 65667,
+    "length": 6,
+    "source": "朱月",
+    "encoding": "html"
+  },
+  "text_095": {
+    "type": "text",
+    "label": "Why the moon burns red over the valley, and what the garden does with ",
+    "section": "Kurikulum",
+    "default": "Why the moon burns red over the valley, and what the garden does with it.",
+    "offset": 65693,
+    "length": 73,
+    "source": "Why the moon burns red over the valley, and what the garden does with it.",
+    "encoding": "html"
+  },
+  "text_096": {
+    "type": "text",
+    "label": "22 min",
+    "section": "Kurikulum",
+    "default": "22 min",
+    "offset": 65793,
+    "length": 6,
+    "source": "22 min",
+    "encoding": "html"
+  },
+  "text_097": {
+    "type": "text",
+    "label": "Chapter 04 — Afterlight",
+    "section": "Penutup",
+    "default": "Chapter 04 — Afterlight",
+    "offset": 66981,
+    "length": 25,
+    "source": "Chapter 04 — Afterlight",
+    "encoding": "html"
+  },
+  "text_098": {
+    "type": "text",
+    "label": "Afterlight",
+    "section": "Penutup",
+    "default": "Afterlight",
+    "offset": 67048,
+    "length": 10,
+    "source": "Afterlight",
+    "encoding": "html"
+  },
+  "text_099": {
+    "type": "text",
+    "label": "The gate does not close behind you. Take the walk whenever the noise\n ",
+    "section": "Penutup",
+    "default": "The gate does not close behind you. Take the walk whenever the noise\n    gets loud — it is always the same path, and never the same light.",
+    "offset": 67098,
+    "length": 140,
+    "source": "The gate does not close behind you. Take the walk whenever the noise\n    gets loud — it is always the same path, and never the same light.",
+    "encoding": "html"
+  },
+  "text_100": {
+    "type": "text",
+    "label": "Begin the walk",
+    "section": "Penutup",
+    "default": "Begin the walk",
+    "offset": 67317,
+    "length": 14,
+    "source": "Begin the walk",
+    "encoding": "html"
+  },
+  "text_101": {
+    "type": "text",
+    "label": "A five-chapter night walk through a Kyoto mountain temple. Three illus",
+    "section": "Footer",
+    "default": "A five-chapter night walk through a Kyoto mountain temple. Three illustrated garden field notes\n        sit inside a live Three.js sanctuary.",
+    "offset": 68666,
+    "length": 141,
+    "source": "A five-chapter night walk through a Kyoto mountain temple. Three illustrated garden field notes\n        sit inside a live Three.js sanctuary.",
+    "encoding": "html"
+  },
+  "text_102": {
+    "type": "text",
+    "label": "Chapters",
+    "section": "Footer",
+    "default": "Chapters",
+    "offset": 68836,
+    "length": 8,
+    "source": "Chapters",
+    "encoding": "html"
+  },
+  "text_103": {
+    "type": "text",
+    "label": "The Sanmon",
+    "section": "Footer",
+    "default": "The Sanmon",
+    "offset": 68892,
+    "length": 10,
+    "source": "The Sanmon",
+    "encoding": "html"
+  },
+  "text_104": {
+    "type": "text",
+    "label": "Still Gardens",
+    "section": "Footer",
+    "default": "Still Gardens",
+    "offset": 68954,
+    "length": 13,
+    "source": "Still Gardens",
+    "encoding": "html"
+  },
+  "text_105": {
+    "type": "text",
+    "label": "Sacred Craft",
+    "section": "Footer",
+    "default": "Sacred Craft",
+    "offset": 69018,
+    "length": 12,
+    "source": "Sacred Craft",
+    "encoding": "html"
+  },
+  "text_106": {
+    "type": "text",
+    "label": "Afterlight",
+    "section": "Footer",
+    "default": "Afterlight",
+    "offset": 69082,
+    "length": 10,
+    "source": "Afterlight",
+    "encoding": "html"
+  },
+  "text_107": {
+    "type": "text",
+    "label": "Practice",
+    "section": "Footer",
+    "default": "Practice",
+    "offset": 69131,
+    "length": 8,
+    "source": "Practice",
+    "encoding": "html"
+  },
+  "text_108": {
+    "type": "text",
+    "label": "Borrowed scenery",
+    "section": "Footer",
+    "default": "Borrowed scenery",
+    "offset": 69190,
+    "length": 16,
+    "source": "Borrowed scenery",
+    "encoding": "html"
+  },
+  "text_109": {
+    "type": "text",
+    "label": "Lantern light",
+    "section": "Footer",
+    "default": "Lantern light",
+    "offset": 69257,
+    "length": 13,
+    "source": "Lantern light",
+    "encoding": "html"
+  },
+  "text_110": {
+    "type": "text",
+    "label": "Charred cypress",
+    "section": "Footer",
+    "default": "Charred cypress",
+    "offset": 69321,
+    "length": 15,
+    "source": "Charred cypress",
+    "encoding": "html"
+  },
+  "text_111": {
+    "type": "text",
+    "label": "Raked gravel",
+    "section": "Footer",
+    "default": "Raked gravel",
+    "offset": 69387,
+    "length": 12,
+    "source": "Raked gravel",
+    "encoding": "html"
+  },
+  "text_112": {
+    "type": "text",
+    "label": "Elsewhere",
+    "section": "Footer",
+    "default": "Elsewhere",
+    "offset": 69438,
+    "length": 9,
+    "source": "Elsewhere",
+    "encoding": "html"
+  },
+  "text_113": {
+    "type": "text",
+    "label": "Journal",
+    "section": "Footer",
+    "default": "Journal",
+    "offset": 69494,
+    "length": 7,
+    "source": "Journal",
+    "encoding": "html"
+  },
+  "text_114": {
+    "type": "text",
+    "label": "Field notes",
+    "section": "Footer",
+    "default": "Field notes",
+    "offset": 69548,
+    "length": 11,
+    "source": "Field notes",
+    "encoding": "html"
+  },
+  "text_115": {
+    "type": "text",
+    "label": "Colophon",
+    "section": "Footer",
+    "default": "Colophon",
+    "offset": 69606,
+    "length": 8,
+    "source": "Colophon",
+    "encoding": "html"
+  },
+  "text_116": {
+    "type": "text",
+    "label": "© 2026 Kage — Kage no Michi",
+    "section": "Footer",
+    "default": "© 2026 Kage — Kage no Michi",
+    "offset": 69685,
+    "length": 30,
+    "source": "© 2026 Kage — Kage no Michi",
+    "encoding": "html"
+  },
+  "text_117": {
+    "type": "text",
+    "label": "静けさは一つの技である",
+    "section": "Footer",
+    "default": "静けさは一つの技である",
+    "offset": 69744,
+    "length": 33,
+    "source": "静けさは一つの技である",
+    "encoding": "html"
+  },
+  "text_118": {
+    "type": "text",
+    "label": "WebGL · Onest · Kyoto",
+    "section": "Footer",
+    "default": "WebGL · Onest · Kyoto",
+    "offset": 69795,
+    "length": 23,
+    "source": "WebGL · Onest · Kyoto",
+    "encoding": "html"
+  },
+  "image_01": {
+    "type": "image",
+    "label": "kage-sanmon-preview",
+    "section": "Metadata",
+    "default": "/landing-pages/secret-pathways-assets/generated/kage-sanmon-preview.webp",
+    "offset": 11431,
+    "length": 57,
+    "source": "secret-pathways-assets/generated/kage-sanmon-preview.webp",
+    "encoding": "url"
+  },
+  "image_02": {
+    "type": "image",
+    "label": "kage-approach",
+    "section": "Metadata",
+    "default": "/landing-pages/secret-pathways-assets/generated/kage-approach.webp",
+    "offset": 16981,
+    "length": 51,
+    "source": "secret-pathways-assets/generated/kage-approach.webp",
+    "encoding": "url"
+  },
+  "image_03": {
+    "type": "image",
+    "label": "kage-lantern-court",
+    "section": "Metadata",
+    "default": "/landing-pages/secret-pathways-assets/generated/kage-lantern-court.webp",
+    "offset": 17185,
+    "length": 56,
+    "source": "secret-pathways-assets/generated/kage-lantern-court.webp",
+    "encoding": "url"
+  },
+  "image_04": {
+    "type": "image",
+    "label": "kage-moonwater",
+    "section": "Metadata",
+    "default": "/landing-pages/secret-pathways-assets/generated/kage-moonwater.webp",
+    "offset": 17394,
+    "length": 52,
+    "source": "secret-pathways-assets/generated/kage-moonwater.webp",
+    "encoding": "url"
+  },
+  "image_05": {
+    "type": "image",
+    "label": "temple-wall",
+    "section": "Gerbang",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/temple-wall.webp",
+    "offset": 57811,
+    "length": 54,
+    "source": "secret-pathways-assets/foreground/png/temple-wall.webp",
+    "encoding": "url"
+  },
+  "image_06": {
+    "type": "image",
+    "label": "pine-tree",
+    "section": "Gerbang",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/pine-tree.webp",
+    "offset": 58013,
+    "length": 52,
+    "source": "secret-pathways-assets/foreground/png/pine-tree.webp",
+    "encoding": "url"
+  },
+  "image_07": {
+    "type": "image",
+    "label": "tall-grass",
+    "section": "Gerbang",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/tall-grass.webp",
+    "offset": 58212,
+    "length": 53,
+    "source": "secret-pathways-assets/foreground/png/tall-grass.webp",
+    "encoding": "url"
+  },
+  "image_08": {
+    "type": "image",
+    "label": "sakura-branch",
+    "section": "Galeri",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/sakura-branch.webp",
+    "offset": 60211,
+    "length": 56,
+    "source": "secret-pathways-assets/foreground/png/sakura-branch.webp",
+    "encoding": "url"
+  },
+  "image_09": {
+    "type": "image",
+    "label": "maple-leaves",
+    "section": "Galeri",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/maple-leaves.webp",
+    "offset": 60430,
+    "length": 55,
+    "source": "secret-pathways-assets/foreground/png/maple-leaves.webp",
+    "encoding": "url"
+  },
+  "image_10": {
+    "type": "image",
+    "label": "stone-lantern",
+    "section": "Galeri",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/stone-lantern.webp",
+    "offset": 60634,
+    "length": 56,
+    "source": "secret-pathways-assets/foreground/png/stone-lantern.webp",
+    "encoding": "url"
+  },
+  "image_11": {
+    "type": "image",
+    "label": "garden-bush",
+    "section": "Galeri",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/garden-bush.webp",
+    "offset": 60836,
+    "length": 54,
+    "source": "secret-pathways-assets/foreground/png/garden-bush.webp",
+    "encoding": "url"
+  },
+  "image_12": {
+    "type": "image",
+    "label": "temple-wall",
+    "section": "Kurikulum",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/temple-wall.webp",
+    "offset": 63379,
+    "length": 54,
+    "source": "secret-pathways-assets/foreground/png/temple-wall.webp",
+    "encoding": "url"
+  },
+  "image_13": {
+    "type": "image",
+    "label": "basalt-stones",
+    "section": "Kurikulum",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/basalt-stones.webp",
+    "offset": 63580,
+    "length": 56,
+    "source": "secret-pathways-assets/foreground/png/basalt-stones.webp",
+    "encoding": "url"
+  },
+  "image_14": {
+    "type": "image",
+    "label": "tall-grass",
+    "section": "Kurikulum",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/tall-grass.webp",
+    "offset": 63782,
+    "length": 53,
+    "source": "secret-pathways-assets/foreground/png/tall-grass.webp",
+    "encoding": "url"
+  },
+  "image_15": {
+    "type": "image",
+    "label": "hill",
+    "section": "Penutup",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/hill.webp",
+    "offset": 66198,
+    "length": 47,
+    "source": "secret-pathways-assets/foreground/png/hill.webp",
+    "encoding": "url"
+  },
+  "image_16": {
+    "type": "image",
+    "label": "shrine-ruins",
+    "section": "Penutup",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/shrine-ruins.webp",
+    "offset": 66393,
+    "length": 55,
+    "source": "secret-pathways-assets/foreground/png/shrine-ruins.webp",
+    "encoding": "url"
+  },
+  "image_17": {
+    "type": "image",
+    "label": "tall-grass",
+    "section": "Penutup",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/tall-grass.webp",
+    "offset": 66595,
+    "length": 53,
+    "source": "secret-pathways-assets/foreground/png/tall-grass.webp",
+    "encoding": "url"
+  },
+  "image_18": {
+    "type": "image",
+    "label": "sakura-branch",
+    "section": "Penutup",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/sakura-branch.webp",
+    "offset": 66797,
+    "length": 56,
+    "source": "secret-pathways-assets/foreground/png/sakura-branch.webp",
+    "encoding": "url"
+  },
+  "image_19": {
+    "type": "image",
+    "label": "garden-bush",
+    "section": "Footer",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/garden-bush.webp",
+    "offset": 67798,
+    "length": 54,
+    "source": "secret-pathways-assets/foreground/png/garden-bush.webp",
+    "encoding": "url"
+  },
+  "image_20": {
+    "type": "image",
+    "label": "tall-grass",
+    "section": "Footer",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/tall-grass.webp",
+    "offset": 67998,
+    "length": 53,
+    "source": "secret-pathways-assets/foreground/png/tall-grass.webp",
+    "encoding": "url"
+  },
+  "image_21": {
+    "type": "image",
+    "label": "basalt-stones",
+    "section": "Footer",
+    "default": "/landing-pages/secret-pathways-assets/foreground/png/basalt-stones.webp",
+    "offset": 68198,
+    "length": 56,
+    "source": "secret-pathways-assets/foreground/png/basalt-stones.webp",
+    "encoding": "url"
+  },
+  "artwork_01": {
+    "type": "image",
+    "label": "Logo / ikon 1",
+    "section": "Identitas dan navigasi",
+    "default": "",
+    "offset": 53466,
+    "length": 230,
+    "source": "<svg viewBox=\"0 0 44 44\" fill=\"none\" aria-hidden=\"true\">\n        <circle cx=\"22\" cy=\"24\" r=\"9.5\" stroke=\"#e0231c\" stroke-width=\"1.2\"/>\n        <path d=\"M6 12h32M9.5 17h25M22 8v28\" stroke=\"#dfe7e0\" stroke-width=\"1.2\"/>\n      </svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_02": {
+    "type": "image",
+    "label": "Logo / ikon 2",
+    "section": "Identitas dan navigasi",
+    "default": "",
+    "offset": 54093,
+    "length": 309,
+    "source": "<svg viewBox=\"0 0 44 44\" fill=\"none\" aria-hidden=\"true\">\n      <circle cx=\"22\" cy=\"25\" r=\"8.6\" fill=\"#e0231c\" fill-opacity=\".9\"/>\n      <path d=\"M5 13h34M9 18.4h26M22 8.5v27\" stroke=\"#dfe7e0\" stroke-width=\"1.5\"/>\n      <path d=\"M14 35.5h16\" stroke=\"#dfe7e0\" stroke-width=\"1.2\" stroke-opacity=\".6\"/>\n    </svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_03": {
+    "type": "image",
+    "label": "Logo / ikon 3",
+    "section": "Hero",
+    "default": "",
+    "offset": 57128,
+    "length": 92,
+    "source": "<svg viewBox=\"0 0 22 22\" fill=\"none\"><path d=\"M8 5.6 16.4 11 8 16.4z\" fill=\"#dfe7e0\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_04": {
+    "type": "image",
+    "label": "Logo / ikon 4",
+    "section": "Gerbang",
+    "default": "",
+    "offset": 59451,
+    "length": 109,
+    "source": "<svg viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 11 11 3M5 3h6v6\" stroke=\"#dfe7e0\" stroke-width=\"1.3\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_05": {
+    "type": "image",
+    "label": "Logo / ikon 5",
+    "section": "Galeri",
+    "default": "",
+    "offset": 61317,
+    "length": 109,
+    "source": "<svg viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 11 11 3M5 3h6v6\" stroke=\"#dfe7e0\" stroke-width=\"1.3\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_06": {
+    "type": "image",
+    "label": "Logo / ikon 6",
+    "section": "Galeri",
+    "default": "",
+    "offset": 61919,
+    "length": 109,
+    "source": "<svg viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 11 11 3M5 3h6v6\" stroke=\"#dfe7e0\" stroke-width=\"1.3\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_07": {
+    "type": "image",
+    "label": "Logo / ikon 7",
+    "section": "Galeri",
+    "default": "",
+    "offset": 62533,
+    "length": 109,
+    "source": "<svg viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 11 11 3M5 3h6v6\" stroke=\"#dfe7e0\" stroke-width=\"1.3\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_08": {
+    "type": "image",
+    "label": "Logo / ikon 8",
+    "section": "Penutup",
+    "default": "",
+    "offset": 67343,
+    "length": 132,
+    "source": "<svg viewBox=\"0 0 14 14\" fill=\"none\" width=\"13\" height=\"13\"><path d=\"M3 11 11 3M5 3h6v6\" stroke=\"#dfe7e0\" stroke-width=\"1.3\"/></svg>",
+    "encoding": "svg-image"
+  },
+  "artwork_09": {
+    "type": "image",
+    "label": "Logo / ikon 9",
+    "section": "Footer",
+    "default": "",
+    "offset": 68404,
+    "length": 252,
+    "source": "<svg viewBox=\"0 0 44 44\" fill=\"none\" width=\"34\" height=\"34\" aria-hidden=\"true\">\n        <circle cx=\"22\" cy=\"25\" r=\"8.6\" fill=\"#e0231c\" fill-opacity=\".9\"/>\n        <path d=\"M5 13h34M9 18.4h26M22 8.5v27\" stroke=\"#dfe7e0\" stroke-width=\"1.5\"/>\n      </svg>",
+    "encoding": "svg-image"
+  },
+  "description": {
+    "type": "text",
+    "label": "A five-chapter night walk through a Kyoto mountain temple. Charred cyp",
+    "section": "Metadata",
+    "default": "A five-chapter night walk through a Kyoto mountain temple. Charred cypress, lantern light and a vermilion moon, rendered live in WebGL.",
+    "offset": 245,
+    "length": 135,
+    "source": "A five-chapter night walk through a Kyoto mountain temple. Charred cypress, lantern light and a vermilion moon, rendered live in WebGL.",
+    "encoding": "html"
+  },
+  "menu_label": {
+    "type": "text",
+    "label": "Menu",
+    "section": "Identitas dan navigasi",
+    "default": "Menu",
+    "offset": 55009,
+    "length": 4,
+    "source": "Menu",
+    "encoding": "html"
+  },
+  "preview_label": {
+    "type": "text",
+    "label": "Preview: Sanmon, before the bell",
+    "section": "Hero",
+    "default": "Preview: Sanmon, before the bell",
+    "offset": 56867,
+    "length": 32,
+    "source": "Preview: Sanmon, before the bell",
+    "encoding": "html"
+  },
+  "language": {
+    "type": "text",
+    "label": "en",
+    "section": "Metadata",
+    "default": "en",
+    "offset": 28,
+    "length": 2,
+    "source": "en",
+    "encoding": "html"
+  },
+  "favicon": {
+    "type": "image",
+    "label": "Favicon",
+    "section": "Metadata",
+    "default": "",
+    "offset": 406,
+    "length": 323,
+    "source": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070a'/%3E%3Ccircle cx='16' cy='17' r='8' fill='%23e0231c'/%3E%3Crect x='4' y='8' width='24' height='2.6' fill='%23dfe7e0'/%3E%3Crect x='7' y='13' width='18' height='2' fill='%23dfe7e0'/%3E%3C/svg%3E",
+    "encoding": "url"
+  },
+  "js_wordmark": {
+    "type": "text",
+    "label": "Tulisan besar pada canvas (maks. 12 karakter)",
+    "section": "Canvas dan navigasi adegan",
+    "default": "KAGE",
+    "offset": 161158,
+    "length": 6,
+    "source": "'KAGE'",
+    "encoding": "js"
+  },
+  "rail_0": {
+    "type": "text",
+    "label": "The Hidden Gate",
+    "section": "Canvas dan navigasi adegan",
+    "default": "The Hidden Gate",
+    "offset": 223124,
+    "length": 17,
+    "source": "'The Hidden Gate'",
+    "encoding": "js"
+  },
+  "rail_1": {
+    "type": "text",
+    "label": "The Sanmon",
+    "section": "Canvas dan navigasi adegan",
+    "default": "The Sanmon",
+    "offset": 223143,
+    "length": 12,
+    "source": "'The Sanmon'",
+    "encoding": "js"
+  },
+  "rail_2": {
+    "type": "text",
+    "label": "Still Gardens",
+    "section": "Canvas dan navigasi adegan",
+    "default": "Still Gardens",
+    "offset": 223157,
+    "length": 15,
+    "source": "'Still Gardens'",
+    "encoding": "js"
+  },
+  "rail_3": {
+    "type": "text",
+    "label": "Sacred Craft",
+    "section": "Canvas dan navigasi adegan",
+    "default": "Sacred Craft",
+    "offset": 223174,
+    "length": 14,
+    "source": "'Sacred Craft'",
+    "encoding": "js"
+  },
+  "rail_4": {
+    "type": "text",
+    "label": "Afterlight",
+    "section": "Canvas dan navigasi adegan",
+    "default": "Afterlight",
+    "offset": 223190,
+    "length": 12,
+    "source": "'Afterlight'",
+    "encoding": "js"
+  },
+  "rail_5": {
+    "type": "text",
+    "label": "Colophon",
+    "section": "Canvas dan navigasi adegan",
+    "default": "Colophon",
+    "offset": 223204,
+    "length": 10,
+    "source": "'Colophon'",
+    "encoding": "js"
+  },
+  "link_01": {
+    "type": "link",
+    "label": "Tujuan tautan 1",
+    "section": "Identitas dan navigasi",
+    "default": "#top",
+    "offset": 54070,
+    "length": 4,
+    "source": "#top",
+    "encoding": "html"
+  },
+  "link_02": {
+    "type": "link",
+    "label": "Tujuan tautan 2",
+    "section": "Identitas dan navigasi",
+    "default": "#gate",
+    "offset": 54555,
+    "length": 5,
+    "source": "#gate",
+    "encoding": "html"
+  },
+  "link_03": {
+    "type": "link",
+    "label": "Tujuan tautan 3",
+    "section": "Identitas dan navigasi",
+    "default": "#pathways",
+    "offset": 54660,
+    "length": 9,
+    "source": "#pathways",
+    "encoding": "html"
+  },
+  "link_04": {
+    "type": "link",
+    "label": "Tujuan tautan 4",
+    "section": "Identitas dan navigasi",
+    "default": "#lessons",
+    "offset": 54769,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_05": {
+    "type": "link",
+    "label": "Tujuan tautan 5",
+    "section": "Identitas dan navigasi",
+    "default": "#eternity",
+    "offset": 54877,
+    "length": 9,
+    "source": "#eternity",
+    "encoding": "html"
+  },
+  "link_06": {
+    "type": "link",
+    "label": "Tujuan tautan 6",
+    "section": "Hero",
+    "default": "#pathways",
+    "offset": 56803,
+    "length": 9,
+    "source": "#pathways",
+    "encoding": "html"
+  },
+  "link_07": {
+    "type": "link",
+    "label": "Tujuan tautan 7",
+    "section": "Gerbang",
+    "default": "#pathways",
+    "offset": 59346,
+    "length": 9,
+    "source": "#pathways",
+    "encoding": "html"
+  },
+  "link_08": {
+    "type": "link",
+    "label": "Tujuan tautan 8",
+    "section": "Penutup",
+    "default": "#top",
+    "offset": 67266,
+    "length": 4,
+    "source": "#top",
+    "encoding": "html"
+  },
+  "link_09": {
+    "type": "link",
+    "label": "Tujuan tautan 9",
+    "section": "Footer",
+    "default": "#gate",
+    "offset": 68873,
+    "length": 5,
+    "source": "#gate",
+    "encoding": "html"
+  },
+  "link_10": {
+    "type": "link",
+    "label": "Tujuan tautan 10",
+    "section": "Footer",
+    "default": "#pathways",
+    "offset": 68931,
+    "length": 9,
+    "source": "#pathways",
+    "encoding": "html"
+  },
+  "link_11": {
+    "type": "link",
+    "label": "Tujuan tautan 11",
+    "section": "Footer",
+    "default": "#lessons",
+    "offset": 68996,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_12": {
+    "type": "link",
+    "label": "Tujuan tautan 12",
+    "section": "Footer",
+    "default": "#eternity",
+    "offset": 69059,
+    "length": 9,
+    "source": "#eternity",
+    "encoding": "html"
+  },
+  "link_13": {
+    "type": "link",
+    "label": "Tujuan tautan 13",
+    "section": "Footer",
+    "default": "#lessons",
+    "offset": 69168,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_14": {
+    "type": "link",
+    "label": "Tujuan tautan 14",
+    "section": "Footer",
+    "default": "#lessons",
+    "offset": 69235,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_15": {
+    "type": "link",
+    "label": "Tujuan tautan 15",
+    "section": "Footer",
+    "default": "#lessons",
+    "offset": 69299,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_16": {
+    "type": "link",
+    "label": "Tujuan tautan 16",
+    "section": "Footer",
+    "default": "#lessons",
+    "offset": 69365,
+    "length": 8,
+    "source": "#lessons",
+    "encoding": "html"
+  },
+  "link_17": {
+    "type": "link",
+    "label": "Tujuan tautan 17",
+    "section": "Footer",
+    "default": "#top",
+    "offset": 69476,
+    "length": 4,
+    "source": "#top",
+    "encoding": "html"
+  },
+  "link_18": {
+    "type": "link",
+    "label": "Tujuan tautan 18",
+    "section": "Footer",
+    "default": "#top",
+    "offset": 69530,
+    "length": 4,
+    "source": "#top",
+    "encoding": "html"
+  },
+  "link_19": {
+    "type": "link",
+    "label": "Tujuan tautan 19",
+    "section": "Footer",
+    "default": "#top",
+    "offset": 69588,
+    "length": 4,
+    "source": "#top",
+    "encoding": "html"
+  },
+  "login_label": {
+    "type": "text",
+    "label": "Masuk",
+    "section": "Akses LMS",
+    "default": "Masuk"
+  },
+  "register_label": {
+    "type": "text",
+    "label": "Daftar",
+    "section": "Akses LMS",
+    "default": "Daftar"
+  },
+  "install_label": {
+    "type": "text",
+    "label": "Pasang aplikasi",
+    "section": "Akses LMS",
+    "default": "Pasang aplikasi"
+  },
+  "install_later": {
+    "type": "text",
+    "label": "Nanti",
+    "section": "Akses LMS",
+    "default": "Nanti"
+  }
+}
