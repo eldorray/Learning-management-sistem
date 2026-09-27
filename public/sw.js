@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lms-arrahmah-v1';
+const CACHE_NAME = 'lms-arrahmah-v2';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
