@@ -253,6 +253,7 @@
                             <label class="block text-sm font-semibold text-[#2b2721] mb-1.5">Ayat Mulai</label>
                             <input type="number" wire:model="setoranAyatMulai" min="1"
                                    class="w-full px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                            @error('setoranAyatMulai')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-[#2b2721] mb-1.5">Ayat Selesai</label>
@@ -271,11 +272,13 @@
                                 <option value="ziyadah">Ziyadah (Hafalan Baru)</option>
                                 <option value="murojaah">Murojaah (Ulangan)</option>
                             </select>
+                            @error('setoranJenis')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-[#2b2721] mb-1.5">Tanggal</label>
                             <input type="date" wire:model="setoranTanggal"
                                    class="w-full px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                            @error('setoranTanggal')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
 

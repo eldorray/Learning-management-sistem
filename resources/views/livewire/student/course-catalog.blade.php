@@ -140,11 +140,12 @@
 
                 <!-- Action -->
                 @if($completedIds->contains($course->id))
-                    <div class="w-full flex items-center justify-center gap-2 py-2.5 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full text-sm cursor-default">
-                        <span class="material-symbols-outlined text-sm">verified</span>
-                        <span class="hidden sm:inline">Anda sudah menyelesaikan kursus ini</span>
-                        <span class="sm:hidden">Selesai</span>
-                    </div>
+                    <a href="{{ route('student.learn', $course->slug) }}"
+                       class="w-full flex items-center justify-center gap-2 py-2.5 bg-[#ebe5d8] text-[#56663f] font-bold rounded-full text-sm hover:bg-[#ddd4c2] transition-colors">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">verified</span>
+                        <span class="hidden sm:inline">Selesai · Tinjau ulang materi</span>
+                        <span class="sm:hidden">Tinjau ulang</span>
+                    </a>
                 @elseif($enrolledIds->contains($course->id))
                     <a href="{{ route('student.learn', $course->slug) }}"
                        class="w-full flex items-center justify-center gap-2 py-2.5 bg-[#cfd8bd]/30 text-[#56663f] font-bold rounded-full text-sm hover:bg-[#cfd8bd]/50 transition-colors">

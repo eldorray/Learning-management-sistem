@@ -26,6 +26,8 @@ class StudentDirectory extends Component
     // CRUD Modal
     public bool $showForm = false;
     public bool $showDeleteModal = false;
+    public string $deleteSummary = '';
+
     public bool $showDetailModal = false;
     public bool $showParentModal = false;
     public ?int $editingStudentId = null;
@@ -204,6 +206,10 @@ class StudentDirectory extends Component
         if (auth()->user()->isInstructor()) return;
 
         $this->deletingStudentId = $id;
+        $student = User::withCount(['enrollments', 'tahfidzRecords'])->find($id);
+        $this->deleteSummary = $student
+            ? "{$student->name} akan dihapus bersama {$student->enrollments_count} pendaftaran kursus dan {$student->tahfidz_records_count} catatan setoran tahfidz."
+            : '';
         $this->showDeleteModal = true;
     }
 
@@ -363,6 +369,7 @@ class StudentDirectory extends Component
             $activeThisMonth = User::where('role', 'student')
                 ->whereIn('id', $scopedStudentIds)
                 ->whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
                 ->count();
             $classGroups = User::where('role', 'student')
                 ->whereIn('id', $scopedStudentIds)
@@ -374,6 +381,7 @@ class StudentDirectory extends Component
             $totalStudents = User::where('role', 'student')->count();
             $activeThisMonth = User::where('role', 'student')
                 ->whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
                 ->count();
             $classGroups = User::where('role', 'student')
                 ->whereNotNull('class_group')

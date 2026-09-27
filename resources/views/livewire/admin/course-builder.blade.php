@@ -367,7 +367,8 @@
                 <span class="material-symbols-outlined text-[#a3402c] text-3xl">folder_delete</span>
             </div>
             <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Modul?</h3>
-            <p class="text-[#6b6358] text-sm mb-6">Semua pelajaran dalam modul ini juga akan dihapus permanen.</p>
+            <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
+            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
             <div class="flex gap-3">
                 <button wire:click="$set('showDeleteModuleModal', false)"
                         class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full text-sm">Batal</button>
@@ -386,6 +387,7 @@
                 <span class="material-symbols-outlined text-[#a3402c] text-3xl">delete_forever</span>
             </div>
             <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Pelajaran?</h3>
+            <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
             <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
             <div class="flex gap-3">
                 <button wire:click="$set('showDeleteLessonModal', false)"

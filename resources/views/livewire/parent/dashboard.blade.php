@@ -467,7 +467,7 @@
                 $fields = [
                     ['label' => 'NIS', 'value' => $child->nis ?? '-', 'icon' => 'badge'],
                     ['label' => 'NISN', 'value' => $child->nisn ?? '-', 'icon' => 'numbers'],
-                    ['label' => 'Jenis Kelamin', 'value' => $child->gender === 'male' ? 'Laki-laki' : ($child->gender === 'female' ? 'Perempuan' : '-'), 'icon' => 'person'],
+                    ['label' => 'Jenis Kelamin', 'value' => ['L' => 'Laki-laki', 'P' => 'Perempuan', 'male' => 'Laki-laki', 'female' => 'Perempuan'][$child->gender] ?? '-', 'icon' => 'person'],
                     ['label' => 'Tanggal Lahir', 'value' => $child->birth_date?->format('d M Y') ?? '-', 'icon' => 'cake'],
                     ['label' => 'No. HP / WA', 'value' => $child->phone ?? '-', 'icon' => 'phone'],
                     ['label' => 'Alamat', 'value' => $child->address ?? '-', 'icon' => 'home'],

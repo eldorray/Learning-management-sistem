@@ -97,7 +97,8 @@ class TahfidzManagement extends Component
             ->withCount(['tahfidzRecords as total_setoran' => fn ($q) => $taId ? $q->where('tahun_ajaran_id', $taId) : $q])
             ->withAvg(['tahfidzRecords as avg_score' => fn ($q) => $taId ? $q->where('tahun_ajaran_id', $taId) : $q],
                 DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'))
-            ->having('total_setoran', '>', 0)
+            // whereHas instead of HAVING on an alias: portable across MySQL and SQLite.
+            ->whereHas('tahfidzRecords', fn ($q) => $taId ? $q->where('tahun_ajaran_id', $taId) : $q)
             ->orderByDesc('total_setoran')
             ->limit(5)
             ->get();
@@ -147,6 +148,19 @@ class TahfidzManagement extends Component
             'targetAyatMulai'      => 'required|integer|min:1',
             'targetSurahSelesaiId' => 'required|exists:surahs,id',
             'targetAyatSelesai'    => 'required|integer|min:1',
+        ], [
+            'required' => ':attribute wajib diisi.',
+            'exists'   => ':attribute tidak valid.',
+            'integer'  => ':attribute harus berupa angka.',
+            'min'      => ':attribute minimal :min.',
+            'in'       => ':attribute tidak valid.',
+        ], [
+            'targetKelas'          => 'Kelas',
+            'targetSemester'       => 'Semester',
+            'targetSurahMulaiId'   => 'Surah mulai',
+            'targetAyatMulai'      => 'Ayat mulai',
+            'targetSurahSelesaiId' => 'Surah selesai',
+            'targetAyatSelesai'    => 'Ayat selesai',
         ]);
 
         $data = [
@@ -246,9 +260,13 @@ class TahfidzManagement extends Component
     public function savePlotting(): void
     {
         if (!$this->plottingGroupId) return;
-        $group = TahfidzGroup::findOrFail($this->plottingGroupId);
-        $sync  = collect($this->selectedStudents)->filter()->mapWithKeys(fn($id) => [$id => ['joined_at' => now()->format('Y-m-d')]])->toArray();
-        $group->students()->sync($sync);
+        $group    = TahfidzGroup::findOrFail($this->plottingGroupId);
+        $selected = collect($this->selectedStudents)->filter()->map(fn ($id) => (int) $id);
+        $current  = $group->students()->pluck('users.id');
+
+        // Existing members keep their joined_at; only newcomers get today's date.
+        $group->students()->detach($current->diff($selected)->all());
+        $group->students()->attach($selected->diff($current)->mapWithKeys(fn ($id) => [$id => ['joined_at' => now()->format('Y-m-d')]])->all());
         $this->showPlottingModal = false;
         session()->flash('success', 'Plotting siswa berhasil disimpan.');
     }
@@ -276,7 +294,9 @@ class TahfidzManagement extends Component
                 ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))
                 ->orderBy('nama_halaqoh')->get(),
             'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
-            'allStudents' => User::where('role', 'student')->orderBy('name')->get(),
+            'allStudents' => $this->showPlottingModal
+                ? User::where('role', 'student')->orderBy('name')->get(['id', 'name', 'email', 'class_group', 'avatar'])
+                : collect(),
             'records'     => TahfidzRecord::with(['student', 'instruktur', 'surah'])
                 ->when($taId, fn ($q) => $q->where('tahun_ajaran_id', $taId))
                 ->when($this->searchRecord, fn($q) => $q->whereHas('student', fn($sq) => $sq->where('name', 'like', "%{$this->searchRecord}%")))

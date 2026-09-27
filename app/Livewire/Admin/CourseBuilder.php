@@ -35,6 +35,8 @@ class CourseBuilder extends Component
 
     // Delete confirm
     public bool $showDeleteModuleModal = false;
+    public string $deleteSummary = '';
+
     public ?int $deletingModuleId = null;
     public bool $showDeleteLessonModal = false;
     public ?int $deletingLessonId = null;
@@ -92,6 +94,8 @@ class CourseBuilder extends Component
     public function confirmDeleteModule(int $moduleId): void
     {
         $this->deletingModuleId = $moduleId;
+        $module = \App\Models\Module::withCount('lessons')->find($moduleId);
+        $this->deleteSummary = $module ? "Modul \"{$module->title}\" akan dihapus bersama {$module->lessons_count} pelajaran di dalamnya." : '';
         $this->showDeleteModuleModal = true;
     }
 
@@ -238,6 +242,8 @@ class CourseBuilder extends Component
     public function confirmDeleteLesson(int $lessonId): void
     {
         $this->deletingLessonId = $lessonId;
+        $lesson = \App\Models\Lesson::find($lessonId);
+        $this->deleteSummary = $lesson ? "Pelajaran \"{$lesson->title}\" beserta progres siswa di pelajaran ini akan dihapus." : '';
         $this->showDeleteLessonModal = true;
     }
 

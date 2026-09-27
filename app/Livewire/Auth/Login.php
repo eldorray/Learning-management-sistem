@@ -4,6 +4,8 @@ namespace App\Livewire\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Login extends Component
@@ -34,9 +36,20 @@ class Login extends Component
     {
         $this->validate();
 
+        // 5 attempts per minute for each identifier from each address.
+        $throttleKey = Str::lower($this->identifier).'|'.request()->ip();
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            $this->addError('identifier', "Terlalu banyak percobaan masuk. Coba lagi dalam {$seconds} detik.");
+
+            return;
+        }
+        RateLimiter::hit($throttleKey, 60);
+
         if (filter_var($this->identifier, FILTER_VALIDATE_EMAIL)) {
             // Login dengan email
             if (Auth::attempt(['email' => $this->identifier, 'password' => $this->password], $this->remember)) {
+                RateLimiter::clear($throttleKey);
                 session()->regenerate();
 
                 $user = Auth::user();
@@ -58,6 +71,7 @@ class Login extends Component
         $user = User::where('nisn', $this->identifier)->where('role', 'student')->first();
 
         if ($user && Auth::attempt(['email' => $user->email, 'password' => $this->password], $this->remember)) {
+            RateLimiter::clear($throttleKey);
             session()->regenerate();
             $this->redirect(route('student.dashboard'), navigate: true);
             return;

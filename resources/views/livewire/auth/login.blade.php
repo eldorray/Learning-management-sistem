@@ -2,6 +2,10 @@
     <h2 class="text-2xl font-headline font-extrabold text-[#2b2721] mb-2">Selamat Datang Kembali</h2>
     <p class="text-[#6b6358] text-sm mb-8">Masuk ke ruang belajar Anda.</p>
 
+    @if (session('status'))
+    <div role="status" class="mb-6 bg-[#f7f0e4] border border-[#d9b98f]/60 text-[#6f4826] px-4 py-3 rounded-xl text-sm">{{ session('status') }}</div>
+    @endif
+
     <form wire:submit="login" class="space-y-5">
         <!-- Email / NISN -->
         <div>
@@ -65,10 +69,10 @@
         </button>
     </form>
 
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center space-y-1">
         <p class="text-sm text-[#6b6358]">
-            Belum punya akun?
-            <a href="{{ route('register') }}" class="text-[#8a5a31] font-semibold hover:underline">Daftar sekarang</a>
+            <span class="font-semibold text-[#2b2721]">Lupa kata sandi atau belum punya akun?</span><br>
+            Akun dibuat oleh sekolah. Hubungi admin atau wali kelas untuk membuat akun atau mengatur ulang kata sandi.
         </p>
     </div>
 </div>

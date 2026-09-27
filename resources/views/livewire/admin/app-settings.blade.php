@@ -90,7 +90,7 @@
                         @enderror
 
                         @if($currentLogo)
-                        <button type="button" wire:click="removeLogo"
+                        <button type="button" wire:click="removeLogo" wire:confirm="Hapus logo? Logo langsung hilang dari semua halaman dan tidak bisa dikembalikan."
                                 class="mt-3 text-xs text-[#a3402c] hover:underline flex items-center gap-1">
                             <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
                             Hapus Logo
@@ -140,7 +140,7 @@
                         @enderror
 
                         @if($currentFavicon)
-                        <button type="button" wire:click="removeFavicon"
+                        <button type="button" wire:click="removeFavicon" wire:confirm="Hapus favicon? Ikon tab browser kembali ke ikon bawaan."
                                 class="mt-3 text-xs text-[#a3402c] hover:underline flex items-center gap-1">
                             <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
                             Hapus Favicon
@@ -275,7 +275,7 @@
                                     Aktif
                                 </span>
                             @else
-                                <button wire:click="setAktif({{ $ta->id }})" type="button"
+                                <button wire:click="setAktif({{ $ta->id }})" wire:confirm="Jadikan {{ $ta->nama }} Semester {{ $ta->semester }} tahun ajaran aktif? Daftar kursus, pendaftaran, dan dashboard semua pengguna akan beralih ke tahun ajaran ini." type="button"
                                         class="inline-flex items-center gap-1 bg-[#ebe5d8] text-[#6b6358] hover:bg-[#8a5a31] hover:text-white text-xs font-semibold px-3 py-1 rounded-full transition-colors">
                                     <span class="material-symbols-outlined text-xs">radio_button_unchecked</span>
                                     Jadikan Aktif

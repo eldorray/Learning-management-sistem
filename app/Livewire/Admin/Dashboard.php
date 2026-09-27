@@ -46,6 +46,8 @@ class Dashboard extends Component
                     ->whereMonth('created_at', now()->month)
                     ->whereYear('created_at', now()->year)
                     ->distinct()->count('user_id'),
+                'completedThisMonth'   => $enrollQ()->where('status', 'completed')
+                    ->whereBetween('completed_at', [now()->startOfMonth(), now()->endOfMonth()])->count(),
                 'avgProgress'          => $enrollQ()->avg('progress_percentage') ?? 0,
                 '_studentIds'          => $studentIds,
             ];
@@ -66,6 +68,8 @@ class Dashboard extends Component
                 ->whereMonth('created_at', now()->month)
                 ->whereYear('created_at', now()->year)
                 ->count(),
+            'completedThisMonth'   => $enrollQ()->where('status', 'completed')
+                ->whereBetween('completed_at', [now()->startOfMonth(), now()->endOfMonth()])->count(),
             'avgProgress'          => $enrollQ()->avg('progress_percentage') ?? 0,
             '_studentIds'          => null,
         ];

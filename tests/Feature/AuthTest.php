@@ -10,9 +10,22 @@ test('halaman login dapat diakses', function () {
     $response->assertStatus(200);
 });
 
-test('halaman register dapat diakses', function () {
-    $response = $this->get('/register');
-    $response->assertStatus(200);
+test('pendaftaran mandiri ditutup dan diarahkan ke login dengan penjelasan', function () {
+    $this->get('/register')->assertRedirect('/login')->assertSessionHas('status');
+    $this->followingRedirects()->get('/register')->assertSee('Pendaftaran mandiri ditutup');
+});
+
+test('login dibatasi setelah terlalu banyak percobaan gagal', function () {
+    User::factory()->create(['email' => 'siswa@sekolah.test', 'password' => 'benar-sekali', 'role' => 'student']);
+
+    foreach (range(1, 5) as $i) {
+        \Livewire\Livewire::test(\App\Livewire\Auth\Login::class)
+            ->set('identifier', 'siswa@sekolah.test')->set('password', 'salah-terus')->call('login');
+    }
+    \Livewire\Livewire::test(\App\Livewire\Auth\Login::class)
+        ->set('identifier', 'siswa@sekolah.test')->set('password', 'benar-sekali')->call('login')
+        ->assertHasErrors('identifier')->assertSee('Terlalu banyak percobaan');
+    $this->assertGuest();
 });
 
 test('user yang sudah login diredirect dari halaman login', function () {

@@ -1,4 +1,5 @@
-const CACHE_NAME = 'lms-arrahmah-v2';
+// v3 purges pages cached by earlier versions, which could include signed-in pages.
+const CACHE_NAME = 'lms-arrahmah-v3';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
@@ -43,8 +44,9 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         fetch(event.request)
             .then((response) => {
-                // Cache successful navigation responses
-                if (response.ok && (event.request.mode === 'navigate' || url.pathname.startsWith('/icons'))) {
+                // Only static icons are cached. Pages are never stored: they can hold a signed-in
+                // student's or parent's data, which a shared phone must not show after logout.
+                if (response.ok && url.pathname.startsWith('/icons')) {
                     const clone = response.clone();
                     caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
                 }

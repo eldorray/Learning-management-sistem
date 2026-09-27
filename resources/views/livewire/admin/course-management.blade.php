@@ -90,7 +90,7 @@
                         <td class="px-4 md:px-6 py-4 hidden md:table-cell">
                             <div class="flex items-center gap-1.5">
                                 <code class="px-2.5 py-1 bg-[#8a5a31]/10 text-[#8a5a31] font-mono font-bold text-sm rounded-lg tracking-wider">{{ $course->enrollment_code }}</code>
-                                <button wire:click="regenerateCode({{ $course->id }})"
+                                <button wire:click="regenerateCode({{ $course->id }})" wire:confirm="Buat kode pendaftaran baru? Kode lama langsung tidak berlaku, jadi bagikan kode baru ke siswa."
                                         class="p-1 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded transition-colors"
                                         title="Generate Kode Baru">
                                     <span class="material-symbols-outlined" style="font-size: 14px;">refresh</span>
@@ -110,7 +110,7 @@
                             </div>
                         </td>
                         <td class="px-4 md:px-6 py-4">
-                            <button wire:click="togglePublish({{ $course->id }})"
+                            <button wire:click="togglePublish({{ $course->id }})" wire:confirm="{{ $course->is_published ? 'Jadikan draft? Siswa tidak bisa lagi melihat atau membuka kursus ini sampai dipublikasikan kembali.' : 'Publikasikan kursus ini? Kursus akan tampil di katalog siswa.' }}" aria-label="{{ $course->is_published ? 'Status aktif, klik untuk jadikan draft' : 'Status draft, klik untuk publikasikan' }}"
                                     class="px-2.5 py-1 rounded-full text-xs font-bold transition-colors
                                     {{ $course->is_published ? 'bg-[#cfd8bd]/30 text-[#56663f] hover:bg-red-50 hover:text-red-600' : 'bg-[#ebe5d8] text-[#6b6358] hover:bg-[#cfd8bd]/30 hover:text-[#56663f]' }}">
                                 {{ $course->is_published ? 'Aktif' : 'Draft' }}
@@ -259,7 +259,8 @@
                 <span class="material-symbols-outlined text-[#a3402c] text-3xl">delete_forever</span>
             </div>
             <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Kursus?</h3>
-            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua data kursus akan dihapus permanen.</p>
+            <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
+            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
             <div class="flex gap-3">
                 <button wire:click="$set('showDeleteModal', false)"
                         class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full text-sm">Batal</button>

@@ -25,6 +25,8 @@ class InstructorDirectory extends Component
     // CRUD Modal
     public bool $showForm = false;
     public bool $showDeleteModal = false;
+    public string $deleteSummary = '';
+
     public bool $showDetailModal = false;
     public ?int $editingInstructorId = null;
     public ?int $deletingInstructorId = null;
@@ -165,6 +167,12 @@ class InstructorDirectory extends Component
     public function confirmDelete(int $id): void
     {
         $this->deletingInstructorId = $id;
+        // Courses cascade with their teacher, so say exactly what goes with them.
+        $teacher = User::withCount('instructedCourses')->find($id);
+        $enrollments = \App\Models\Enrollment::whereIn('course_id', $teacher?->instructedCourses()->pluck('id') ?? [])->count();
+        $this->deleteSummary = $teacher
+            ? "{$teacher->name} akan dihapus bersama {$teacher->instructed_courses_count} kursus yang diampunya dan {$enrollments} pendaftaran siswa di kursus tersebut."
+            : '';
         $this->showDeleteModal = true;
     }
 
@@ -253,6 +261,7 @@ class InstructorDirectory extends Component
         $totalInstructors = User::where('role', 'instructor')->count();
         $activeThisMonth = User::where('role', 'instructor')
             ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
             ->count();
         $specializations = User::where('role', 'instructor')
             ->whereNotNull('specialization')

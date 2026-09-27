@@ -211,7 +211,16 @@ class LessonEditor extends Component
             $rules['options.*.text'] = 'required|min:1';
         }
 
-        $this->validate($rules);
+        $this->validate($rules, [
+            'questionText.required'   => 'Pertanyaan wajib diisi.',
+            'questionText.min'        => 'Pertanyaan minimal 3 karakter.',
+            'questionPoints.integer'  => 'Poin harus berupa angka.',
+            'questionPoints.min'      => 'Poin minimal 1.',
+            'questionPoints.max'      => 'Poin maksimal 100.',
+            'options.required'        => 'Tambahkan minimal 2 pilihan jawaban.',
+            'options.min'             => 'Tambahkan minimal 2 pilihan jawaban.',
+            'options.*.text.required' => 'Teks pilihan jawaban wajib diisi.',
+        ]);
 
         // Ensure exactly one correct answer for non-essay types
         if ($this->questionType !== 'essay') {

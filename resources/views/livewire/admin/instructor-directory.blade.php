@@ -475,7 +475,8 @@
                 <span class="material-symbols-outlined text-[#a3402c] text-3xl">person_remove</span>
             </div>
             <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Guru?</h3>
-            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua data termasuk kursus yang diampu guru ini akan terpengaruh.</p>
+            <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
+            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Pindahkan kursus ke guru lain terlebih dahulu bila ingin menyimpannya.</p>
             <div class="flex gap-3">
                 <button wire:click="$set('showDeleteModal', false)"
                         class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">Batal</button>

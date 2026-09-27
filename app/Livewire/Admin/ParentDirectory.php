@@ -18,6 +18,8 @@ class ParentDirectory extends Component
     // CRUD Modal
     public bool $showForm        = false;
     public bool $showDeleteModal = false;
+    public string $deleteSummary = '';
+
     public bool $showDetailModal = false;
     public ?int $editingParentId  = null;
     public ?int $deletingParentId = null;
@@ -120,6 +122,10 @@ class ParentDirectory extends Component
     public function confirmDelete(int $id): void
     {
         $this->deletingParentId = $id;
+        $parent = User::withCount('children')->find($id);
+        $this->deleteSummary = $parent
+            ? "Akun {$parent->name} akan dihapus dan hubungannya dengan {$parent->children_count} anak diputus. Data anak tetap tersimpan."
+            : '';
         $this->showDeleteModal  = true;
     }
 
@@ -141,6 +147,7 @@ class ParentDirectory extends Component
         $parent = User::find($parentId);
         if ($parent) {
             $parent->children()->detach($childId);
+            session()->flash('success', 'Hubungan orang tua dan anak berhasil dilepas.');
         }
         // Refresh detail modal
         $this->viewingParentId = $parentId;

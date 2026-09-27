@@ -106,11 +106,15 @@
                     <span class="material-symbols-outlined text-[#6b6358] text-3xl">person_search</span>
                 </div>
                 <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Siswa Tidak Ditemukan</h3>
+                @if ($isInstructor)
+                <p class="text-[#6b6358] text-sm">Coba kata kunci lain. Hanya siswa yang terdaftar di kursus Anda yang tampil di sini.</p>
+                @else
                 <p class="text-[#6b6358] mb-6 text-sm">Coba kata kunci yang berbeda atau tambah siswa baru.</p>
                 <button wire:click="openCreateForm"
                     class="px-6 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm inline-flex items-center gap-2 text-sm">
                     <span class="material-symbols-outlined text-sm">person_add</span> Tambah Siswa
                 </button>
+                @endif
             </div>
         @else
             <div class="overflow-x-auto">
@@ -662,7 +666,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <button wire:click="unlinkParent({{ $parentLinkStudent->id }}, {{ $linkedParent->id }})"
+                                        <button wire:click="unlinkParent({{ $parentLinkStudent->id }}, {{ $linkedParent->id }})" wire:confirm="Lepaskan {{ $linkedParent->name }} dari siswa ini? Orang tua tidak bisa lagi memantau perkembangannya."
                                             class="p-1.5 text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors"
                                             title="Hapus relasi">
                                             <span class="material-symbols-outlined text-sm">link_off</span>
@@ -735,8 +739,8 @@
                     <span class="material-symbols-outlined text-[#a3402c] text-3xl">person_remove</span>
                 </div>
                 <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Siswa?</h3>
-                <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua data termasuk progres
-                    belajar siswa akan dihapus permanen.</p>
+                <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
+                <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua progres belajar siswa ikut terhapus.</p>
                 <div class="flex gap-3">
                     <button wire:click="$set('showDeleteModal', false)"
                         class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">Batal</button>

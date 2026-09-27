@@ -49,10 +49,11 @@ class CourseLearning extends Component
         $this->loadCompletedIds();
 
         $allLessons = $this->course->modules->flatMap->lessons;
-        $firstIncomplete = $allLessons->first(fn ($l) => !$this->completedLessonIds->contains($l->id));
+        // Resume at the first unfinished lesson; a finished course opens at the start for review.
+        $start = $allLessons->first(fn ($l) => !$this->completedLessonIds->contains($l->id)) ?? $allLessons->first();
 
-        if ($firstIncomplete) {
-            $this->selectLesson($firstIncomplete->id);
+        if ($start) {
+            $this->selectLesson($start->id);
         }
     }
 
@@ -100,8 +101,10 @@ class CourseLearning extends Component
 
     public function selectLesson(int $lessonId): void
     {
-        // Allow viewing already-completed lessons (read-only)
-        $this->currentLesson = Lesson::with(['quizQuestions.options'])->findOrFail($lessonId);
+        // Completed lessons stay viewable; only lessons of this course can be opened.
+        $this->currentLesson = Lesson::with(['quizQuestions.options'])
+            ->where('course_id', $this->course->id)
+            ->findOrFail($lessonId);
         $this->resetQuizState();
 
         if ($this->currentLesson->type === 'quiz') {
@@ -139,37 +142,24 @@ class CourseLearning extends Component
 
     public function nextLesson(): void
     {
-        if (!$this->currentLesson) return;
-
-        $completedIds = $this->getCompletedIds();
-        $allLessons   = $this->course->modules->flatMap->lessons;
-        $currentIndex = $allLessons->search(fn ($l) => $l->id === $this->currentLesson->id);
-
-        if ($currentIndex === false) return;
-
-        for ($i = $currentIndex + 1; $i < $allLessons->count(); $i++) {
-            if (!$completedIds->contains($allLessons[$i]->id)) {
-                $this->selectLesson($allLessons[$i]->id);
-                return;
-            }
-        }
+        $this->stepLesson(1);
     }
 
     public function previousLesson(): void
     {
+        $this->stepLesson(-1);
+    }
+
+    private function stepLesson(int $direction): void
+    {
         if (!$this->currentLesson) return;
 
-        $completedIds = $this->getCompletedIds();
-        $allLessons   = $this->course->modules->flatMap->lessons;
+        $allLessons   = $this->course->modules->flatMap->lessons->values();
         $currentIndex = $allLessons->search(fn ($l) => $l->id === $this->currentLesson->id);
+        $target       = $currentIndex === false ? null : $allLessons->get($currentIndex + $direction);
 
-        if ($currentIndex === false) return;
-
-        for ($i = $currentIndex - 1; $i >= 0; $i--) {
-            if (!$completedIds->contains($allLessons[$i]->id)) {
-                $this->selectLesson($allLessons[$i]->id);
-                return;
-            }
+        if ($target) {
+            $this->selectLesson($target->id);
         }
     }
 
@@ -345,13 +335,16 @@ class CourseLearning extends Component
         $isLastLesson       = $this->currentLesson
             ? $allLessons->last()?->id === $this->currentLesson->id
             : false;
+        $isFirstLesson      = $this->currentLesson
+            ? $allLessons->first()?->id === $this->currentLesson->id
+            : false;
         $allLessonsCompleted = $allLessons->count() > 0
             && $completedLessonIds->count() >= $allLessons->count();
         $isCourseCompleted  = $enrollment?->status === 'completed';
 
         return view('livewire.student.course-learning', compact(
             'completedLessonIds', 'enrollment', 'isCurrentCompleted',
-            'isLastLesson', 'allLessonsCompleted', 'isCourseCompleted'
+            'isLastLesson', 'isFirstLesson', 'allLessonsCompleted', 'isCourseCompleted'
         ))->layout('layouts.student', ['title' => $this->course->title]);
     }
 }

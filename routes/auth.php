@@ -1,12 +1,13 @@
 <?php
 
 use App\Livewire\Auth\Login;
-use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
-    Route::get('/register', Register::class)->name('register');
+    // Accounts are created by the school; old links to /register land on login with an explanation.
+    Route::get('/register', fn () => redirect()->route('login')
+        ->with('status', 'Pendaftaran mandiri ditutup. Akun dibuat oleh sekolah — hubungi admin atau wali kelas.'))->name('register');
 });
 
 Route::post('/logout', function () {

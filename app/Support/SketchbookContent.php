@@ -46,9 +46,9 @@ class SketchbookContent
             'bio_1' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Paragraf — bagian 1', 'default' => 'LMS Ar-Rahmah adalah ruang belajar digital Modern Tahfidz Ar-Rahmah Boarding School. Santri mengikuti kelas dan materi, mengerjakan kuis, serta melihat kemajuan hafalannya sendiri; ustadz dan ustadzah membimbing halaqoh tahfidz dan mencatat setiap setoran; orang tua memantau perkembangan anak dari rumah. Santri dan pengajar dapat '],
             'bio_link_1_label' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Tautan pertama — teks', 'default' => 'masuk dengan akun sekolah'],
             'bio_link_1_url' => ['type' => 'link', 'section' => 'Tentang', 'label' => 'Tautan pertama — alamat', 'default' => '/login'],
-            'bio_2' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Paragraf — bagian 2', 'default' => '; wali santri yang belum memiliki akun dapat '],
-            'bio_link_2_label' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Tautan kedua — teks', 'default' => 'mendaftar di sini'],
-            'bio_link_2_url' => ['type' => 'link', 'section' => 'Tentang', 'label' => 'Tautan kedua — alamat', 'default' => '/register'],
+            'bio_2' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Paragraf — bagian 2', 'default' => '; akun dibuat oleh sekolah, jadi wali santri yang belum memiliki akun cukup '],
+            'bio_link_2_label' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Tautan kedua — teks', 'default' => 'menghubungi kami'],
+            'bio_link_2_url' => ['type' => 'link', 'section' => 'Tentang', 'label' => 'Tautan kedua — alamat', 'default' => '#contact'],
             'bio_3' => ['type' => 'text', 'section' => 'Tentang', 'label' => 'Paragraf — bagian 3', 'default' => '. Buku sketsa di atas merangkum keseharian belajar kami, satu halaman untuk setiap program — dibuka pelan-pelan, seperti membaca catatan di serambi pondok.'],
             'plates_label' => ['type' => 'text', 'section' => 'Halaman buku', 'label' => 'Label daftar halaman', 'default' => 'Program'],
         ];

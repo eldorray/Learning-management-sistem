@@ -16,10 +16,10 @@
     <div class="flex-1 min-w-0 flex flex-col">
 
         <!-- Course Top Bar -->
-        <div class="bg-white/80 backdrop-blur-xl sticky top-0 z-10 border-b border-[#bfb5a3]/10 px-4 md:px-6 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <a href="{{ route('student.courses') }}" class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors flex-shrink-0">
-                    <span class="material-symbols-outlined text-[#6b6358] text-xl">arrow_back</span>
+        <div class="bg-white/80 backdrop-blur-xl sticky top-0 z-10 border-b border-[#bfb5a3]/10 px-4 md:px-6 py-3 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0 flex-1">
+                <a href="{{ route('student.courses') }}" aria-label="Kembali ke Kursus Saya" class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors flex-shrink-0">
+                    <span class="material-symbols-outlined text-[#6b6358] text-xl" aria-hidden="true">arrow_back</span>
                 </a>
                 <div class="min-w-0">
                     <p class="text-xs text-[#6b6358] uppercase tracking-wider font-semibold truncate">{{ $course->title }}</p>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-shrink-0">
                 <!-- Progress indicator (desktop) -->
                 @if($enrollment)
                 <div class="hidden md:flex items-center gap-3">
@@ -42,9 +42,9 @@
                 @endif
 
                 <!-- Toggle sidebar - Livewire (desktop) + Alpine (mobile) -->
-                <button @click="mobileSidebar = !mobileSidebar"
+                <button @click="mobileSidebar = !mobileSidebar" aria-label="Daftar materi"
                         class="lg:hidden p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
-                    <span class="material-symbols-outlined text-[#6b6358]">menu_book</span>
+                    <span class="material-symbols-outlined text-[#6b6358]" aria-hidden="true">menu_book</span>
                 </button>
                 <button wire:click="$toggle('showSidebar')"
                         class="hidden lg:flex p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
@@ -127,13 +127,6 @@
 
                 {{-- QUIZ SECTION --}}
                 @if($currentLesson->type === 'quiz' && $currentLesson->quizQuestions->count() > 0)
-
-                    @error('quiz')
-                    <div class="bg-red-50 border border-red-200 text-[#a3402c] px-4 py-3 rounded-xl flex items-center gap-3 mb-6 text-sm">
-                        <span class="material-symbols-outlined text-sm">error</span>
-                        <span>{{ $message }}</span>
-                    </div>
-                    @enderror
 
                     {{-- Quiz Result Banner --}}
                     @if($quizSubmitted)
@@ -316,8 +309,14 @@
                     </div>
 
                     @if(!$quizSubmitted)
+                    @error('quiz')
+                    <div role="alert" class="bg-red-50 border border-red-200 text-[#a3402c] px-4 py-3 rounded-xl flex items-center gap-3 mb-4 text-sm">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">error</span>
+                        <span>{{ $message }}</span>
+                    </div>
+                    @enderror
                     <div class="flex justify-center mb-8 md:mb-12">
-                        <button wire:click="submitQuiz"
+                        <button wire:click="submitQuiz" wire:confirm="Kirim jawaban sekarang? Jawaban tidak bisa diubah setelah dikirim."
                                 class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full text-base md:text-lg hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-3">
                             <span wire:loading.remove wire:target="submitQuiz" class="material-symbols-outlined">send</span>
                             <span wire:loading wire:target="submitQuiz" class="inline-block animate-spin">⟳</span>
@@ -360,11 +359,15 @@
 
                 <!-- Action Buttons -->
                 <div class="flex items-center justify-between pt-6 md:pt-8 border-t border-[#bfb5a3]/10 gap-2">
-                    <button wire:click="previousLesson"
+                    @if(!$isFirstLesson)
+                    <button wire:click="previousLesson" aria-label="Materi sebelumnya"
                             class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#ebe5d8] text-[#2b2721] font-semibold rounded-full hover:bg-[#ddd4c2] transition-colors text-sm">
-                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_back</span>
                         <span class="hidden sm:inline">Sebelumnya</span>
                     </button>
+                    @else
+                    <span></span>
+                    @endif
 
                     <div class="flex items-center gap-2">
                         @if($currentLesson->type !== 'quiz')
@@ -398,7 +401,7 @@
                             <span class="sm:hidden">Selesaikan</span>
                         </button>
                         @elseif(!$isLastLesson)
-                        <button wire:click="nextLesson"
+                        <button wire:click="nextLesson" aria-label="Materi selanjutnya"
                                 class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm shadow-blue-500/20 text-sm">
                             <span class="hidden sm:inline">Selanjutnya</span>
                             <span class="material-symbols-outlined text-lg">arrow_forward</span>
@@ -448,15 +451,18 @@
                         @foreach($module->lessons as $lesson)
                         @php $lessonDone = $completedLessonIds->contains($lesson->id); @endphp
                         @if($lessonDone)
-                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#ebe5d8]">
+                        {{-- Completed lessons stay open for review --}}
+                        <button wire:click="selectLesson({{ $lesson->id }})"
+                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200
+                                    {{ $currentLesson?->id === $lesson->id ? 'bg-white shadow-sm text-[#8a5a31] font-semibold' : 'hover:bg-[#ddd4c2] text-[#6b6358]' }}">
                             <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#56663f]">
-                                <span class="material-symbols-outlined text-white" style="font-size: 12px;">check</span>
+                                <span class="material-symbols-outlined text-white" style="font-size: 12px;" aria-hidden="true">check</span>
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm truncate line-through text-[#6b6358]">{{ $lesson->title }}</p>
-                                <p class="text-xs text-[#6b6358]">Selesai</p>
+                                <p class="text-sm truncate">{{ $lesson->title }}</p>
+                                <p class="text-xs text-[#56663f]">Selesai · buka lagi</p>
                             </div>
-                        </div>
+                        </button>
                         @else
                         <button wire:click="selectLesson({{ $lesson->id }})"
                                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200
@@ -511,15 +517,18 @@
                         @foreach($module->lessons as $lesson)
                         @php $lessonDone = $completedLessonIds->contains($lesson->id); @endphp
                         @if($lessonDone)
-                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#ebe5d8]">
+                        {{-- Completed lessons stay open for review --}}
+                        <button wire:click="selectLesson({{ $lesson->id }})" @click="mobileSidebar = false"
+                                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200
+                                    {{ $currentLesson?->id === $lesson->id ? 'bg-white shadow-sm text-[#8a5a31] font-semibold' : 'hover:bg-[#ddd4c2] text-[#6b6358]' }}">
                             <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#56663f]">
-                                <span class="material-symbols-outlined text-white" style="font-size: 12px;">check</span>
+                                <span class="material-symbols-outlined text-white" style="font-size: 12px;" aria-hidden="true">check</span>
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm truncate line-through text-[#6b6358]">{{ $lesson->title }}</p>
-                                <p class="text-xs text-[#6b6358]">Selesai</p>
+                                <p class="text-sm truncate">{{ $lesson->title }}</p>
+                                <p class="text-xs text-[#56663f]">Selesai · buka lagi</p>
                             </div>
-                        </div>
+                        </button>
                         @else
                         <button wire:click="selectLesson({{ $lesson->id }})" @click="mobileSidebar = false"
                                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200

@@ -184,7 +184,7 @@
         <h2 class="text-xl md:text-2xl font-headline font-bold text-[#2b2721]">Kursus Selesai</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @foreach($completedCourses as $enrollment)
-            <div class="bg-[#cfd8bd]/10 p-5 rounded-xl border border-[#56663f]/10">
+            <a href="{{ route('student.learn', $enrollment->course->slug) }}" class="block bg-[#cfd8bd]/10 p-5 rounded-xl border border-[#56663f]/10 hover:border-[#56663f]/30 transition-colors">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 bg-[#56663f] rounded-xl flex items-center justify-center flex-shrink-0">
                         <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">task_alt</span>
@@ -195,9 +195,9 @@
                             Selesai {{ $enrollment->completed_at?->format('d M Y') ?? '-' }}
                         </p>
                     </div>
-                    <span class="material-symbols-outlined text-[#56663f]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                    <span class="material-symbols-outlined text-[#56663f]" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </section>

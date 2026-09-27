@@ -57,7 +57,7 @@ require __DIR__.'/auth.php';
 // Student Routes — requires authenticated student role
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/dashboard', StudentDashboard::class)->name('student.dashboard');
-    Route::get('/my-courses', StudentDashboard::class)->name('student.courses');
+    Route::get('/my-courses', \App\Livewire\Student\MyCourses::class)->name('student.courses');
     Route::get('/catalog', CourseCatalog::class)->name('student.catalog');
     Route::get('/learn/{slug}', CourseLearning::class)->name('student.learn');
     Route::get('/tahfidz', TahfidzProgress::class)->name('student.tahfidz');

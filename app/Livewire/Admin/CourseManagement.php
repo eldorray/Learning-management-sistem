@@ -19,6 +19,8 @@ class CourseManagement extends Component
 
     public bool $showForm = false;
     public bool $showDeleteModal = false;
+    public string $deleteSummary = '';
+
     public ?int $editingCourseId = null;
     public ?int $deletingCourseId = null;
 
@@ -55,6 +57,14 @@ class CourseManagement extends Component
     {
         if (auth()->user()->isInstructor() && $course->instructor_id !== auth()->id()) {
             abort(403);
+        }
+    }
+
+    public function mount(): void
+    {
+        // "Kursus Baru" links from the dashboard land here with the form already open.
+        if (request()->routeIs('admin.courses.create')) {
+            $this->openCreateForm();
         }
     }
 
@@ -136,6 +146,8 @@ class CourseManagement extends Component
         $this->authorizeOwnership($course);
 
         $this->deletingCourseId = $courseId;
+        $course->loadCount(['lessons', 'enrollments']);
+        $this->deleteSummary = "\"{$course->title}\" akan dihapus bersama {$course->lessons_count} pelajaran dan {$course->enrollments_count} pendaftaran siswa beserta progresnya.";
         $this->showDeleteModal = true;
     }
 

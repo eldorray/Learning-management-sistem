@@ -129,6 +129,16 @@
         display: none !important;
     }
 
+    /* Livewire marks the element that sent a request; repeat taps are ignored until it finishes,
+       so a double tap never saves, deletes or notifies twice. */
+    button[data-loading],
+    a[data-loading],
+    form[data-loading] [type="submit"] {
+        pointer-events: none;
+        opacity: 0.6;
+        cursor: progress;
+    }
+
     /* Panels never pan sideways on phones; wide content scrolls inside its own container. */
     html,
     body {

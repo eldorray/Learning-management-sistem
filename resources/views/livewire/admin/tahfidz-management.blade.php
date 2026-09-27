@@ -369,6 +369,7 @@
                                 <option value="1">Semester 1</option>
                                 <option value="2">Semester 2</option>
                             </select>
+                            @error('targetSemester')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -381,11 +382,13 @@
                                 <option value="{{ $surah->id }}">{{ $surah->nomor }}. {{ $surah->nama_latin }}</option>
                                 @endforeach
                             </select>
+                            @error('targetSurahMulaiId')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-[#2b2721] mb-1.5">Ayat Mulai</label>
                             <input type="number" wire:model="targetAyatMulai" min="1"
                                    class="w-full px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                            @error('targetAyatMulai')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -398,11 +401,13 @@
                                 <option value="{{ $surah->id }}">{{ $surah->nomor }}. {{ $surah->nama_latin }}</option>
                                 @endforeach
                             </select>
+                            @error('targetSurahSelesaiId')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-[#2b2721] mb-1.5">Ayat Selesai</label>
                             <input type="number" wire:model="targetAyatSelesai" min="1"
                                    class="w-full px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                            @error('targetAyatSelesai')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
                     <div>
@@ -486,19 +491,36 @@
             <div class="w-10 h-1 bg-[#bfb5a3]/30 rounded-full mx-auto mt-3 sm:hidden"></div>
             <div class="p-6">
                 <h3 class="font-headline font-bold text-lg text-[#2b2721] mb-2">Plotting Siswa ke Halaqoh</h3>
-                <p class="text-sm text-[#6b6358] mb-5">Pilih siswa yang akan ditempatkan di halaqoh ini.</p>
+                <p class="text-sm text-[#6b6358] mb-4">Pilih siswa yang akan ditempatkan di halaqoh ini.</p>
+                {{-- Filtering happens in the browser so ticking boxes never waits on the server. --}}
+                <div x-data="{ q: '', kelas: '', selected: $wire.entangle('selectedStudents') }">
+                    <div class="flex flex-col sm:flex-row gap-2 mb-2">
+                        <input type="search" x-model="q" placeholder="Cari nama atau email…" aria-label="Cari siswa"
+                               class="flex-1 px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                        <select x-model="kelas" aria-label="Filter kelas"
+                                class="sm:w-40 px-4 py-2.5 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
+                            <option value="">Semua kelas</option>
+                            @foreach($allStudents->pluck('class_group')->filter()->unique()->sort() as $kelas)
+                            <option value="{{ $kelas }}">{{ $kelas }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <p class="text-xs font-semibold text-[#8a5a31] mb-2" aria-live="polite"><span x-text="selected.length"></span> siswa dipilih</p>
                 <div class="space-y-2 max-h-72 overflow-y-auto">
                     @foreach($allStudents as $student)
-                    <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#f3efe6] cursor-pointer transition-colors">
+                    <label wire:key="plot-{{ $student->id }}"
+                           x-show="(!q || @js(\Illuminate\Support\Str::lower($student->name.' '.$student->email)).includes(q.toLowerCase())) && (!kelas || kelas === @js($student->class_group))"
+                           class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#f3efe6] cursor-pointer transition-colors">
                         <input type="checkbox" wire:model="selectedStudents" value="{{ $student->id }}"
                                class="rounded border-[#bfb5a3]/30 text-[#8a5a31] focus:ring-[#8a5a31]/20">
                         <img src="{{ $student->avatar_url }}" class="w-8 h-8 rounded-full object-cover">
                         <div>
                             <p class="text-sm font-semibold text-[#2b2721]">{{ $student->name }}</p>
-                            <p class="text-xs text-[#6b6358]">{{ $student->email }}</p>
+                            <p class="text-xs text-[#6b6358]">{{ $student->email }}{{ $student->class_group ? ' · '.$student->class_group : '' }}</p>
                         </div>
                     </label>
                     @endforeach
+                </div>
                 </div>
                 <div class="flex gap-3 mt-6">
                     <button wire:click="$set('showPlottingModal', false)"

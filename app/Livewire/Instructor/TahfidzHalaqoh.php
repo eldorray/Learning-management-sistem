@@ -111,6 +111,25 @@ class TahfidzHalaqoh extends Component
             'setoranTajwid'     => 'required|integer|min:0|max:100',
             'setoranMakhorijul' => 'required|integer|min:0|max:100',
             'setoranTanggal'    => 'required|date',
+        ], [
+            'required' => ':attribute wajib diisi.',
+            'exists'   => ':attribute tidak valid.',
+            'integer'  => ':attribute harus berupa angka.',
+            'min'      => ':attribute minimal :min.',
+            'max'      => ':attribute maksimal :max.',
+            'gte'      => 'Ayat selesai tidak boleh sebelum ayat mulai.',
+            'in'       => ':attribute tidak valid.',
+            'date'     => ':attribute harus berupa tanggal.',
+        ], [
+            'setoranStudentId'   => 'Siswa',
+            'setoranSurahId'     => 'Surah',
+            'setoranAyatMulai'   => 'Ayat mulai',
+            'setoranAyatSelesai' => 'Ayat selesai',
+            'setoranJenis'       => 'Jenis setoran',
+            'setoranKelancaran'  => 'Nilai kelancaran',
+            'setoranTajwid'      => 'Nilai tajwid',
+            'setoranMakhorijul'  => 'Nilai makhorijul huruf',
+            'setoranTanggal'     => 'Tanggal',
         ]);
 
         TahfidzRecord::create([

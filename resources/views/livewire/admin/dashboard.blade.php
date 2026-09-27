@@ -9,11 +9,6 @@
         </div>
         <div class="flex gap-2 md:gap-3">
             <a href="{{ route('admin.courses.create') }}"
-               class="px-4 md:px-6 py-2.5 bg-[#ebe5d8] text-[#8a5a31] font-bold rounded-full hover:scale-[1.02] transition-transform flex items-center gap-1.5 text-sm">
-                <span class="material-symbols-outlined text-lg">file_download</span>
-                <span class="hidden sm:inline">Export</span>
-            </a>
-            <a href="{{ route('admin.courses.create') }}"
                class="px-4 md:px-6 py-2.5 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-1.5 text-sm">
                 <span class="material-symbols-outlined text-lg">add</span>
                 <span class="hidden sm:inline">Kursus Baru</span>
@@ -96,7 +91,7 @@
         <div class="bg-white p-5 md:p-6 rounded-xl border border-[#bfb5a3]/10 shadow-sm">
             <p class="text-sm text-[#6b6358] mb-1">Selesai Bulan Ini</p>
             <p class="text-3xl md:text-4xl font-headline font-extrabold text-[#56663f]">
-                {{ \App\Models\Enrollment::where('status', 'completed')->whereMonth('updated_at', now()->month)->count() }}
+                {{ $completedThisMonth }}
             </p>
             <p class="text-xs text-[#6b6358] mt-2">kursus diselesaikan</p>
         </div>

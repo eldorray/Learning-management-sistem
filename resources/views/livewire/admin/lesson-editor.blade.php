@@ -344,6 +344,7 @@
                         <label class="block text-sm font-semibold text-[#2b2721] mb-1">Poin</label>
                         <input type="number" wire:model="questionPoints" min="1" max="100"
                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm">
+                        @error('questionPoints')<p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                 </div>
 

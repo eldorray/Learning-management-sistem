@@ -295,7 +295,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <button wire:click="unlinkChild({{ $viewingParent->id }}, {{ $child->id }})"
+                                        <button wire:click="unlinkChild({{ $viewingParent->id }}, {{ $child->id }})" wire:confirm="Lepaskan {{ $child->name }} dari orang tua ini? Orang tua tidak bisa lagi memantau perkembangannya."
                                             class="p-1.5 text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors"
                                             title="Putus relasi">
                                             <span class="material-symbols-outlined text-sm">link_off</span>
@@ -333,7 +333,8 @@
                     <span class="material-symbols-outlined text-[#a3402c] text-3xl">person_remove</span>
                 </div>
                 <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Orang Tua?</h3>
-                <p class="text-[#6b6358] text-sm mb-6">Akun akan dihapus permanen dan semua relasi dengan siswa akan diputus.</p>
+                <p class="text-[#2b2721] text-sm font-semibold mb-2">{{ $deleteSummary }}</p>
+                <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
                 <div class="flex gap-3">
                     <button wire:click="$set('showDeleteModal', false)"
                         class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">Batal</button>
