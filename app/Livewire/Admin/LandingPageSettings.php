@@ -82,11 +82,11 @@ class LandingPageSettings extends Component
         abort_unless($field && $field['type'] === 'image', 404);
 
         $reset = [$key => $field['default']];
-        if ($key === 'background_image') {
+        if ($key === 'background_image' && LandingPageContent::values()['background_mode'] === 'photo') {
             $reset['background_mode'] = '3d';
         }
         LandingPageContent::save($reset);
-        if ($key === 'background_image') {
+        if (isset($reset['background_mode'])) {
             $this->texts['background_mode'] = '3d';
         }
         unset($this->uploads[$key]);

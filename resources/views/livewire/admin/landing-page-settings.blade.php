@@ -31,7 +31,7 @@
                 <summary class="px-6 py-5 border-b border-[#ebe5d8] font-headline font-bold text-lg text-[#2b2721] cursor-pointer">{{ $section }}</summary>
                 <div class="p-6 space-y-6">
                     @if ($section === 'Latar gedung sekolah')
-                        <p class="text-sm text-[#6b6358]">Unggah foto gedung, pilih “Foto gedung sekolah”, lalu simpan. Foto menggantikan seluruh dunia 3D beserta dekorasi kuil; teks dan navigasi tetap tersedia. Gunakan foto horizontal beresolusi tinggi. Gambar galeri tetap dikelola pada bagian masing-masing.</p>
+                        <p class="text-sm text-[#6b6358]">Pilih “Kampus Ar-Rahmah 3D” untuk animasi masjid, menara, sekolah, dan taman berdasarkan foto kampus. Model merupakan interpretasi, bukan replika arsitektur presisi. Tidak memerlukan unggahan; foto kampus bawaan tampil jika perangkat tidak mendukung 3D. Gerakan bisa dijeda dan mengikuti preferensi kurangi gerakan perangkat. Pilihan “Foto gedung sekolah” menggunakan foto unggahan tanpa animasi 3D; “Animasi 3D Kage asli” mengembalikan latar asli. Teks dan navigasi tetap tersedia. Gambar galeri dikelola pada bagian masing-masing.</p>
                     @endif
                     @foreach ($fields as $key => $field)
                         <div wire:key="landing-field-{{ $key }}">

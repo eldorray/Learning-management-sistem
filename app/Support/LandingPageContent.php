@@ -14,7 +14,8 @@ class LandingPageContent
     public static function schema(): array
     {
         return json_decode(file_get_contents(resource_path('threeui/content-schema.json')), true, flags: JSON_THROW_ON_ERROR) + [
-            'background_mode' => ['type' => 'select', 'section' => 'Latar gedung sekolah', 'label' => 'Jenis latar utama', 'default' => '3d', 'options' => ['3d' => 'Animasi 3D Kage asli', 'photo' => 'Foto gedung sekolah']],
+            'background_mode' => ['type' => 'select', 'section' => 'Latar gedung sekolah', 'label' => 'Jenis latar utama', 'default' => '3d', 'options' => ['3d' => 'Animasi 3D Kage asli', 'photo' => 'Foto gedung sekolah', 'campus_3d' => 'Kampus Ar-Rahmah 3D']],
+            'campus_sign' => ['type' => 'text', 'section' => 'Latar gedung sekolah', 'label' => 'Tulisan gedung kampus 3D', 'default' => 'MODERN TAHFIDZ AR-RAHMAH BOARDING SCHOOL'],
             'background_image' => ['type' => 'image', 'section' => 'Latar gedung sekolah', 'label' => 'Foto gedung sekolah', 'default' => ''],
             'background_position' => ['type' => 'select', 'section' => 'Latar gedung sekolah', 'label' => 'Posisi foto', 'default' => 'center center', 'options' => ['center center' => 'Tengah', 'center top' => 'Atas', 'left center' => 'Kiri', 'right center' => 'Kanan']],
         ];
