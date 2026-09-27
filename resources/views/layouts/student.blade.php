@@ -13,7 +13,7 @@
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0058ba">
+    <meta name="theme-color" content="#ece7dc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="LMS Arrahmah">
@@ -28,7 +28,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="bg-[#f5f7f9] text-[#2c2f31] selection:bg-[#6c9fff] selection:text-[#00214e]">
+<body class="bg-[#f3efe6] text-[#2b2721] selection:bg-[#d9b98f] selection:text-[#3a2412]">
 
 <div x-data="{ mobileOpen: false }" class="flex min-h-screen">
 
@@ -58,13 +58,13 @@
             @if(\App\Models\Setting::get('app_logo'))
             <img src="{{ asset('storage/' . \App\Models\Setting::get('app_logo')) }}" class="w-10 h-10 rounded-xl object-contain" alt="Logo">
             @else
-            <div class="w-10 h-10 bg-[#0058ba] rounded-xl flex items-center justify-center text-[#f0f2ff] shadow-lg shadow-blue-500/20">
+            <div class="w-10 h-10 bg-[#8a5a31] rounded-xl flex items-center justify-center text-[#fbf6ee] shadow-lg shadow-blue-500/20">
                 <span class="material-symbols-outlined text-xl">school</span>
             </div>
             @endif
             <div>
                 <h1 class="font-headline font-bold text-lg text-slate-900 tracking-tight">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</h1>
-                <p class="text-[10px] text-[#595c5e] uppercase tracking-widest font-bold">{{ \App\Models\Setting::get('app_tagline', 'Platform Pembelajaran') }}</p>
+                <p class="text-[10px] text-[#6b6358] uppercase tracking-widest font-bold">{{ \App\Models\Setting::get('app_tagline', 'Platform Pembelajaran') }}</p>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
             <livewire:student.focus-mode />
 
             <!-- Divider -->
-            <div class="border-t border-[#abadaf]/10 pt-3 space-y-1">
+            <div class="border-t border-[#bfb5a3]/10 pt-3 space-y-1">
                 <a href="#" class="nav-item text-sm">
                     <span class="material-symbols-outlined text-sm">help</span>
                     <span>Bantuan</span>
@@ -117,17 +117,17 @@
             </div>
 
             <!-- User Profile -->
-            <div class="bg-[#dfe3e6] p-3 rounded-xl flex items-center gap-3">
+            <div class="bg-[#ddd4c2] p-3 rounded-xl flex items-center gap-3">
                 <img src="{{ auth()->user()?->avatar_url }}"
                      alt="{{ auth()->user()?->name }}"
-                     class="w-9 h-9 rounded-full object-cover border-2 border-[#6c9fff]/30">
+                     class="w-9 h-9 rounded-full object-cover border-2 border-[#d9b98f]/30">
                 <div class="overflow-hidden flex-1">
                     <p class="text-sm font-bold truncate">{{ auth()->user()?->name }}</p>
-                    <p class="text-xs text-[#595c5e] truncate">{{ auth()->user()?->email }}</p>
+                    <p class="text-xs text-[#6b6358] truncate">{{ auth()->user()?->email }}</p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="p-1 text-[#595c5e] hover:text-[#b31b25] transition-colors">
+                    <button type="submit" class="p-1 text-[#6b6358] hover:text-[#a3402c] transition-colors">
                         <span class="material-symbols-outlined text-sm">logout</span>
                     </button>
                 </form>
@@ -139,13 +139,13 @@
     <div class="flex-1 flex flex-col min-w-0">
 
         <!-- Top Navigation Bar -->
-        <nav class="bg-[#f5f7f9]/90 backdrop-blur-xl sticky top-0 z-30 flex justify-between items-center w-full px-4 lg:px-8 py-3 border-b border-slate-100/80">
+        <nav class="bg-[#f3efe6]/90 backdrop-blur-xl sticky top-0 z-30 flex justify-between items-center gap-3 w-full px-4 lg:px-8 py-3 border-b border-slate-100/80">
             <!-- Left: Hamburger + Logo -->
-            <div class="flex items-center gap-3">
-                <button @click="mobileOpen = true" class="lg:hidden p-2 rounded-full hover:bg-[#e5e9eb] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">menu</span>
+            <div class="flex items-center gap-3 min-w-0">
+                <button @click="mobileOpen = true" class="lg:hidden p-2 rounded-full hover:bg-[#e4dccc] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">menu</span>
                 </button>
-                <span class="lg:hidden text-lg font-headline font-bold text-[#0058ba]">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</span>
+                <span class="lg:hidden text-lg font-headline font-bold text-[#8a5a31] truncate">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</span>
             </div>
 
             <!-- Search (Desktop) -->
@@ -154,16 +154,16 @@
             </div>
 
             <!-- Right Actions -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center justify-end gap-2 flex-1 min-w-0 md:flex-none">
                 <!-- Search (Mobile) -->
-                <div class="md:hidden">
+                <div class="md:hidden flex-1 min-w-0 max-w-48">
                     <livewire:global-search />
                 </div>
 
                 <!-- XP Badge -->
-                <div class="hidden sm:flex items-center gap-1.5 bg-[#73f2dd]/30 px-3 py-1.5 rounded-full">
-                    <span class="material-symbols-outlined text-[#00675c] text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
-                    <span class="text-xs font-bold text-[#00675c]">{{ auth()->user()?->xp_points ?? 0 }} XP</span>
+                <div class="hidden sm:flex items-center gap-1.5 bg-[#cfd8bd]/30 px-3 py-1.5 rounded-full">
+                    <span class="material-symbols-outlined text-[#56663f] text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    <span class="text-xs font-bold text-[#56663f]">{{ auth()->user()?->xp_points ?? 0 }} XP</span>
                 </div>
 
                 <!-- Notifications -->
@@ -173,7 +173,7 @@
                 <a href="{{ route('student.profile') }}" class="hidden sm:block">
                     <img src="{{ auth()->user()?->avatar_url }}"
                          alt="{{ auth()->user()?->name }}"
-                         class="w-8 h-8 rounded-full object-cover border-2 border-[#0058ba]/20">
+                         class="w-8 h-8 rounded-full object-cover border-2 border-[#8a5a31]/20">
                 </a>
             </div>
         </nav>
@@ -200,12 +200,12 @@
                 @php $active = request()->routeIs($item['route']); @endphp
                 <a href="{{ route($item['route']) }}"
                    wire:navigate
-                   class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors {{ $active ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
+                   class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors {{ $active ? 'text-[#8a5a31]' : 'text-[#6b6358]' }}">
                     <span class="material-symbols-outlined text-[22px] leading-none"
                           style="{{ $active ? 'font-variation-settings: \'FILL\' 1;' : '' }}">{{ $item['icon'] }}</span>
                     <span class="text-[10px] font-semibold leading-none">{{ $item['label'] }}</span>
                     @if($active)
-                        <span class="w-1 h-1 bg-[#0058ba] rounded-full mt-0.5"></span>
+                        <span class="w-1 h-1 bg-[#8a5a31] rounded-full mt-0.5"></span>
                     @endif
                 </a>
             @endforeach

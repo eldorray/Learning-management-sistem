@@ -9,63 +9,112 @@
     --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
     /* Design System Colors - The LMS Arrahmah */
-    --color-background: #f5f7f9;
-    --color-surface: #f5f7f9;
-    --color-surface-bright: #f5f7f9;
-    --color-surface-dim: #d0d5d8;
-    --color-surface-container-lowest: #ffffff;
-    --color-surface-container-low: #eef1f3;
-    --color-surface-container: #e5e9eb;
-    --color-surface-container-high: #dfe3e6;
-    --color-surface-container-highest: #d9dde0;
-    --color-surface-variant: #d9dde0;
-    --color-surface-tint: #0058ba;
+    --color-background: #f3efe6;
+    --color-surface: #f3efe6;
+    --color-surface-bright: #f3efe6;
+    --color-surface-dim: #cfc4af;
+    --color-surface-container-lowest: #fffcf6;
+    --color-surface-container-low: #ebe5d8;
+    --color-surface-container: #e4dccc;
+    --color-surface-container-high: #ddd4c2;
+    --color-surface-container-highest: #d6ccb9;
+    --color-surface-variant: #d6ccb9;
+    --color-surface-tint: #8a5a31;
 
-    --color-on-surface: #2c2f31;
-    --color-on-surface-variant: #595c5e;
-    --color-on-background: #2c2f31;
-    --color-inverse-surface: #0b0f10;
-    --color-inverse-on-surface: #9a9d9f;
+    --color-on-surface: #2b2721;
+    --color-on-surface-variant: #6b6358;
+    --color-on-background: #2b2721;
+    --color-inverse-surface: #1c1914;
+    --color-inverse-on-surface: #a39a8c;
 
-    --color-primary: #0058ba;
-    --color-primary-dim: #004da4;
-    --color-primary-container: #6c9fff;
-    --color-primary-fixed: #6c9fff;
-    --color-primary-fixed-dim: #5091ff;
-    --color-inverse-primary: #4a8eff;
-    --color-on-primary: #f0f2ff;
-    --color-on-primary-container: #00214e;
+    --color-primary: #8a5a31;
+    --color-primary-dim: #6f4826;
+    --color-primary-container: #d9b98f;
+    --color-primary-fixed: #d9b98f;
+    --color-primary-fixed-dim: #c9a376;
+    --color-inverse-primary: #d2ae82;
+    --color-on-primary: #fbf6ee;
+    --color-on-primary-container: #3a2412;
     --color-on-primary-fixed: #000000;
-    --color-on-primary-fixed-variant: #002a60;
+    --color-on-primary-fixed-variant: #4a2f18;
 
-    --color-secondary: #00675c;
-    --color-secondary-dim: #005a50;
-    --color-secondary-container: #73f2dd;
-    --color-secondary-fixed: #73f2dd;
-    --color-secondary-fixed-dim: #63e3cf;
-    --color-on-secondary: #c1fff2;
-    --color-on-secondary-container: #00594f;
-    --color-on-secondary-fixed: #00443c;
-    --color-on-secondary-fixed-variant: #006358;
+    --color-secondary: #56663f;
+    --color-secondary-dim: #4b5a37;
+    --color-secondary-container: #cfd8bd;
+    --color-secondary-fixed: #cfd8bd;
+    --color-secondary-fixed-dim: #bfcaa9;
+    --color-on-secondary: #f2f5ea;
+    --color-on-secondary-container: #48553a;
+    --color-on-secondary-fixed: #3a4530;
+    --color-on-secondary-fixed-variant: #526141;
 
-    --color-tertiary: #00647c;
-    --color-tertiary-dim: #00576c;
-    --color-tertiary-container: #4dc9f1;
-    --color-tertiary-fixed: #4dc9f1;
-    --color-tertiary-fixed-dim: #39bce2;
-    --color-on-tertiary: #e2f6ff;
-    --color-on-tertiary-container: #003e4e;
-    --color-on-tertiary-fixed: #002732;
-    --color-on-tertiary-fixed-variant: #00485a;
+    --color-tertiary: #5a6d76;
+    --color-tertiary-dim: #4d5f67;
+    --color-tertiary-container: #c9d6d9;
+    --color-tertiary-fixed: #c9d6d9;
+    --color-tertiary-fixed-dim: #b5c6ca;
+    --color-on-tertiary: #f1f5f6;
+    --color-on-tertiary-container: #34444b;
+    --color-on-tertiary-fixed: #27343a;
+    --color-on-tertiary-fixed-variant: #3e5058;
 
-    --color-error: #b31b25;
-    --color-error-dim: #9f0519;
-    --color-error-container: #fb5151;
-    --color-on-error: #ffefee;
-    --color-on-error-container: #570008;
+    --color-error: #a3402c;
+    --color-error-dim: #8c3624;
+    --color-error-container: #e0a08f;
+    --color-on-error: #fbf0ec;
+    --color-on-error-container: #4d1c12;
 
-    --color-outline: #747779;
-    --color-outline-variant: #abadaf;
+    --color-outline: #8a8174;
+    --color-outline-variant: #bfb5a3;
+
+    /* Sketchbook tone, shared with the public landing: paper, ink and earth.
+       Utility families used across the app are remapped here instead of in markup. */
+    --color-white: #fffcf6;
+    /* Accent families, muted to the watercolour washes of the sketchbook plates. */
+    --color-indigo-50: #eef2f3;
+    --color-indigo-500: #6f8791;
+    --color-indigo-600: #5a6d76;
+    --color-purple-50: #f4eef0;
+    --color-purple-500: #8f6a78;
+    --color-purple-600: #7a5765;
+    --color-purple-700: #644755;
+    --color-violet-50: #f4eef0;
+    --color-violet-600: #7a5765;
+    --color-cyan-50: #eef3f3;
+    --color-cyan-600: #52707a;
+    --color-blue-50: #f8f1e7;
+    --color-blue-100: #f0e2cf;
+    --color-blue-200: #e2c9a6;
+    --color-blue-300: #d2ab7c;
+    --color-blue-400: #bf8d58;
+    --color-blue-500: #a87542;
+    --color-blue-600: #8a5a31;
+    --color-blue-700: #6f4826;
+    --color-blue-800: #58391f;
+    --color-blue-900: #452d19;
+    --color-blue-950: #26180c;
+    --color-slate-50: #faf7f1;
+    --color-slate-100: #f3eee4;
+    --color-slate-200: #e6ded0;
+    --color-slate-300: #d4c9b6;
+    --color-slate-400: #a89d8b;
+    --color-slate-500: #857a69;
+    --color-slate-600: #6b6358;
+    --color-slate-700: #544d43;
+    --color-slate-800: #3b352d;
+    --color-slate-900: #2b2721;
+    --color-slate-950: #1c1914;
+    --color-gray-50: #faf7f1;
+    --color-gray-100: #f3eee4;
+    --color-gray-200: #e6ded0;
+    --color-gray-300: #d4c9b6;
+    --color-gray-400: #a89d8b;
+    --color-gray-500: #857a69;
+    --color-gray-600: #6b6358;
+    --color-gray-700: #544d43;
+    --color-gray-800: #3b352d;
+    --color-gray-900: #2b2721;
+    --color-gray-950: #1c1914;
 
     /* Border Radius */
     --radius-sm: 0.5rem;
@@ -76,6 +125,16 @@
 }
 
 @layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    /* Panels never pan sideways on phones; wide content scrolls inside its own container. */
+    html,
+    body {
+        overflow-x: clip;
+    }
+
     body {
         font-family: "Inter", sans-serif;
         color: var(--color-on-surface);
@@ -108,12 +167,12 @@
     }
 
     .glass-nav {
-        background: rgba(245, 247, 249, 0.8);
+        background: rgba(243, 239, 230, 0.8);
         backdrop-filter: blur(20px);
     }
 
     .glass-panel {
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 252, 246, 0.8);
         backdrop-filter: blur(20px);
     }
 
@@ -135,7 +194,7 @@
         align-items: center;
         gap: 0.5rem;
         transition: transform 0.2s ease;
-        box-shadow: 0 4px 15px rgba(0, 88, 186, 0.2);
+        box-shadow: 0 4px 15px rgba(138, 90, 49, 0.2);
     }
 
     .btn-primary:hover {
@@ -164,7 +223,7 @@
         gap: 1rem;
         padding: 0.75rem 1.25rem;
         border-radius: var(--radius-full);
-        color: #595c5e;
+        color: var(--color-on-surface-variant);
         font-weight: 500;
         transition: all 0.3s ease;
         text-decoration: none;
@@ -179,20 +238,20 @@
         background-color: white;
         color: var(--color-primary);
         font-weight: 700;
-        box-shadow: 0 2px 8px rgba(0, 88, 186, 0.08);
+        box-shadow: 0 2px 8px rgba(138, 90, 49, 0.08);
     }
 
     .card {
         background-color: var(--color-surface-container-lowest);
         border-radius: var(--radius);
-        border: 1px solid rgba(171, 173, 175, 0.1);
-        box-shadow: 0 2px 8px rgba(44, 47, 49, 0.04);
+        border: 1px solid rgba(191, 181, 163, 0.1);
+        box-shadow: 0 2px 8px rgba(43, 39, 33, 0.04);
         transition: all 0.3s ease;
     }
 
     .card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(44, 47, 49, 0.08);
+        box-shadow: 0 8px 24px rgba(43, 39, 33, 0.08);
     }
 
     .progress-bar {

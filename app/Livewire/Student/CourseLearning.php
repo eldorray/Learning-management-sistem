@@ -42,7 +42,7 @@ class CourseLearning extends Component
             ->where('is_published', true)
             ->firstOrFail();
 
-        if (!Auth::user()->isEnrolledIn($this->course->id)) {
+        if (!Auth::user()->isAdmin() && !Auth::user()->isEnrolledIn($this->course->id)) {
             abort(403, 'Anda belum mendaftar kursus ini.');
         }
 

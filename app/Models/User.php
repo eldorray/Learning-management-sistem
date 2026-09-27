@@ -120,6 +120,6 @@ class User extends Authenticatable
         if ($this->avatar) {
             return asset('storage/' . $this->avatar);
         }
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=0058ba&color=f0f2ff&size=128';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=8a5a31&color=fbf6ee&size=128';
     }
 }

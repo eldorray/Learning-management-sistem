@@ -42,14 +42,14 @@ class TahfidzHalaqoh extends Component
         $this->setoranTanggal = now()->format('Y-m-d');
 
         // Auto select first group
-        $firstGroup = TahfidzGroup::where('instruktur_id', auth()->id())->first();
+        $firstGroup = $this->ownedByMe(TahfidzGroup::query())->first();
         if ($firstGroup) $this->selectedGroup = $firstGroup->id;
     }
 
     public function getMyGroupsProperty()
     {
-        return TahfidzGroup::where('instruktur_id', auth()->id())
-            ->with(['students' => function ($q) {
+        return $this->ownedByMe(TahfidzGroup::query())
+            ->with(['instruktur:id,name', 'students' => function ($q) {
                 $q->withCount('tahfidzRecords as total_setoran')
                   ->withAvg('tahfidzRecords as avg_score', DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'));
             }])
@@ -60,7 +60,7 @@ class TahfidzHalaqoh extends Component
     public function getSelectedGroupDataProperty(): ?TahfidzGroup
     {
         if (!$this->selectedGroup) return null;
-        return TahfidzGroup::with(['students' => function ($q) {
+        return $this->ownedByMe(TahfidzGroup::query())->with(['instruktur:id,name', 'students' => function ($q) {
             $q->withCount('tahfidzRecords as total_setoran')
               ->withAvg('tahfidzRecords as avg_score', DB::raw('(score_kelancaran + score_tajwid + score_makhorijul_huruf) / 3'));
         }])->find($this->selectedGroup);
@@ -146,7 +146,7 @@ class TahfidzHalaqoh extends Component
     public function deleteRecord(int $id): void
     {
         $record = TahfidzRecord::findOrFail($id);
-        if ($record->instruktur_id !== auth()->id()) return;
+        if ($record->instruktur_id !== auth()->id() && ! auth()->user()->isAdmin()) return;
         $record->delete();
         session()->flash('success', 'Setoran dihapus.');
     }
@@ -159,12 +159,17 @@ class TahfidzHalaqoh extends Component
         }
     }
 
+    /** Instructors see their own halaqoh; admins see every instructor's. */
+    private function ownedByMe($query)
+    {
+        return $query->when(! auth()->user()->isAdmin(), fn ($q) => $q->where('instruktur_id', auth()->id()));
+    }
+
     public function render()
     {
         return view('livewire.instructor.tahfidz-halaqoh', [
             'surahs'  => Surah::orderBy('nomor')->get(),
-            'riwayat' => TahfidzRecord::with(['student', 'surah'])
-                ->where('instruktur_id', auth()->id())
+            'riwayat' => $this->ownedByMe(TahfidzRecord::with(['student', 'surah']))
                 ->when($this->searchRiwayat, fn($q) => $q->whereHas('student', fn($sq) => $sq->where('name', 'like', "%{$this->searchRiwayat}%")))
                 ->when($this->filterSurah, fn($q) => $q->where('surah_id', $this->filterSurah))
                 ->when($this->filterJenis, fn($q) => $q->where('jenis_setoran', $this->filterJenis))

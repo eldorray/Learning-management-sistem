@@ -13,7 +13,7 @@
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0058ba">
+    <meta name="theme-color" content="#ece7dc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="LMS Arrahmah">
@@ -27,7 +27,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="bg-[#f5f7f9] text-[#2c2f31] selection:bg-[#6c9fff] selection:text-[#00214e]">
+<body class="bg-[#f3efe6] text-[#2b2721] selection:bg-[#d9b98f] selection:text-[#3a2412]">
 
 <div x-data="{ mobileOpen: false }" class="flex min-h-screen">
 
@@ -45,7 +45,7 @@
 
     <!-- Sidebar -->
     <aside :class="mobileOpen ? 'translate-x-0' : '-translate-x-full'"
-           class="fixed lg:relative lg:translate-x-0 z-50 flex flex-col w-64 h-screen top-0 py-8 px-6 space-y-6 bg-gradient-to-b from-[#e8f0fe] to-[#f5f7f9] rounded-r-[3rem] transition-transform duration-300 overflow-y-auto shrink-0">
+           class="fixed lg:relative lg:translate-x-0 z-50 flex flex-col w-64 h-screen top-0 py-8 px-6 space-y-6 bg-gradient-to-b from-[#f1e7d8] to-[#f3efe6] rounded-r-[3rem] transition-transform duration-300 overflow-y-auto shrink-0">
 
         <!-- Close button mobile -->
         <button @click="mobileOpen = false" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/60 lg:hidden">
@@ -57,13 +57,13 @@
             @if(\App\Models\Setting::get('app_logo'))
             <img src="{{ asset('storage/' . \App\Models\Setting::get('app_logo')) }}" class="w-10 h-10 rounded-xl object-contain" alt="Logo">
             @else
-            <div class="w-10 h-10 bg-[#0058ba] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+            <div class="w-10 h-10 bg-[#8a5a31] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
                 <span class="material-symbols-outlined text-xl">family_restroom</span>
             </div>
             @endif
             <div>
                 <h1 class="font-headline font-bold text-lg text-slate-900 tracking-tight">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</h1>
-                <p class="text-[10px] text-[#595c5e] uppercase tracking-widest font-bold">Portal Orang Tua</p>
+                <p class="text-[10px] text-[#6b6358] uppercase tracking-widest font-bold">Portal Orang Tua</p>
             </div>
         </div>
 
@@ -77,7 +77,7 @@
         <nav class="flex-1 space-y-1">
             <a href="{{ route('parent.dashboard') }}" @click="mobileOpen = false"
                class="flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-medium transition-all duration-300
-                {{ request()->routeIs('parent.dashboard') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }}">
+                {{ request()->routeIs('parent.dashboard') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }}">
                 <span class="material-symbols-outlined">home</span>
                 <span>Dashboard</span>
             </a>
@@ -88,14 +88,14 @@
             <div class="bg-white/70 p-4 rounded-xl flex items-center gap-3">
                 <img src="{{ auth()->user()?->avatar_url }}"
                      alt="{{ auth()->user()?->name }}"
-                     class="w-9 h-9 rounded-full object-cover border-2 border-[#6c9fff]/30 flex-shrink-0">
+                     class="w-9 h-9 rounded-full object-cover border-2 border-[#d9b98f]/30 flex-shrink-0">
                 <div class="overflow-hidden flex-1">
                     <p class="text-sm font-bold truncate">{{ auth()->user()?->name }}</p>
-                    <p class="text-xs text-[#595c5e]">Orang Tua / Wali</p>
+                    <p class="text-xs text-[#6b6358]">Orang Tua / Wali</p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="p-1 text-[#595c5e] hover:text-[#b31b25] transition-colors">
+                    <button type="submit" class="p-1 text-[#6b6358] hover:text-[#a3402c] transition-colors">
                         <span class="material-symbols-outlined text-sm">logout</span>
                     </button>
                 </form>
@@ -107,12 +107,12 @@
     <div class="flex-1 flex flex-col min-w-0">
 
         <!-- Top Bar -->
-        <nav class="bg-[#f5f7f9]/90 backdrop-blur-xl sticky top-0 z-30 flex justify-between items-center w-full px-4 lg:px-8 py-3 border-b border-slate-100/80">
+        <nav class="bg-[#f3efe6]/90 backdrop-blur-xl sticky top-0 z-30 flex justify-between items-center w-full px-4 lg:px-8 py-3 border-b border-slate-100/80">
             <div class="flex items-center gap-3">
-                <button @click="mobileOpen = true" class="lg:hidden p-2 rounded-full hover:bg-[#e5e9eb] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">menu</span>
+                <button @click="mobileOpen = true" class="lg:hidden p-2 rounded-full hover:bg-[#e4dccc] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">menu</span>
                 </button>
-                <span class="lg:hidden text-lg font-headline font-bold text-[#0058ba]">
+                <span class="lg:hidden text-lg font-headline font-bold text-[#8a5a31]">
                     {{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}
                 </span>
             </div>
@@ -121,8 +121,8 @@
                     <span class="material-symbols-outlined text-amber-600 text-sm">visibility</span>
                     <span class="text-xs font-semibold text-amber-700">Mode Pantau</span>
                 </div>
-                <button class="p-2 rounded-full hover:bg-[#e5e9eb] transition-colors relative">
-                    <span class="material-symbols-outlined text-[#595c5e] text-xl">notifications</span>
+                <button class="p-2 rounded-full hover:bg-[#e4dccc] transition-colors relative">
+                    <span class="material-symbols-outlined text-[#6b6358] text-xl">notifications</span>
                 </button>
             </div>
         </nav>
@@ -135,13 +135,13 @@
         <!-- Bottom Navigation (Mobile) -->
         <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-xl border-t border-slate-200 flex items-center justify-around px-2 py-2">
             <a href="{{ route('parent.dashboard') }}"
-               class="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-colors {{ request()->routeIs('parent.dashboard') ? 'text-[#0058ba]' : 'text-[#595c5e]' }}">
+               class="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-colors {{ request()->routeIs('parent.dashboard') ? 'text-[#8a5a31]' : 'text-[#6b6358]' }}">
                 <span class="material-symbols-outlined text-2xl" style="{{ request()->routeIs('parent.dashboard') ? 'font-variation-settings: \'FILL\' 1;' : '' }}">home</span>
                 <span class="text-[10px] font-semibold">Dashboard</span>
             </a>
             <form method="POST" action="{{ route('logout') }}" class="flex flex-col items-center">
                 @csrf
-                <button type="submit" class="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl text-[#595c5e]">
+                <button type="submit" class="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl text-[#6b6358]">
                     <span class="material-symbols-outlined text-2xl">logout</span>
                     <span class="text-[10px] font-semibold">Keluar</span>
                 </button>

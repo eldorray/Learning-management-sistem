@@ -28,3 +28,11 @@ Checks:
 Browser QA used a separate scratch SQLite database: desktop and mobile scene readiness, all six scroll sections, mobile menu, all foreground image loads, typography, text/canvas edits, upload/readback/reset and login navigation. No working database content was overwritten.
 
 Known upstream build warning: threeui.css references ./fonts/fragment-mono.woff2 for unrelated catalog components, not Kage. Kage's Onest/Japanese/wordmark fonts are self-contained in secret-pathways-assets/fonts.css. npm audit also reports vulnerabilities in existing build-tool dependencies; no broad dependency upgrades were applied in this feature.
+
+## Meng To Sketchbook (current public landing)
+
+Source revision e0330548b1ac905cf1b81698163ffa29f8a3a8c39b8d39f9b71ba5b9255b6dd1, from https://threeui.com/source-code/meng-to-sketchbook-landing-page.json. The four TSX/TS files and threeui.css in the bundle match the copies above byte-for-byte. The 17 binary assets in public/landing-pages/meng-to-sketchbook/ were checked against the registered SHA-256 and byte sizes.
+
+The canonical HTML stays immutable in public/landing-pages/meng-to-sketchbook.html here. GET /landing-pages/meng-to-sketchbook.html (App\Support\SketchbookContent::render) swaps saved Indonesian text, links and plate illustrations into exact, uniquely-matched source anchors in one strtr pass; styles, page-curl, loupe and zoom code are untouched. Admin editor: /admin/landing-page (App\Livewire\Admin\SketchbookSettings). Storage: settings table, landing_sketchbook_content key. Plate uploads: public disk, landing/ directory.
+
+Upstream behaviour kept as-is: in Chromium the side arrows do not turn the page because the stage captures the pointer; drag, keyboard arrows and the plate index do.

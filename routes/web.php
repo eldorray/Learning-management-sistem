@@ -1,25 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Student\Dashboard as StudentDashboard;
-use App\Livewire\Student\CourseCatalog;
-use App\Livewire\Student\CourseLearning;
-use App\Livewire\Student\Profile as StudentProfile;
-use App\Livewire\Student\TahfidzProgress;
-use App\Livewire\Admin\Dashboard as AdminDashboard;
-use App\Livewire\Admin\CourseManagement;
-use App\Livewire\Admin\CourseBuilder;
-use App\Livewire\Admin\LessonEditor;
-use App\Livewire\Admin\StudentDirectory;
 use App\Livewire\Admin\Analytics;
-use App\Livewire\Admin\InstructorDirectory;
-use App\Livewire\Admin\CourseStudents;
 use App\Livewire\Admin\AppSettings;
-use App\Livewire\Admin\TahfidzManagement;
+use App\Livewire\Admin\CourseBuilder;
+use App\Livewire\Admin\CourseManagement;
+use App\Livewire\Admin\CourseStudents;
+use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Admin\InstructorDirectory;
+use App\Livewire\Admin\LessonEditor;
 use App\Livewire\Admin\ParentDirectory;
 use App\Livewire\Admin\Profile as AdminProfile;
+use App\Livewire\Admin\SketchbookSettings;
+use App\Livewire\Admin\StudentDirectory;
+use App\Livewire\Admin\TahfidzManagement;
 use App\Livewire\Instructor\TahfidzHalaqoh;
 use App\Livewire\ParentPortal\Dashboard as ParentDashboard;
+use App\Livewire\Student\CourseCatalog;
+use App\Livewire\Student\CourseLearning;
+use App\Livewire\Student\Dashboard as StudentDashboard;
+use App\Livewire\Student\Profile as StudentProfile;
+use App\Livewire\Student\TahfidzProgress;
+use App\Support\LandingPageContent;
+use App\Support\SketchbookContent;
+use Illuminate\Support\Facades\Route;
 
 // Root redirect
 Route::get('/', function () {
@@ -31,12 +34,18 @@ Route::get('/', function () {
         if ($user->isParent()) {
             return redirect()->route('parent.dashboard');
         }
+
         return redirect()->route('student.dashboard');
     }
+
     return view('welcome');
 })->name('home');
 
-Route::get('/landing-pages/kage.html', fn () => response(\App\Support\LandingPageContent::render())
+Route::get('/landing-pages/kage.html', fn () => response(LandingPageContent::render())
+    ->header('Content-Type', 'text/html; charset=UTF-8')
+    ->header('Cache-Control', 'no-store')
+    ->header('X-Content-Type-Options', 'nosniff'));
+Route::get('/landing-pages/meng-to-sketchbook.html', fn () => response(SketchbookContent::render())
     ->header('Content-Type', 'text/html; charset=UTF-8')
     ->header('Cache-Control', 'no-store')
     ->header('X-Content-Type-Options', 'nosniff'));
@@ -75,7 +84,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::get('/parents', ParentDirectory::class)->name('parents');
         Route::get('/tahfidz', TahfidzManagement::class)->name('tahfidz');
         Route::get('/settings', AppSettings::class)->name('settings');
-        Route::get('/landing-page', \App\Livewire\Admin\LandingPageSettings::class)->name('landing-page');
+        Route::get('/landing-page', SketchbookSettings::class)->name('landing-page');
     });
 });
 

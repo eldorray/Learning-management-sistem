@@ -13,7 +13,7 @@
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0058ba">
+    <meta name="theme-color" content="#ece7dc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="LMS Arrahmah">
@@ -28,7 +28,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="bg-[#f5f7f9] text-[#2c2f31] selection:bg-[#6c9fff] selection:text-[#00214e]">
+<body class="bg-[#f3efe6] text-[#2b2721] selection:bg-[#d9b98f] selection:text-[#3a2412]">
 
 <div x-data="{ mobileOpen: false }" class="flex min-h-screen">
 
@@ -58,13 +58,13 @@
             @if(\App\Models\Setting::get('app_logo'))
             <img src="{{ asset('storage/' . \App\Models\Setting::get('app_logo')) }}" class="w-12 h-12 rounded-xl object-contain" alt="Logo">
             @else
-            <div class="w-12 h-12 bg-[#0058ba] rounded-xl flex items-center justify-center text-[#f0f2ff]">
+            <div class="w-12 h-12 bg-[#8a5a31] rounded-xl flex items-center justify-center text-[#fbf6ee]">
                 <span class="material-symbols-outlined text-2xl">school</span>
             </div>
             @endif
             <div>
                 <h1 class="font-headline font-bold text-xl text-slate-900">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</h1>
-                <p class="text-xs text-[#595c5e]">
+                <p class="text-xs text-[#6b6358]">
                     {{ auth()->user()?->isAdmin() ? 'Admin Sanctuary' : 'Instructor Panel' }}
                 </p>
             </div>
@@ -73,85 +73,122 @@
         <!-- Navigation -->
         <nav class="flex-1 space-y-2">
             <a href="{{ route('admin.dashboard') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
+               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
                 <span class="material-symbols-outlined">dashboard</span>
                 <span class="text-sm font-medium">Dashboard</span>
             </a>
-            <a href="{{ route('admin.courses') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.courses*') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">library_books</span>
-                <span class="text-sm font-medium">{{ auth()->user()?->isAdmin() ? 'Manajemen Kursus' : 'Kursus Saya' }}</span>
-            </a>
-            <a href="{{ route('admin.students') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.students*') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">group</span>
-                <span class="text-sm font-medium">Direktori Siswa</span>
-            </a>
+            @php($manageActive = request()->routeIs('admin.courses*', 'admin.lesson.*', 'admin.tahfidz'))
+            <div x-data="{ open: @js($manageActive) }">
+                <button type="button" @click="open = !open" :aria-expanded="open.toString()" aria-controls="menu-manajemen"
+                        class="w-full flex items-center gap-4 px-5 py-4 rounded-full {{ $manageActive ? 'text-[#8a5a31] font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                    <span class="material-symbols-outlined">dashboard_customize</span>
+                    <span class="text-sm font-medium flex-1 text-left">Manajemen</span>
+                    <span class="material-symbols-outlined text-xl transition-transform duration-200" :class="open && 'rotate-180'" aria-hidden="true">expand_more</span>
+                </button>
+                <div id="menu-manajemen" x-show="open" x-cloak x-transition.opacity.duration.150ms class="mt-1 space-y-1">
+                    <a href="{{ route('admin.courses') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.courses*', 'admin.lesson.*') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">library_books</span>
+                        <span class="text-sm font-medium">{{ auth()->user()?->isAdmin() ? 'Manajemen Kursus' : 'Kursus Saya' }}</span>
+                    </a>
+                    @if(auth()->user()?->isAdmin())
+                    <a href="{{ route('admin.tahfidz') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.tahfidz') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">menu_book</span>
+                        <span class="text-sm font-medium">Manajemen Tahfidz</span>
+                    </a>
+                    @endif
+                </div>
+            </div>
+            @php($masterActive = request()->routeIs('admin.students*', 'admin.instructors*', 'admin.parents*'))
+            <div x-data="{ open: @js($masterActive) }">
+                <button type="button" @click="open = !open" :aria-expanded="open.toString()" aria-controls="menu-master"
+                        class="w-full flex items-center gap-4 px-5 py-4 rounded-full {{ $masterActive ? 'text-[#8a5a31] font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                    <span class="material-symbols-outlined">folder_shared</span>
+                    <span class="text-sm font-medium flex-1 text-left">Master</span>
+                    <span class="material-symbols-outlined text-xl transition-transform duration-200" :class="open && 'rotate-180'" aria-hidden="true">expand_more</span>
+                </button>
+                <div id="menu-master" x-show="open" x-cloak x-transition.opacity.duration.150ms class="mt-1 space-y-1">
+                    <a href="{{ route('admin.students') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.students*') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">group</span>
+                        <span class="text-sm font-medium">Direktori Siswa</span>
+                    </a>
+                    @if(auth()->user()?->isAdmin())
+                    <a href="{{ route('admin.instructors') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.instructors*') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">school</span>
+                        <span class="text-sm font-medium">Direktori Guru</span>
+                    </a>
+                    <a href="{{ route('admin.parents') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.parents*') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">supervisor_account</span>
+                        <span class="text-sm font-medium">Direktori Orang Tua</span>
+                    </a>
+                    @endif
+                </div>
+            </div>
+            @php($otherActive = request()->routeIs('admin.tahfidz.halaqoh', 'admin.analytics', 'admin.landing-page'))
+            <div x-data="{ open: @js($otherActive) }">
+                <button type="button" @click="open = !open" :aria-expanded="open.toString()" aria-controls="menu-lain"
+                        class="w-full flex items-center gap-4 px-5 py-4 rounded-full {{ $otherActive ? 'text-[#8a5a31] font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                    <span class="material-symbols-outlined">more_horiz</span>
+                    <span class="text-sm font-medium flex-1 text-left">Halaman Lain</span>
+                    <span class="material-symbols-outlined text-xl transition-transform duration-200" :class="open && 'rotate-180'" aria-hidden="true">expand_more</span>
+                </button>
+                <div id="menu-lain" x-show="open" x-cloak x-transition.opacity.duration.150ms class="mt-1 space-y-1">
+                    @if(auth()->user()?->isInstructor() || auth()->user()?->isAdmin())
+                    <a href="{{ route('admin.tahfidz.halaqoh') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.tahfidz.halaqoh') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">auto_stories</span>
+                        <span class="text-sm font-medium">{{ auth()->user()?->isAdmin() ? 'Halaqoh Guru' : 'Halaqoh Tahfidz' }}</span>
+                    </a>
+                    @endif
+                    <a href="{{ route('admin.analytics') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.analytics') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">insights</span>
+                        <span class="text-sm font-medium">Analitik &amp; Laporan</span>
+                    </a>
+                    @if(auth()->user()?->isAdmin())
+                    <a href="{{ route('student.dashboard') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full text-slate-600 hover:text-[#8a5a31] hover:translate-x-1 transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">open_in_new</span>
+                        <span class="text-sm font-medium">Lihat sebagai Siswa</span>
+                    </a>
+                    <a href="{{ route('admin.landing-page') }}" @click="mobileOpen = false"
+                       class="flex items-center gap-4 pl-9 pr-5 py-3 rounded-full {{ request()->routeIs('admin.landing-page') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">web</span>
+                        <span class="text-sm font-medium">Landing Page</span>
+                    </a>
+                    @endif
+                </div>
+            </div>
             @if(auth()->user()?->isAdmin())
-            <a href="{{ route('admin.instructors') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.instructors*') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">school</span>
-                <span class="text-sm font-medium">Direktori Guru</span>
-            </a>
-            <a href="{{ route('admin.parents') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.parents*') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">supervisor_account</span>
-                <span class="text-sm font-medium">Direktori Orang Tua</span>
-            </a>
-            <a href="{{ route('admin.tahfidz') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.tahfidz') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">menu_book</span>
-                <span class="text-sm font-medium">Manajemen Tahfidz</span>
-            </a>
-            <a href="{{ route('admin.landing-page') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full text-slate-600 hover:text-[#0058ba] transition-colors">
-                <span class="material-symbols-outlined">web</span>
-                <span class="text-sm font-medium">Landing Page</span>
-            </a>
             <a href="{{ route('admin.settings') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.settings') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
+               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.settings') ? 'bg-white text-[#8a5a31] shadow-sm font-bold' : 'text-slate-600 hover:text-[#8a5a31] hover:translate-x-1' }} transition-all duration-300">
                 <span class="material-symbols-outlined">settings</span>
                 <span class="text-sm font-medium">Pengaturan</span>
-            </a>
-            @endif
-            @if(auth()->user()?->isInstructor())
-            <a href="{{ route('admin.tahfidz.halaqoh') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.tahfidz.halaqoh') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">auto_stories</span>
-                <span class="text-sm font-medium">Halaqoh Tahfidz</span>
-            </a>
-            @endif
-            <a href="{{ route('admin.analytics') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full {{ request()->routeIs('admin.analytics') ? 'bg-white text-[#0058ba] shadow-sm font-bold' : 'text-slate-600 hover:text-[#0058ba] hover:translate-x-1' }} transition-all duration-300">
-                <span class="material-symbols-outlined">insights</span>
-                <span class="text-sm font-medium">Analitik & Laporan</span>
-            </a>
-            @if(auth()->user()?->isAdmin())
-            <a href="{{ route('student.dashboard') }}" @click="mobileOpen = false"
-               class="flex items-center gap-4 px-5 py-4 rounded-full text-slate-600 hover:text-[#0058ba] hover:translate-x-1 transition-all duration-300">
-                <span class="material-symbols-outlined">open_in_new</span>
-                <span class="text-sm font-medium">Lihat sebagai Siswa</span>
             </a>
             @endif
         </nav>
 
         <!-- Admin Profile -->
         <div class="mt-auto px-2">
-            <div class="bg-[#dfe3e6] p-4 rounded-xl flex items-center gap-3">
+            <div class="bg-[#ddd4c2] p-4 rounded-xl flex items-center gap-3">
                 <a href="{{ route('admin.profile') }}" class="flex-shrink-0">
                     <img src="{{ auth()->user()?->avatar_url }}"
                          alt="{{ auth()->user()?->name }}"
-                         class="w-10 h-10 rounded-full object-cover hover:ring-2 hover:ring-[#0058ba]/40 transition-all">
+                         class="w-10 h-10 rounded-full object-cover hover:ring-2 hover:ring-[#8a5a31]/40 transition-all">
                 </a>
                 <div class="overflow-hidden flex-1">
-                    <a href="{{ route('admin.profile') }}" class="hover:text-[#0058ba] transition-colors">
+                    <a href="{{ route('admin.profile') }}" class="hover:text-[#8a5a31] transition-colors">
                         <p class="text-sm font-bold truncate">{{ auth()->user()?->name }}</p>
                     </a>
-                    <p class="text-xs text-[#595c5e] truncate">{{ ucfirst(auth()->user()?->role) }}</p>
+                    <p class="text-xs text-[#6b6358] truncate">{{ ucfirst(auth()->user()?->role) }}</p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="p-1 text-[#595c5e] hover:text-[#b31b25] transition-colors">
+                    <button type="submit" class="p-1 text-[#6b6358] hover:text-[#a3402c] transition-colors">
                         <span class="material-symbols-outlined text-sm">logout</span>
                     </button>
                 </form>
@@ -163,14 +200,14 @@
     <div class="flex-1 flex flex-col min-w-0">
 
         <!-- Top Bar -->
-        <header class="sticky top-0 z-30 flex justify-between items-center w-full px-4 md:px-8 py-3 md:py-4 bg-[#f5f7f9]/90 backdrop-blur-xl border-b border-slate-100/80">
-            <div class="flex items-center gap-3">
+        <header class="sticky top-0 z-30 flex justify-between items-center gap-3 w-full px-4 md:px-8 py-3 md:py-4 bg-[#f3efe6]/90 backdrop-blur-xl border-b border-slate-100/80">
+            <div class="flex items-center gap-3 min-w-0">
                 <!-- Mobile menu button -->
                 <button @click="mobileOpen = true" class="md:hidden p-2 rounded-full hover:bg-slate-200 transition-colors">
                     <span class="material-symbols-outlined text-slate-600">menu</span>
                 </button>
                 <!-- Logo text mobile -->
-                <span class="md:hidden font-headline font-bold text-lg text-[#0058ba]">
+                <span class="md:hidden font-headline font-bold text-lg text-[#8a5a31] truncate">
                     {{ \App\Models\Setting::get('app_name', 'LMS') }}
                 </span>
                 <!-- Search desktop -->
@@ -178,9 +215,9 @@
                     <livewire:global-search />
                 </div>
             </div>
-            <div class="flex items-center gap-2 md:gap-4">
-                <!-- Search mobile icon -->
-                <div class="md:hidden">
+            <div class="flex items-center justify-end gap-2 md:gap-4 flex-1 min-w-0">
+                <!-- Search mobile -->
+                <div class="md:hidden flex-1 min-w-0 max-w-48">
                     <livewire:global-search />
                 </div>
                 <livewire:notification-dropdown />

@@ -3,21 +3,21 @@
     <!-- Header -->
     <section class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-            <span class="text-[#00675c] font-semibold uppercase tracking-widest text-xs block mb-2">{{ $isInstructor ? 'Instructor Panel' : 'Admin Panel' }}</span>
-            <h2 class="text-2xl md:text-4xl font-headline font-extrabold tracking-tight text-[#2c2f31]">Direktori Siswa</h2>
-            <p class="text-[#595c5e] mt-1 text-sm">
+            <span class="text-[#56663f] font-semibold uppercase tracking-widest text-xs block mb-2">{{ $isInstructor ? 'Instructor Panel' : 'Admin Panel' }}</span>
+            <h2 class="text-2xl md:text-4xl font-headline font-extrabold tracking-tight text-[#2b2721]">Direktori Siswa</h2>
+            <p class="text-[#6b6358] mt-1 text-sm">
                 {{ $isInstructor ? 'Siswa yang terdaftar di kursus Anda.' : 'Kelola dan pantau seluruh siswa terdaftar.' }}
             </p>
         </div>
 
         <div class="flex items-center gap-3">
-            <div class="bg-white px-4 py-2.5 rounded-xl border border-[#abadaf]/10 shadow-sm">
-                <p class="text-xs text-[#595c5e]">Total Siswa</p>
-                <p class="text-lg font-headline font-bold text-[#0058ba]">{{ $totalStudents }}</p>
+            <div class="bg-white px-4 py-2.5 rounded-xl border border-[#bfb5a3]/10 shadow-sm">
+                <p class="text-xs text-[#6b6358]">Total Siswa</p>
+                <p class="text-lg font-headline font-bold text-[#8a5a31]">{{ $totalStudents }}</p>
             </div>
-            <div class="bg-white px-4 py-2.5 rounded-xl border border-[#abadaf]/10 shadow-sm">
-                <p class="text-xs text-[#595c5e]">Baru Bulan Ini</p>
-                <p class="text-lg font-headline font-bold text-[#00675c]">+{{ $activeThisMonth }}</p>
+            <div class="bg-white px-4 py-2.5 rounded-xl border border-[#bfb5a3]/10 shadow-sm">
+                <p class="text-xs text-[#6b6358]">Baru Bulan Ini</p>
+                <p class="text-lg font-headline font-bold text-[#56663f]">+{{ $activeThisMonth }}</p>
             </div>
         </div>
     </section>
@@ -25,7 +25,7 @@
     <!-- Flash Message -->
     @if (session('success'))
         <div
-            class="bg-[#73f2dd]/30 border border-[#00675c]/20 text-[#00675c] px-4 py-3 rounded-xl flex items-center gap-3 animate-fade-in">
+            class="bg-[#cfd8bd]/30 border border-[#56663f]/20 text-[#56663f] px-4 py-3 rounded-xl flex items-center gap-3 animate-fade-in">
             <span class="material-symbols-outlined">check_circle</span>
             {{ session('success') }}
         </div>
@@ -37,19 +37,19 @@
         <div class="flex items-center gap-2 flex-wrap">
             @if (!$isInstructor)
                 <button wire:click="openCreateForm"
-                    class="px-4 py-2.5 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-1.5 text-sm">
+                    class="px-4 py-2.5 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-1.5 text-sm">
                     <span class="material-symbols-outlined text-sm">person_add</span>
                     <span class="hidden sm:inline">Tambah Siswa</span>
                     <span class="sm:hidden">Tambah</span>
                 </button>
                 <button wire:click="openImportModal"
-                    class="px-4 py-2.5 bg-white border border-[#abadaf]/20 text-[#2c2f31] font-bold rounded-full hover:bg-[#eef1f3] transition-colors flex items-center gap-1.5 shadow-sm text-sm">
+                    class="px-4 py-2.5 bg-white border border-[#bfb5a3]/20 text-[#2b2721] font-bold rounded-full hover:bg-[#ebe5d8] transition-colors flex items-center gap-1.5 shadow-sm text-sm">
                     <span class="material-symbols-outlined text-sm">upload_file</span>
                     <span class="hidden sm:inline">Import</span>
                 </button>
             @endif
             <button wire:click="exportExcel"
-                class="px-4 py-2.5 bg-white border border-[#abadaf]/20 text-[#2c2f31] font-bold rounded-full hover:bg-[#eef1f3] transition-colors flex items-center gap-1.5 shadow-sm text-sm">
+                class="px-4 py-2.5 bg-white border border-[#bfb5a3]/20 text-[#2b2721] font-bold rounded-full hover:bg-[#ebe5d8] transition-colors flex items-center gap-1.5 shadow-sm text-sm">
                 <span class="material-symbols-outlined text-sm">download</span>
                 <span class="hidden sm:inline">Export</span>
             </button>
@@ -58,27 +58,27 @@
         {{-- Search & Filters --}}
         <div class="flex flex-col gap-2">
             <div class="relative">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#595c5e] text-sm">search</span>
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#6b6358] text-sm">search</span>
                 <input type="text" wire:model.live.debounce.300ms="search"
                     placeholder="Cari nama, email, atau NIS siswa..."
-                    class="w-full pl-12 pr-4 py-2.5 bg-white border border-[#abadaf]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                    class="w-full pl-12 pr-4 py-2.5 bg-white border border-[#bfb5a3]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
             </div>
             <div class="flex gap-2 flex-wrap">
                 <select wire:model.live="filterGender"
-                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#abadaf]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#bfb5a3]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                     <option value="">Semua Gender</option>
                     <option value="L">Laki-laki</option>
                     <option value="P">Perempuan</option>
                 </select>
                 <select wire:model.live="filterClass"
-                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#abadaf]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#bfb5a3]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                     <option value="">Semua Kelas</option>
                     @foreach ($classGroups as $cg)
                         <option value="{{ $cg }}">{{ $cg }}</option>
                     @endforeach
                 </select>
                 <select wire:model.live="sortBy"
-                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#abadaf]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                    class="flex-1 min-w-[110px] px-3 py-2.5 bg-white border border-[#bfb5a3]/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                     <option value="latest">Terbaru</option>
                     <option value="name">Nama A-Z</option>
                     <option value="xp">XP Tertinggi</option>
@@ -89,26 +89,26 @@
 
     <!-- Results Count -->
     <div class="flex items-center justify-between">
-        <p class="text-[#595c5e] text-sm">
-            <span class="font-bold text-[#2c2f31]">{{ $students->total() }}</span> siswa ditemukan
+        <p class="text-[#6b6358] text-sm">
+            <span class="font-bold text-[#2b2721]">{{ $students->total() }}</span> siswa ditemukan
         </p>
-        <div wire:loading class="flex items-center gap-2 text-[#595c5e] text-sm">
-            <div class="w-4 h-4 border-2 border-[#0058ba] border-t-transparent rounded-full animate-spin"></div>
+        <div wire:loading class="flex items-center gap-2 text-[#6b6358] text-sm">
+            <div class="w-4 h-4 border-2 border-[#8a5a31] border-t-transparent rounded-full animate-spin"></div>
             Memuat...
         </div>
     </div>
 
     <!-- Students Table -->
-    <div class="bg-white rounded-xl border border-[#abadaf]/10 shadow-sm overflow-hidden">
+    <div class="bg-white rounded-xl border border-[#bfb5a3]/10 shadow-sm overflow-hidden">
         @if ($students->isEmpty())
             <div class="p-12 md:p-16 text-center">
-                <div class="w-16 h-16 bg-[#eef1f3] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <span class="material-symbols-outlined text-[#595c5e] text-3xl">person_search</span>
+                <div class="w-16 h-16 bg-[#ebe5d8] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-[#6b6358] text-3xl">person_search</span>
                 </div>
-                <h3 class="font-headline font-bold text-xl text-[#2c2f31] mb-2">Siswa Tidak Ditemukan</h3>
-                <p class="text-[#595c5e] mb-6 text-sm">Coba kata kunci yang berbeda atau tambah siswa baru.</p>
+                <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Siswa Tidak Ditemukan</h3>
+                <p class="text-[#6b6358] mb-6 text-sm">Coba kata kunci yang berbeda atau tambah siswa baru.</p>
                 <button wire:click="openCreateForm"
-                    class="px-6 py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm inline-flex items-center gap-2 text-sm">
+                    class="px-6 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm inline-flex items-center gap-2 text-sm">
                     <span class="material-symbols-outlined text-sm">person_add</span> Tambah Siswa
                 </button>
             </div>
@@ -116,18 +116,18 @@
             <div class="overflow-x-auto">
                 <table class="w-full min-w-[400px]">
                     <thead>
-                        <tr class="bg-[#f5f7f9]">
-                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e]">Siswa</th>
-                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e] hidden md:table-cell">NIS/NISN</th>
-                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e] hidden lg:table-cell">Kelas</th>
-                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e] hidden sm:table-cell">Kursus</th>
-                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e] hidden lg:table-cell">XP</th>
-                            <th class="text-right px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#595c5e]">Aksi</th>
+                        <tr class="bg-[#f3efe6]">
+                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358]">Siswa</th>
+                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358] hidden md:table-cell">NIS/NISN</th>
+                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358] hidden lg:table-cell">Kelas</th>
+                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358] hidden sm:table-cell">Kursus</th>
+                            <th class="text-left px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358] hidden lg:table-cell">XP</th>
+                            <th class="text-right px-4 md:px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#6b6358]">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-[#f5f7f9]">
+                    <tbody class="divide-y divide-[#f3efe6]">
                         @foreach ($students as $student)
-                            <tr class="hover:bg-[#f5f7f9] transition-colors group">
+                            <tr class="hover:bg-[#f3efe6] transition-colors group">
                                 <td class="px-4 md:px-6 py-3">
                                     <div class="flex items-center gap-2.5">
                                         <div class="relative flex-shrink-0">
@@ -140,57 +140,57 @@
                                             @endif
                                         </div>
                                         <div class="min-w-0">
-                                            <p class="font-semibold text-[#2c2f31] text-sm truncate group-hover:text-[#0058ba] transition-colors">{{ $student->name }}</p>
-                                            <p class="text-xs text-[#595c5e] truncate">{{ $student->email }}</p>
+                                            <p class="font-semibold text-[#2b2721] text-sm truncate group-hover:text-[#8a5a31] transition-colors">{{ $student->name }}</p>
+                                            <p class="text-xs text-[#6b6358] truncate">{{ $student->email }}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-4 md:px-6 py-3 hidden md:table-cell">
                                     <div class="space-y-0.5">
-                                        <p class="text-xs text-[#595c5e]">NIS: <span class="font-mono font-semibold text-[#2c2f31]">{{ $student->nis ?? '-' }}</span></p>
-                                        <p class="text-xs text-[#595c5e]">NISN: <span class="font-mono font-semibold text-[#2c2f31]">{{ $student->nisn ?? '-' }}</span></p>
+                                        <p class="text-xs text-[#6b6358]">NIS: <span class="font-mono font-semibold text-[#2b2721]">{{ $student->nis ?? '-' }}</span></p>
+                                        <p class="text-xs text-[#6b6358]">NISN: <span class="font-mono font-semibold text-[#2b2721]">{{ $student->nisn ?? '-' }}</span></p>
                                     </div>
                                 </td>
                                 <td class="px-4 md:px-6 py-3 hidden lg:table-cell">
                                     @if ($student->class_group)
-                                        <span class="px-2.5 py-1 bg-[#0058ba]/10 text-[#0058ba] rounded-lg text-xs font-bold">{{ $student->class_group }}</span>
+                                        <span class="px-2.5 py-1 bg-[#8a5a31]/10 text-[#8a5a31] rounded-lg text-xs font-bold">{{ $student->class_group }}</span>
                                     @else
-                                        <span class="text-xs text-[#595c5e]">-</span>
+                                        <span class="text-xs text-[#6b6358]">-</span>
                                     @endif
                                 </td>
                                 <td class="px-4 md:px-6 py-3 hidden sm:table-cell">
                                     <div class="flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[#595c5e]" style="font-size: 14px;">school</span>
-                                        <span class="text-sm font-semibold text-[#2c2f31]">{{ $student->enrollments_count }}</span>
+                                        <span class="material-symbols-outlined text-[#6b6358]" style="font-size: 14px;">school</span>
+                                        <span class="text-sm font-semibold text-[#2b2721]">{{ $student->enrollments_count }}</span>
                                         @if ($student->completed_count > 0)
-                                            <span class="text-xs text-[#00675c] hidden md:inline">({{ $student->completed_count }}✓)</span>
+                                            <span class="text-xs text-[#56663f] hidden md:inline">({{ $student->completed_count }}✓)</span>
                                         @endif
                                     </div>
                                 </td>
                                 <td class="px-4 md:px-6 py-3 hidden lg:table-cell">
                                     <div class="flex items-center gap-1">
                                         <span class="material-symbols-outlined text-amber-500" style="font-size: 14px; font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="text-sm font-bold text-[#2c2f31]">{{ number_format($student->xp_points) }}</span>
+                                        <span class="text-sm font-bold text-[#2b2721]">{{ number_format($student->xp_points) }}</span>
                                     </div>
                                 </td>
                                 <td class="px-4 md:px-6 py-3">
                                     <div class="flex items-center justify-end gap-1">
                                         <button wire:click="viewDetail({{ $student->id }})"
-                                            class="p-1.5 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
+                                            class="p-1.5 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors">
                                             <span class="material-symbols-outlined text-sm">visibility</span>
                                         </button>
                                         @if (!$isInstructor)
                                             <button wire:click="openParentModal({{ $student->id }})"
-                                                class="p-1.5 text-[#595c5e] hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+                                                class="p-1.5 text-[#6b6358] hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
                                                 title="Hubungkan Orang Tua">
                                                 <span class="material-symbols-outlined text-sm">family_restroom</span>
                                             </button>
                                             <button wire:click="openEditForm({{ $student->id }})"
-                                                class="p-1.5 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
+                                                class="p-1.5 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors">
                                                 <span class="material-symbols-outlined text-sm">edit</span>
                                             </button>
                                             <button wire:click="confirmDelete({{ $student->id }})"
-                                                class="p-1.5 text-[#595c5e] hover:text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors">
+                                                class="p-1.5 text-[#6b6358] hover:text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors">
                                                 <span class="material-symbols-outlined text-sm">delete</span>
                                             </button>
                                         @endif
@@ -201,7 +201,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="px-4 md:px-6 py-4 border-t border-[#f5f7f9]">
+            <div class="px-4 md:px-6 py-4 border-t border-[#f3efe6]">
                 {{ $students->links() }}
             </div>
         @endif
@@ -215,20 +215,20 @@
             wire:click.self="$set('showForm', false)">
             <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div
-                    class="p-6 border-b border-[#eef1f3] flex items-center justify-between sticky top-0 bg-white z-10">
+                    class="p-6 border-b border-[#ebe5d8] flex items-center justify-between sticky top-0 bg-white z-10">
                     <div class="flex items-center gap-3">
                         <div
-                            class="w-10 h-10 bg-gradient-to-br from-[#0058ba] to-[#6c9fff] rounded-xl flex items-center justify-center">
+                            class="w-10 h-10 bg-gradient-to-br from-[#8a5a31] to-[#d9b98f] rounded-xl flex items-center justify-center">
                             <span
                                 class="material-symbols-outlined text-white text-sm">{{ $editingStudentId ? 'edit' : 'person_add' }}</span>
                         </div>
-                        <h3 class="font-headline font-bold text-xl text-[#2c2f31]">
+                        <h3 class="font-headline font-bold text-xl text-[#2b2721]">
                             {{ $editingStudentId ? 'Edit Data Siswa' : 'Tambah Siswa Baru' }}
                         </h3>
                     </div>
                     <button wire:click="$set('showForm', false)"
-                        class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                        <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                        class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                        <span class="material-symbols-outlined text-[#6b6358]">close</span>
                     </button>
                 </div>
 
@@ -236,17 +236,17 @@
                     {{-- Name & Email --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Nama Lengkap *</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">Nama Lengkap *</label>
                             <input type="text" wire:model="name" placeholder="Nama lengkap siswa..."
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('name')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Email *</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">Email *</label>
                             <input type="email" wire:model="email" placeholder="email@example.com"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -256,19 +256,19 @@
                     {{-- Password & NIS --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">
                                 Password {{ $editingStudentId ? '(kosongkan jika tidak diubah)' : '*' }}
                             </label>
                             <input type="password" wire:model="password" placeholder="Minimal 6 karakter"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('password')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">NIS</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">NIS</label>
                             <input type="text" wire:model="nis" placeholder="Nomor Induk Siswa"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('nis')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -277,10 +277,10 @@
 
                     {{-- NISN --}}
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-1">NISN <span
-                                class="text-[#595c5e] font-normal text-xs">(Nomor Induk Siswa Nasional)</span></label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-1">NISN <span
+                                class="text-[#6b6358] font-normal text-xs">(Nomor Induk Siswa Nasional)</span></label>
                         <input type="text" wire:model="nisn" placeholder="10 digit NISN"
-                            class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20"
+                            class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20"
                             maxlength="10">
                         @error('nisn')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -290,9 +290,9 @@
                     {{-- Gender & Birth Date --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Jenis Kelamin</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">Jenis Kelamin</label>
                             <select wire:model="gender"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                                 <option value="">Pilih...</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
@@ -302,9 +302,9 @@
                             @enderror
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Tanggal Lahir</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">Tanggal Lahir</label>
                             <input type="date" wire:model="birth_date"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('birth_date')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -314,17 +314,17 @@
                     {{-- Class & Phone --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Kelas / Rombel</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">Kelas / Rombel</label>
                             <input type="text" wire:model="class_group" placeholder="Contoh: VII-A, X IPA 1"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('class_group')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-[#2c2f31] mb-1">No. Telepon</label>
+                            <label class="block text-sm font-semibold text-[#2b2721] mb-1">No. Telepon</label>
                             <input type="text" wire:model="phone" placeholder="08xxxxxxxxxx"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -333,9 +333,9 @@
 
                     {{-- Guardian Name --}}
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Nama Wali / Orang Tua</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-1">Nama Wali / Orang Tua</label>
                         <input type="text" wire:model="guardian_name" placeholder="Nama wali murid..."
-                            class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20">
+                            class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20">
                         @error('guardian_name')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -343,9 +343,9 @@
 
                     {{-- Address --}}
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Alamat</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-1">Alamat</label>
                         <textarea wire:model="address" rows="2" placeholder="Alamat lengkap siswa..."
-                            class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none"></textarea>
+                            class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 resize-none"></textarea>
                         @error('address')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -354,11 +354,11 @@
                     {{-- Action Buttons --}}
                     <div class="flex gap-3 pt-2">
                         <button type="button" wire:click="$set('showForm', false)"
-                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                            class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">
                             Batal
                         </button>
                         <button type="submit"
-                            class="flex-1 py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm">
+                            class="flex-1 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm">
                             <span wire:loading wire:target="save" class="inline-block animate-spin mr-1">⟳</span>
                             {{ $editingStudentId ? 'Perbarui Data' : 'Tambah Siswa' }}
                         </button>
@@ -376,7 +376,7 @@
             wire:click.self="$set('showDetailModal', false)">
             <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
                 {{-- Header with gradient --}}
-                <div class="bg-gradient-to-br from-[#0058ba] to-[#004da4] p-6 rounded-t-xl relative overflow-hidden">
+                <div class="bg-gradient-to-br from-[#8a5a31] to-[#6f4826] p-6 rounded-t-xl relative overflow-hidden">
                     <div class="absolute inset-0 opacity-10">
                         <div class="absolute -top-10 -right-10 w-40 h-40 bg-white rounded-full"></div>
                         <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white rounded-full"></div>
@@ -404,93 +404,93 @@
 
                 {{-- Stats --}}
                 <div class="grid grid-cols-3 gap-3 p-6 -mt-4">
-                    <div class="bg-[#eef1f3] p-3 rounded-xl text-center">
-                        <p class="text-lg font-headline font-bold text-[#0058ba]">
+                    <div class="bg-[#ebe5d8] p-3 rounded-xl text-center">
+                        <p class="text-lg font-headline font-bold text-[#8a5a31]">
                             {{ $viewingStudent->enrollments_count }}</p>
-                        <p class="text-xs text-[#595c5e]">Kursus</p>
+                        <p class="text-xs text-[#6b6358]">Kursus</p>
                     </div>
-                    <div class="bg-[#eef1f3] p-3 rounded-xl text-center">
-                        <p class="text-lg font-headline font-bold text-[#00675c]">
+                    <div class="bg-[#ebe5d8] p-3 rounded-xl text-center">
+                        <p class="text-lg font-headline font-bold text-[#56663f]">
                             {{ $viewingStudent->completed_count }}</p>
-                        <p class="text-xs text-[#595c5e]">Selesai</p>
+                        <p class="text-xs text-[#6b6358]">Selesai</p>
                     </div>
-                    <div class="bg-[#eef1f3] p-3 rounded-xl text-center">
+                    <div class="bg-[#ebe5d8] p-3 rounded-xl text-center">
                         <p class="text-lg font-headline font-bold text-amber-600">
                             {{ number_format($viewingStudent->xp_points) }}</p>
-                        <p class="text-xs text-[#595c5e]">XP Points</p>
+                        <p class="text-xs text-[#6b6358]">XP Points</p>
                     </div>
                 </div>
 
                 {{-- Info List --}}
                 <div class="px-6 pb-6 space-y-3">
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">tag</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">NISN</span>
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">tag</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">NISN</span>
                         <span
-                            class="text-sm font-semibold text-[#2c2f31] font-mono">{{ $viewingStudent->nisn ?? '-' }}</span>
+                            class="text-sm font-semibold text-[#2b2721] font-mono">{{ $viewingStudent->nisn ?? '-' }}</span>
                     </div>
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">badge</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Jenis Kelamin</span>
-                        <span class="text-sm font-semibold text-[#2c2f31]">
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">badge</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Jenis Kelamin</span>
+                        <span class="text-sm font-semibold text-[#2b2721]">
                             {{ $viewingStudent->gender === 'L' ? 'Laki-laki' : ($viewingStudent->gender === 'P' ? 'Perempuan' : '-') }}
                         </span>
                     </div>
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">cake</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Tanggal Lahir</span>
-                        <span class="text-sm font-semibold text-[#2c2f31]">
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">cake</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Tanggal Lahir</span>
+                        <span class="text-sm font-semibold text-[#2b2721]">
                             {{ $viewingStudent->birth_date ? $viewingStudent->birth_date->format('d F Y') : '-' }}
                         </span>
                     </div>
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">school</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Kelas</span>
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">school</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Kelas</span>
                         <span
-                            class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->class_group ?? '-' }}</span>
+                            class="text-sm font-semibold text-[#2b2721]">{{ $viewingStudent->class_group ?? '-' }}</span>
                     </div>
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">call</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Telepon</span>
-                        <span class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->phone ?? '-' }}</span>
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">call</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Telepon</span>
+                        <span class="text-sm font-semibold text-[#2b2721]">{{ $viewingStudent->phone ?? '-' }}</span>
                     </div>
-                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">family_restroom</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Wali Murid</span>
+                    <div class="flex items-center gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">family_restroom</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Wali Murid</span>
                         <span
-                            class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->guardian_name ?? '-' }}</span>
+                            class="text-sm font-semibold text-[#2b2721]">{{ $viewingStudent->guardian_name ?? '-' }}</span>
                     </div>
 
                     {{-- Linked Parent Accounts --}}
                     @if ($viewingStudent->parents->isNotEmpty())
-                        <div class="py-2.5 border-b border-[#f5f7f9]">
+                        <div class="py-2.5 border-b border-[#f3efe6]">
                             <div class="flex items-center gap-3 mb-2">
-                                <span class="material-symbols-outlined text-[#595c5e] text-sm">supervisor_account</span>
-                                <span class="text-sm text-[#595c5e] w-28 shrink-0">Akun Ortu</span>
+                                <span class="material-symbols-outlined text-[#6b6358] text-sm">supervisor_account</span>
+                                <span class="text-sm text-[#6b6358] w-28 shrink-0">Akun Ortu</span>
                             </div>
                             <div class="ml-9 space-y-2">
                                 @foreach ($viewingStudent->parents as $linkedParent)
                                     <div class="flex items-center justify-between bg-amber-50 rounded-lg px-3 py-2">
                                         <div>
-                                            <p class="text-xs font-bold text-[#2c2f31]">{{ $linkedParent->name }}</p>
-                                            <p class="text-xs text-[#595c5e]">{{ $linkedParent->email }} &middot; {{ $linkedParent->pivot->hubungan === 'wali' ? 'Wali' : 'Orang Tua' }}</p>
+                                            <p class="text-xs font-bold text-[#2b2721]">{{ $linkedParent->name }}</p>
+                                            <p class="text-xs text-[#6b6358]">{{ $linkedParent->email }} &middot; {{ $linkedParent->pivot->hubungan === 'wali' ? 'Wali' : 'Orang Tua' }}</p>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     @endif
-                    <div class="flex items-start gap-3 py-2.5 border-b border-[#f5f7f9]">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm mt-0.5">location_on</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Alamat</span>
+                    <div class="flex items-start gap-3 py-2.5 border-b border-[#f3efe6]">
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm mt-0.5">location_on</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Alamat</span>
                         <span
-                            class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->address ?? '-' }}</span>
+                            class="text-sm font-semibold text-[#2b2721]">{{ $viewingStudent->address ?? '-' }}</span>
                     </div>
                     <div class="flex items-center gap-3 py-2.5">
-                        <span class="material-symbols-outlined text-[#595c5e] text-sm">calendar_today</span>
-                        <span class="text-sm text-[#595c5e] w-28 shrink-0">Bergabung</span>
+                        <span class="material-symbols-outlined text-[#6b6358] text-sm">calendar_today</span>
+                        <span class="text-sm text-[#6b6358] w-28 shrink-0">Bergabung</span>
                         <span
-                            class="text-sm font-semibold text-[#2c2f31]">{{ $viewingStudent->created_at->format('d F Y') }}</span>
+                            class="text-sm font-semibold text-[#2b2721]">{{ $viewingStudent->created_at->format('d F Y') }}</span>
                     </div>
 
                     @if ($viewingStudent->streak_days > 0)
@@ -505,11 +505,11 @@
                     {{-- Action buttons --}}
                     <div class="flex gap-3 pt-4">
                         <button wire:click="$set('showDetailModal', false)"
-                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                            class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">
                             Tutup
                         </button>
                         <button wire:click="openEditForm({{ $viewingStudent->id }}); $set('showDetailModal', false)"
-                            class="flex-1 py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm flex items-center justify-center gap-2">
+                            class="flex-1 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined text-sm">edit</span>
                             Edit Data
                         </button>
@@ -526,28 +526,28 @@
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
             wire:click.self="$set('showImportModal', false)">
             <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg">
-                <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between">
+                <div class="p-6 border-b border-[#ebe5d8] flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div
-                            class="w-10 h-10 bg-gradient-to-br from-[#00675c] to-[#73f2dd] rounded-xl flex items-center justify-center">
+                            class="w-10 h-10 bg-gradient-to-br from-[#56663f] to-[#cfd8bd] rounded-xl flex items-center justify-center">
                             <span class="material-symbols-outlined text-white text-sm">upload_file</span>
                         </div>
-                        <h3 class="font-headline font-bold text-xl text-[#2c2f31]">Import Data Siswa</h3>
+                        <h3 class="font-headline font-bold text-xl text-[#2b2721]">Import Data Siswa</h3>
                     </div>
                     <button wire:click="$set('showImportModal', false)"
-                        class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                        <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                        class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                        <span class="material-symbols-outlined text-[#6b6358]">close</span>
                     </button>
                 </div>
 
                 <div class="p-6 space-y-5">
                     {{-- Instructions --}}
-                    <div class="bg-[#0058ba]/5 border border-[#0058ba]/10 rounded-xl p-4 space-y-2">
-                        <p class="text-sm font-semibold text-[#0058ba] flex items-center gap-2">
+                    <div class="bg-[#8a5a31]/5 border border-[#8a5a31]/10 rounded-xl p-4 space-y-2">
+                        <p class="text-sm font-semibold text-[#8a5a31] flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">info</span>
                             Petunjuk Import
                         </p>
-                        <ul class="text-xs text-[#595c5e] space-y-1 ml-6 list-disc">
+                        <ul class="text-xs text-[#6b6358] space-y-1 ml-6 list-disc">
                             <li>Format file: <strong>.xlsx, .xls, atau .csv</strong></li>
                             <li>Kolom wajib: <strong>nama_lengkap</strong> dan <strong>email</strong></li>
                             <li>Kolom opsional: nis, jenis_kelamin, tanggal_lahir, no_telepon, alamat, kelas, nama_wali,
@@ -559,22 +559,22 @@
 
                     {{-- Download Template --}}
                     <button wire:click="downloadTemplate"
-                        class="w-full py-3 bg-[#eef1f3] text-[#2c2f31] font-bold rounded-xl hover:bg-[#dfe3e6] transition-colors flex items-center justify-center gap-2">
+                        class="w-full py-3 bg-[#ebe5d8] text-[#2b2721] font-bold rounded-xl hover:bg-[#ddd4c2] transition-colors flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-sm">description</span>
                         Download Template Excel
                     </button>
 
                     {{-- File Input --}}
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-2">Pilih File Excel</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-2">Pilih File Excel</label>
                         <div class="relative">
                             <input type="file" wire:model="importFile" accept=".xlsx,.xls,.csv"
-                                class="w-full px-4 py-3 bg-[#eef1f3] border-2 border-dashed border-[#abadaf]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0058ba]/10 file:text-[#0058ba] hover:file:bg-[#0058ba]/20">
+                                class="w-full px-4 py-3 bg-[#ebe5d8] border-2 border-dashed border-[#bfb5a3]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#8a5a31]/10 file:text-[#8a5a31] hover:file:bg-[#8a5a31]/20">
                         </div>
                         <div wire:loading wire:target="importFile"
-                            class="flex items-center gap-2 text-[#595c5e] text-xs mt-2">
+                            class="flex items-center gap-2 text-[#6b6358] text-xs mt-2">
                             <div
-                                class="w-3 h-3 border-2 border-[#0058ba] border-t-transparent rounded-full animate-spin">
+                                class="w-3 h-3 border-2 border-[#8a5a31] border-t-transparent rounded-full animate-spin">
                             </div>
                             Mengupload file...
                         </div>
@@ -587,7 +587,7 @@
                     @if ($importResult)
                         <div
                             class="px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2
-                    {{ $importResultType === 'success' ? 'bg-[#73f2dd]/30 text-[#00675c]' : ($importResultType === 'warning' ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-[#b31b25]') }}">
+                    {{ $importResultType === 'success' ? 'bg-[#cfd8bd]/30 text-[#56663f]' : ($importResultType === 'warning' ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-[#a3402c]') }}">
                             <span class="material-symbols-outlined text-sm">
                                 {{ $importResultType === 'success' ? 'check_circle' : ($importResultType === 'warning' ? 'warning' : 'error') }}
                             </span>
@@ -598,12 +598,12 @@
                     {{-- Action Buttons --}}
                     <div class="flex gap-3 pt-2">
                         <button wire:click="$set('showImportModal', false)"
-                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                            class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">
                             {{ $importResult ? 'Selesai' : 'Batal' }}
                         </button>
                         @if (!$importResult || $importResultType !== 'success')
                             <button wire:click="importExcel" {{ !$importFile ? 'disabled' : '' }}
-                                class="flex-1 py-3 bg-gradient-to-br from-[#00675c] to-[#004d44] text-white font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                                class="flex-1 py-3 bg-gradient-to-br from-[#56663f] to-[#434f37] text-white font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                                 <span wire:loading wire:target="importExcel"
                                     class="inline-block animate-spin">⟳</span>
                                 <span class="material-symbols-outlined text-sm" wire:loading.remove
@@ -625,21 +625,21 @@
             wire:click.self="$set('showParentModal', false)">
             <div class="bg-white rounded-t-2xl sm:rounded-xl shadow-2xl w-full sm:max-w-lg max-h-[85vh] overflow-y-auto">
                 {{-- Header --}}
-                <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between sticky top-0 bg-white z-10">
+                <div class="p-6 border-b border-[#ebe5d8] flex items-center justify-between sticky top-0 bg-white z-10">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
                             <span class="material-symbols-outlined text-white text-sm">family_restroom</span>
                         </div>
                         <div>
-                            <h3 class="font-headline font-bold text-lg text-[#2c2f31]">Hubungkan Orang Tua</h3>
+                            <h3 class="font-headline font-bold text-lg text-[#2b2721]">Hubungkan Orang Tua</h3>
                             @if ($parentLinkStudent)
-                                <p class="text-xs text-[#595c5e]">{{ $parentLinkStudent->name }}</p>
+                                <p class="text-xs text-[#6b6358]">{{ $parentLinkStudent->name }}</p>
                             @endif
                         </div>
                     </div>
                     <button wire:click="$set('showParentModal', false)"
-                        class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                        <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                        class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                        <span class="material-symbols-outlined text-[#6b6358]">close</span>
                     </button>
                 </div>
 
@@ -647,7 +647,7 @@
                     {{-- Currently linked parents --}}
                     @if ($parentLinkStudent && $parentLinkStudent->parents->isNotEmpty())
                         <div>
-                            <p class="text-xs font-semibold text-[#595c5e] uppercase tracking-wide mb-2">Orang Tua / Wali Terhubung</p>
+                            <p class="text-xs font-semibold text-[#6b6358] uppercase tracking-wide mb-2">Orang Tua / Wali Terhubung</p>
                             <div class="space-y-2">
                                 @foreach ($parentLinkStudent->parents as $linkedParent)
                                     <div class="flex items-center justify-between bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
@@ -656,14 +656,14 @@
                                                 <span class="material-symbols-outlined text-amber-600 text-sm">person</span>
                                             </div>
                                             <div>
-                                                <p class="text-sm font-bold text-[#2c2f31]">{{ $linkedParent->name }}</p>
-                                                <p class="text-xs text-[#595c5e]">{{ $linkedParent->email }} &middot;
+                                                <p class="text-sm font-bold text-[#2b2721]">{{ $linkedParent->name }}</p>
+                                                <p class="text-xs text-[#6b6358]">{{ $linkedParent->email }} &middot;
                                                     <span class="font-medium">{{ $linkedParent->pivot->hubungan === 'wali' ? 'Wali' : 'Orang Tua' }}</span>
                                                 </p>
                                             </div>
                                         </div>
                                         <button wire:click="unlinkParent({{ $parentLinkStudent->id }}, {{ $linkedParent->id }})"
-                                            class="p-1.5 text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors"
+                                            class="p-1.5 text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors"
                                             title="Hapus relasi">
                                             <span class="material-symbols-outlined text-sm">link_off</span>
                                         </button>
@@ -671,37 +671,37 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="border-t border-[#eef1f3]"></div>
+                        <div class="border-t border-[#ebe5d8]"></div>
                     @else
-                        <div class="bg-[#eef1f3] rounded-xl px-4 py-3 flex items-center gap-3">
-                            <span class="material-symbols-outlined text-[#595c5e] text-sm">info</span>
-                            <p class="text-sm text-[#595c5e]">Belum ada orang tua / wali yang terhubung.</p>
+                        <div class="bg-[#ebe5d8] rounded-xl px-4 py-3 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#6b6358] text-sm">info</span>
+                            <p class="text-sm text-[#6b6358]">Belum ada orang tua / wali yang terhubung.</p>
                         </div>
                     @endif
 
                     {{-- Add parent form --}}
                     <div>
-                        <p class="text-xs font-semibold text-[#595c5e] uppercase tracking-wide mb-3">Tambah Orang Tua / Wali</p>
+                        <p class="text-xs font-semibold text-[#6b6358] uppercase tracking-wide mb-3">Tambah Orang Tua / Wali</p>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Email Akun Orang Tua</label>
+                                <label class="block text-sm font-semibold text-[#2b2721] mb-1">Email Akun Orang Tua</label>
                                 <input type="email" wire:model="parentEmail"
                                     placeholder="email@example.com"
-                                    class="w-full px-4 py-3 bg-[#eef1f3] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 focus:border-[#0058ba]/30 text-sm placeholder-[#abadaf] transition-all">
+                                    class="w-full px-4 py-3 bg-[#ebe5d8] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 focus:border-[#8a5a31]/30 text-sm placeholder-[#bfb5a3] transition-all">
                                 @error('parentEmail')
-                                    <p class="text-[#b31b25] text-xs mt-1">{{ $message }}</p>
+                                    <p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>
                                 @enderror
-                                <p class="text-xs text-[#595c5e] mt-1">Masukkan email akun yang sudah terdaftar dengan role <strong>Orang Tua</strong>.</p>
+                                <p class="text-xs text-[#6b6358] mt-1">Masukkan email akun yang sudah terdaftar dengan role <strong>Orang Tua</strong>.</p>
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Hubungan</label>
+                                <label class="block text-sm font-semibold text-[#2b2721] mb-1">Hubungan</label>
                                 <select wire:model="parentHubungan"
-                                    class="w-full px-4 py-3 bg-[#eef1f3] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 focus:border-[#0058ba]/30 text-sm transition-all">
+                                    class="w-full px-4 py-3 bg-[#ebe5d8] rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 focus:border-[#8a5a31]/30 text-sm transition-all">
                                     <option value="orang_tua">Orang Tua</option>
                                     <option value="wali">Wali</option>
                                 </select>
                                 @error('parentHubungan')
-                                    <p class="text-[#b31b25] text-xs mt-1">{{ $message }}</p>
+                                    <p class="text-[#a3402c] text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
@@ -710,7 +710,7 @@
                     {{-- Action buttons --}}
                     <div class="flex gap-3 pt-2">
                         <button wire:click="$set('showParentModal', false)"
-                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">
+                            class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">
                             Tutup
                         </button>
                         <button wire:click="linkParent"
@@ -732,16 +732,16 @@
             wire:click.self="$set('showDeleteModal', false)">
             <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-8 mx-4 text-center">
                 <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <span class="material-symbols-outlined text-[#b31b25] text-3xl">person_remove</span>
+                    <span class="material-symbols-outlined text-[#a3402c] text-3xl">person_remove</span>
                 </div>
-                <h3 class="font-headline font-bold text-xl text-[#2c2f31] mb-2">Hapus Siswa?</h3>
-                <p class="text-[#595c5e] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua data termasuk progres
+                <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Siswa?</h3>
+                <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Semua data termasuk progres
                     belajar siswa akan dihapus permanen.</p>
                 <div class="flex gap-3">
                     <button wire:click="$set('showDeleteModal', false)"
-                        class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors">Batal</button>
+                        class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors">Batal</button>
                     <button wire:click="delete"
-                        class="flex-1 py-3 bg-[#b31b25] text-white font-bold rounded-full hover:bg-[#9f0519] transition-colors">Hapus</button>
+                        class="flex-1 py-3 bg-[#a3402c] text-white font-bold rounded-full hover:bg-[#8c3624] transition-colors">Hapus</button>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use App\Models\TahunAjaran;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 
 class AcademicYear
@@ -36,6 +37,7 @@ class AcademicYear
     public static function label(): string
     {
         $ta = static::aktif();
+
         return $ta ? "{$ta->nama} Semester {$ta->semester}" : '—';
     }
 
@@ -51,12 +53,13 @@ class AcademicYear
      * Apply scope: filter query by active tahun_ajaran_id.
      * If no active year exists, no filter is applied.
      */
-    public static function scopeQuery(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
+    public static function scopeQuery(Builder $query): Builder
     {
         $id = static::aktifId();
         if ($id) {
             $query->where('tahun_ajaran_id', $id);
         }
+
         return $query;
     }
 }

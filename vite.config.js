@@ -9,7 +9,7 @@ export default defineConfig({
     resolve: {
         alias: [
             { find: '@designcodeio/threeui/style.css', replacement: new URL('./resources/threeui/src/shaders/threeui.css', import.meta.url).pathname },
-            { find: '@designcodeio/threeui', replacement: new URL('./resources/js/threeui-kage.tsx', import.meta.url).pathname },
+            { find: '@designcodeio/threeui', replacement: new URL('./resources/js/threeui.tsx', import.meta.url).pathname },
         ],
     },
     plugins: [

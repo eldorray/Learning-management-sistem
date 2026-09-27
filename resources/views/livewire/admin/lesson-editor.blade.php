@@ -2,35 +2,35 @@
 
     <!-- Breadcrumb + Header -->
     <section>
-        <nav class="flex items-center gap-1.5 text-sm text-[#595c5e] mb-4 flex-wrap">
-            <a href="{{ route('admin.courses') }}" class="hover:text-[#0058ba] transition-colors flex items-center gap-1">
+        <nav class="flex items-center gap-1.5 text-sm text-[#6b6358] mb-4 flex-wrap">
+            <a href="{{ route('admin.courses') }}" class="hover:text-[#8a5a31] transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">library_books</span>
                 <span class="hidden sm:inline">Kursus</span>
             </a>
             <span class="material-symbols-outlined text-xs">chevron_right</span>
-            <a href="{{ route('admin.courses.builder', $lesson->course_id) }}" class="hover:text-[#0058ba] transition-colors truncate max-w-[100px] sm:max-w-none">
+            <a href="{{ route('admin.courses.builder', $lesson->course_id) }}" class="hover:text-[#8a5a31] transition-colors truncate max-w-[100px] sm:max-w-none">
                 {{ $lesson->course->title }}
             </a>
             <span class="material-symbols-outlined text-xs">chevron_right</span>
-            <span class="text-[#2c2f31] font-semibold truncate max-w-[120px] sm:max-w-none">{{ $lesson->title }}</span>
+            <span class="text-[#2b2721] font-semibold truncate max-w-[120px] sm:max-w-none">{{ $lesson->title }}</span>
         </nav>
 
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
                 <div class="flex items-center gap-2 mb-2">
                     <span class="w-8 h-8 rounded-lg flex items-center justify-center
-                        {{ $lesson->type === 'video' ? 'bg-purple-50 text-purple-600' : ($lesson->type === 'quiz' ? 'bg-amber-50 text-amber-600' : ($lesson->type === 'document' ? 'bg-emerald-50 text-emerald-600' : 'bg-[#eef1f3] text-[#595c5e]')) }}">
+                        {{ $lesson->type === 'video' ? 'bg-purple-50 text-purple-600' : ($lesson->type === 'quiz' ? 'bg-amber-50 text-amber-600' : ($lesson->type === 'document' ? 'bg-emerald-50 text-emerald-600' : 'bg-[#ebe5d8] text-[#6b6358]')) }}">
                         <span class="material-symbols-outlined text-sm">{{ $lesson->type_icon }}</span>
                     </span>
-                    <span class="text-[#00675c] font-semibold uppercase tracking-widest text-xs">Lesson Editor</span>
+                    <span class="text-[#56663f] font-semibold uppercase tracking-widest text-xs">Lesson Editor</span>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-headline font-extrabold tracking-tight text-[#2c2f31]">{{ $lesson->title }}</h2>
-                <p class="text-[#595c5e] mt-1 text-sm">
+                <h2 class="text-2xl md:text-3xl font-headline font-extrabold tracking-tight text-[#2b2721]">{{ $lesson->title }}</h2>
+                <p class="text-[#6b6358] mt-1 text-sm">
                     Modul: <span class="font-semibold">{{ $lesson->module->title }}</span>
                 </p>
             </div>
             <a href="{{ route('admin.courses.builder', $lesson->course_id) }}"
-               class="self-start sm:self-auto px-4 py-2.5 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors flex items-center gap-2 text-sm">
+               class="self-start sm:self-auto px-4 py-2.5 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors flex items-center gap-2 text-sm">
                 <span class="material-symbols-outlined text-sm">arrow_back</span>
                 <span class="hidden sm:inline">Kembali ke Builder</span>
                 <span class="sm:hidden">Kembali</span>
@@ -40,7 +40,7 @@
 
     <!-- Flash Message -->
     @if(session('success'))
-    <div class="bg-[#73f2dd]/30 border border-[#00675c]/20 text-[#00675c] px-4 py-3 rounded-xl flex items-center gap-3 text-sm">
+    <div class="bg-[#cfd8bd]/30 border border-[#56663f]/20 text-[#56663f] px-4 py-3 rounded-xl flex items-center gap-3 text-sm">
         <span class="material-symbols-outlined text-sm">check_circle</span>
         {{ session('success') }}
     </div>
@@ -49,35 +49,35 @@
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- Lesson Info Card -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <div class="bg-white rounded-2xl border border-[#abadaf]/10 shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between">
-            <h3 class="font-headline font-bold text-lg text-[#2c2f31] flex items-center gap-2">
-                <span class="material-symbols-outlined text-[#0058ba]">tune</span>
+    <div class="bg-white rounded-2xl border border-[#bfb5a3]/10 shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-[#ebe5d8] flex items-center justify-between">
+            <h3 class="font-headline font-bold text-lg text-[#2b2721] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#8a5a31]">tune</span>
                 Informasi Pelajaran
             </h3>
         </div>
         <form wire:submit="saveLesson" class="p-6 space-y-5">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Judul Pelajaran *</label>
+                    <label class="block text-sm font-semibold text-[#2b2721] mb-1">Judul Pelajaran *</label>
                     <input type="text" wire:model="lessonTitle"
-                           class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm">
+                           class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm">
                     @error('lessonTitle')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-[#2c2f31] mb-2">Tipe Pelajaran</label>
+                    <label class="block text-sm font-semibold text-[#2b2721] mb-2">Tipe Pelajaran</label>
                     <div class="flex gap-3">
-                        @foreach(['text' => ['article', 'Teks', 'text-[#595c5e]'], 'video' => ['play_circle', 'Video', 'text-purple-500'], 'document' => ['description', 'Dokumen', 'text-emerald-500'], 'quiz' => ['quiz', 'Kuis', 'text-amber-500']] as $type => [$icon, $label, $color])
+                        @foreach(['text' => ['article', 'Teks', 'text-[#6b6358]'], 'video' => ['play_circle', 'Video', 'text-purple-500'], 'document' => ['description', 'Dokumen', 'text-emerald-500'], 'quiz' => ['quiz', 'Kuis', 'text-amber-500']] as $type => [$icon, $label, $color])
                         <label class="relative cursor-pointer flex-1">
                             <input type="radio" wire:model.live="lessonType" value="{{ $type }}" class="peer sr-only">
                             <div class="p-3 rounded-xl border-2 text-center transition-all
-                                        peer-checked:border-[#0058ba] peer-checked:bg-blue-50/50
-                                        border-[#eef1f3] hover:border-[#abadaf]/40">
+                                        peer-checked:border-[#8a5a31] peer-checked:bg-blue-50/50
+                                        border-[#ebe5d8] hover:border-[#bfb5a3]/40">
                                 <span class="material-symbols-outlined text-lg block mb-1 {{ $color }}">
                                     {{ $icon }}
                                 </span>
-                                <span class="text-xs font-semibold text-[#2c2f31]">{{ $label }}</span>
+                                <span class="text-xs font-semibold text-[#2b2721]">{{ $label }}</span>
                             </div>
                         </label>
                         @endforeach
@@ -86,29 +86,29 @@
 
                 <div class="space-y-5">
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Durasi (menit)</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-1">Durasi (menit)</label>
                         <input type="number" wire:model="lessonDuration" min="0"
-                               class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm">
+                               class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm">
                     </div>
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" wire:model="lessonIsPreview" class="rounded">
-                        <span class="text-sm font-medium text-[#2c2f31]">Tampilkan sebagai preview gratis</span>
+                        <span class="text-sm font-medium text-[#2b2721]">Tampilkan sebagai preview gratis</span>
                     </label>
                 </div>
             </div>
 
             @if($lessonType === 'video')
             <div>
-                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">URL Video</label>
+                <label class="block text-sm font-semibold text-[#2b2721] mb-1">URL Video</label>
                 <input type="url" wire:model="lessonVideoUrl"
                        placeholder="https://youtube.com/watch?v=..."
-                       class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm">
+                       class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm">
                 @error('lessonVideoUrl')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
 
                 @if($lesson->video_url)
-                <div class="mt-3 p-3 bg-[#eef1f3] rounded-xl">
-                    <p class="text-xs text-[#595c5e] mb-1">Video saat ini:</p>
-                    <a href="{{ $lesson->video_url }}" target="_blank" class="text-sm text-[#0058ba] hover:underline flex items-center gap-1">
+                <div class="mt-3 p-3 bg-[#ebe5d8] rounded-xl">
+                    <p class="text-xs text-[#6b6358] mb-1">Video saat ini:</p>
+                    <a href="{{ $lesson->video_url }}" target="_blank" class="text-sm text-[#8a5a31] hover:underline flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
                         {{ $lesson->video_url }}
                     </a>
@@ -119,32 +119,32 @@
 
             @if($lessonType === 'text')
             <div>
-                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Konten Materi</label>
+                <label class="block text-sm font-semibold text-[#2b2721] mb-1">Konten Materi</label>
                 <textarea wire:model="lessonContent" rows="12"
                           placeholder="Tulis konten materi pelajaran di sini. Anda bisa menggunakan format teks biasa..."
-                          class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-y text-sm font-mono leading-relaxed"></textarea>
+                          class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 resize-y text-sm font-mono leading-relaxed"></textarea>
             </div>
             @endif
 
             {{-- Document Upload Section --}}
             <div>
-                <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Lampiran Dokumen <span class="text-[#595c5e] font-normal">(opsional)</span></label>
+                <label class="block text-sm font-semibold text-[#2b2721] mb-1">Lampiran Dokumen <span class="text-[#6b6358] font-normal">(opsional)</span></label>
 
                 @if($existingDocumentName && !$lessonDocument)
-                <div class="flex items-center gap-3 p-3 bg-[#eef1f3] rounded-xl">
+                <div class="flex items-center gap-3 p-3 bg-[#ebe5d8] rounded-xl">
                     <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0">
                         <span class="material-symbols-outlined text-emerald-600">description</span>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="text-sm font-semibold text-[#2c2f31] truncate">{{ $existingDocumentName }}</p>
-                        <p class="text-xs text-[#595c5e]">Dokumen saat ini</p>
+                        <p class="text-sm font-semibold text-[#2b2721] truncate">{{ $existingDocumentName }}</p>
+                        <p class="text-xs text-[#6b6358]">Dokumen saat ini</p>
                     </div>
                     <a href="{{ $lesson->document_url }}" target="_blank"
-                       class="p-2 text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors flex-shrink-0" title="Unduh">
+                       class="p-2 text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors flex-shrink-0" title="Unduh">
                         <span class="material-symbols-outlined text-sm">download</span>
                     </a>
                     <button type="button" wire:click="removeDocument" wire:confirm="Hapus dokumen ini?"
-                            class="p-2 text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors flex-shrink-0" title="Hapus">
+                            class="p-2 text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors flex-shrink-0" title="Hapus">
                         <span class="material-symbols-outlined text-sm">delete</span>
                     </button>
                 </div>
@@ -153,11 +153,11 @@
                     <input type="file" wire:model="lessonDocument" id="editorDocumentInput"
                            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar"
                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                    <div class="border-2 border-dashed border-[#abadaf]/30 rounded-xl p-6 text-center hover:border-[#0058ba]/30 hover:bg-blue-50/20 transition-all">
-                        <span class="material-symbols-outlined text-3xl text-[#595c5e] block mb-2">cloud_upload</span>
-                        <p class="text-sm font-semibold text-[#2c2f31]">
+                    <div class="border-2 border-dashed border-[#bfb5a3]/30 rounded-xl p-6 text-center hover:border-[#8a5a31]/30 hover:bg-blue-50/20 transition-all">
+                        <span class="material-symbols-outlined text-3xl text-[#6b6358] block mb-2">cloud_upload</span>
+                        <p class="text-sm font-semibold text-[#2b2721]">
                             @if($lessonDocument)
-                                <span class="text-[#00675c] flex items-center justify-center gap-2">
+                                <span class="text-[#56663f] flex items-center justify-center gap-2">
                                     <span class="material-symbols-outlined text-sm">check_circle</span>
                                     {{ $lessonDocument->getClientOriginalName() }}
                                 </span>
@@ -165,19 +165,19 @@
                                 Klik atau seret file ke sini
                             @endif
                         </p>
-                        <p class="text-xs text-[#595c5e] mt-1">PDF, Word, Excel, PPT, TXT, ZIP · Max 20MB</p>
+                        <p class="text-xs text-[#6b6358] mt-1">PDF, Word, Excel, PPT, TXT, ZIP · Max 20MB</p>
                     </div>
                 </div>
                 @endif
                 @error('lessonDocument')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
-                <div wire:loading wire:target="lessonDocument" class="mt-2 flex items-center gap-2 text-xs text-[#0058ba]">
+                <div wire:loading wire:target="lessonDocument" class="mt-2 flex items-center gap-2 text-xs text-[#8a5a31]">
                     <span class="inline-block animate-spin">⟳</span> Mengunggah dokumen...
                 </div>
             </div>
 
             <div class="flex justify-end pt-2">
                 <button type="submit"
-                        class="px-8 py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-2 text-sm">
+                        class="px-8 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-2 text-sm">
                     <span wire:loading wire:target="saveLesson" class="inline-block animate-spin mr-1">⟳</span>
                     <span class="material-symbols-outlined text-sm">save</span>
                     Simpan Perubahan
@@ -190,15 +190,15 @@
     <!-- Quiz Section (only for quiz type) -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
     @if($lessonType === 'quiz')
-    <div class="bg-white rounded-2xl border border-[#abadaf]/10 shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between">
-            <h3 class="font-headline font-bold text-lg text-[#2c2f31] flex items-center gap-2">
+    <div class="bg-white rounded-2xl border border-[#bfb5a3]/10 shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-[#ebe5d8] flex items-center justify-between">
+            <h3 class="font-headline font-bold text-lg text-[#2b2721] flex items-center gap-2">
                 <span class="material-symbols-outlined text-amber-500">quiz</span>
                 Pertanyaan Kuis
-                <span class="text-sm font-normal text-[#595c5e]">({{ $lesson->quizQuestions->count() }} soal)</span>
+                <span class="text-sm font-normal text-[#6b6358]">({{ $lesson->quizQuestions->count() }} soal)</span>
             </h3>
             <button wire:click="openAddQuestion"
-                    class="px-4 py-2 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm flex items-center gap-2 text-xs">
+                    class="px-4 py-2 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm flex items-center gap-2 text-xs">
                 <span class="material-symbols-outlined text-sm">add</span>
                 Tambah Soal
             </button>
@@ -209,53 +209,53 @@
             <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span class="material-symbols-outlined text-amber-500 text-3xl">help_outline</span>
             </div>
-            <h4 class="font-headline font-bold text-lg text-[#2c2f31] mb-2">Belum ada pertanyaan</h4>
-            <p class="text-[#595c5e] text-sm mb-4">Tambahkan soal untuk kuis ini.</p>
+            <h4 class="font-headline font-bold text-lg text-[#2b2721] mb-2">Belum ada pertanyaan</h4>
+            <p class="text-[#6b6358] text-sm mb-4">Tambahkan soal untuk kuis ini.</p>
             <button wire:click="openAddQuestion" class="btn-primary text-sm">
                 <span class="material-symbols-outlined text-sm">add</span>
                 Tambah Pertanyaan Pertama
             </button>
         </div>
         @else
-        <div class="divide-y divide-[#f5f7f9]">
+        <div class="divide-y divide-[#f3efe6]">
             @foreach($lesson->quizQuestions as $qIndex => $question)
-            <div class="p-6 hover:bg-[#f5f7f9]/50 transition-colors" wire:key="question-{{ $question->id }}">
+            <div class="p-6 hover:bg-[#f3efe6]/50 transition-colors" wire:key="question-{{ $question->id }}">
                 <div class="flex items-start gap-4">
                     <!-- Question Number -->
-                    <div class="w-10 h-10 bg-gradient-to-br from-[#0058ba]/10 to-[#6c9fff]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <span class="text-sm font-bold text-[#0058ba]">{{ $qIndex + 1 }}</span>
+                    <div class="w-10 h-10 bg-gradient-to-br from-[#8a5a31]/10 to-[#d9b98f]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span class="text-sm font-bold text-[#8a5a31]">{{ $qIndex + 1 }}</span>
                     </div>
 
                     <!-- Question Content -->
                     <div class="flex-1 min-w-0">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <div>
-                                <p class="font-semibold text-[#2c2f31] text-sm">{{ $question->question }}</p>
+                                <p class="font-semibold text-[#2b2721] text-sm">{{ $question->question }}</p>
                                 <div class="flex items-center gap-2 mt-1">
                                     <span class="px-2 py-0.5 rounded-full text-[10px] font-bold
                                         {{ $question->type === 'multiple_choice' ? 'bg-blue-50 text-blue-600' : ($question->type === 'true_false' ? 'bg-green-50 text-green-600' : 'bg-purple-50 text-purple-600') }}">
                                         {{ $question->getTypeLabel() }}
                                     </span>
-                                    <span class="text-[10px] text-[#595c5e]">{{ $question->points }} poin</span>
+                                    <span class="text-[10px] text-[#6b6358]">{{ $question->points }} poin</span>
                                 </div>
                             </div>
 
                             <!-- Actions -->
                             <div class="flex items-center gap-1 flex-shrink-0">
                                 <button wire:click="moveQuestionUp({{ $question->id }})"
-                                        class="p-1 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
+                                        class="p-1 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors">
                                     <span class="material-symbols-outlined text-xs">arrow_upward</span>
                                 </button>
                                 <button wire:click="moveQuestionDown({{ $question->id }})"
-                                        class="p-1 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
+                                        class="p-1 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors">
                                     <span class="material-symbols-outlined text-xs">arrow_downward</span>
                                 </button>
                                 <button wire:click="openEditQuestion({{ $question->id }})"
-                                        class="p-1 text-[#595c5e] hover:text-[#0058ba] hover:bg-blue-50 rounded-lg transition-colors">
+                                        class="p-1 text-[#6b6358] hover:text-[#8a5a31] hover:bg-blue-50 rounded-lg transition-colors">
                                     <span class="material-symbols-outlined text-xs">edit</span>
                                 </button>
                                 <button wire:click="confirmDeleteQuestion({{ $question->id }})"
-                                        class="p-1 text-[#595c5e] hover:text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors">
+                                        class="p-1 text-[#6b6358] hover:text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors">
                                     <span class="material-symbols-outlined text-xs">delete</span>
                                 </button>
                             </div>
@@ -266,7 +266,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
                             @foreach($question->options as $option)
                             <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs
-                                {{ $option->is_correct ? 'bg-[#73f2dd]/20 text-[#00675c] border border-[#00675c]/20' : 'bg-[#eef1f3] text-[#595c5e]' }}">
+                                {{ $option->is_correct ? 'bg-[#cfd8bd]/20 text-[#56663f] border border-[#56663f]/20' : 'bg-[#ebe5d8] text-[#6b6358]' }}">
                                 <span class="material-symbols-outlined text-xs">
                                     {{ $option->is_correct ? 'check_circle' : 'radio_button_unchecked' }}
                                 </span>
@@ -275,14 +275,14 @@
                             @endforeach
                         </div>
                         @else
-                        <div class="mt-3 px-3 py-2 bg-[#eef1f3] rounded-lg text-xs text-[#595c5e] italic">
+                        <div class="mt-3 px-3 py-2 bg-[#ebe5d8] rounded-lg text-xs text-[#6b6358] italic">
                             Jawaban esai (siswa akan mengetik jawaban)
                         </div>
                         @endif
 
                         <!-- Explanation -->
                         @if($question->explanation)
-                        <div class="mt-3 px-3 py-2 bg-blue-50 rounded-lg text-xs text-[#0058ba] flex items-start gap-2">
+                        <div class="mt-3 px-3 py-2 bg-blue-50 rounded-lg text-xs text-[#8a5a31] flex items-start gap-2">
                             <span class="material-symbols-outlined text-xs mt-0.5">lightbulb</span>
                             <span>{{ $question->explanation }}</span>
                         </div>
@@ -294,9 +294,9 @@
         </div>
 
         <!-- Total Points -->
-        <div class="px-6 py-4 bg-[#f5f7f9] border-t border-[#eef1f3] flex items-center justify-between">
-            <span class="text-sm text-[#595c5e]">Total Poin</span>
-            <span class="font-headline font-bold text-[#0058ba]">{{ $lesson->quizQuestions->sum('points') }} poin</span>
+        <div class="px-6 py-4 bg-[#f3efe6] border-t border-[#ebe5d8] flex items-center justify-between">
+            <span class="text-sm text-[#6b6358]">Total Poin</span>
+            <span class="font-headline font-bold text-[#8a5a31]">{{ $lesson->quizQuestions->sum('points') }} poin</span>
         </div>
         @endif
     </div>
@@ -308,51 +308,51 @@
     @if($showQuestionForm)
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div class="p-6 border-b border-[#eef1f3] flex items-center justify-between sticky top-0 bg-white rounded-t-2xl z-10">
-                <h3 class="font-headline font-bold text-xl text-[#2c2f31]">
+            <div class="p-6 border-b border-[#ebe5d8] flex items-center justify-between sticky top-0 bg-white rounded-t-2xl z-10">
+                <h3 class="font-headline font-bold text-xl text-[#2b2721]">
                     {{ $editingQuestionId ? 'Edit Pertanyaan' : 'Tambah Pertanyaan Baru' }}
                 </h3>
-                <button wire:click="$set('showQuestionForm', false)" class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                <button wire:click="$set('showQuestionForm', false)" class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">close</span>
                 </button>
             </div>
 
             <form wire:submit="saveQuestion" class="p-6 space-y-5">
                 <!-- Question Text -->
                 <div>
-                    <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Pertanyaan *</label>
+                    <label class="block text-sm font-semibold text-[#2b2721] mb-1">Pertanyaan *</label>
                     <textarea wire:model="questionText" rows="3"
                               placeholder="Tulis pertanyaan di sini..."
-                              class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none text-sm"></textarea>
+                              class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 resize-none text-sm"></textarea>
                     @error('questionText')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
                 <!-- Question Type & Points -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-2">Tipe Soal</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-2">Tipe Soal</label>
                         <div class="space-y-2">
                             @foreach(['multiple_choice' => 'Pilihan Ganda', 'true_false' => 'Benar/Salah', 'essay' => 'Esai'] as $type => $label)
                             <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" wire:model.live="questionType" value="{{ $type }}" class="text-[#0058ba]">
-                                <span class="text-sm text-[#2c2f31]">{{ $label }}</span>
+                                <input type="radio" wire:model.live="questionType" value="{{ $type }}" class="text-[#8a5a31]">
+                                <span class="text-sm text-[#2b2721]">{{ $label }}</span>
                             </label>
                             @endforeach
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-[#2c2f31] mb-1">Poin</label>
+                        <label class="block text-sm font-semibold text-[#2b2721] mb-1">Poin</label>
                         <input type="number" wire:model="questionPoints" min="1" max="100"
-                               class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm">
+                               class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm">
                     </div>
                 </div>
 
                 <!-- Options (for multiple_choice and true_false) -->
                 @if($questionType !== 'essay')
                 <div>
-                    <label class="block text-sm font-semibold text-[#2c2f31] mb-2">
+                    <label class="block text-sm font-semibold text-[#2b2721] mb-2">
                         Opsi Jawaban
-                        <span class="font-normal text-[#595c5e]">(klik radio untuk jawaban benar)</span>
+                        <span class="font-normal text-[#6b6358]">(klik radio untuk jawaban benar)</span>
                     </label>
                     @error('options')<p class="text-red-500 text-xs mb-2">{{ $message }}</p>@enderror
 
@@ -362,9 +362,9 @@
                             <!-- Correct radio -->
                             <button type="button" wire:click="setCorrectOption({{ $i }})"
                                     class="w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors
-                                    {{ $option['is_correct'] ? 'border-[#00675c] bg-[#73f2dd]/30' : 'border-[#abadaf] hover:border-[#0058ba]' }}">
+                                    {{ $option['is_correct'] ? 'border-[#56663f] bg-[#cfd8bd]/30' : 'border-[#bfb5a3] hover:border-[#8a5a31]' }}">
                                 @if($option['is_correct'])
-                                <span class="w-3 h-3 bg-[#00675c] rounded-full"></span>
+                                <span class="w-3 h-3 bg-[#56663f] rounded-full"></span>
                                 @endif
                             </button>
 
@@ -372,14 +372,14 @@
                             <input type="text" wire:model="options.{{ $i }}.text"
                                    placeholder="Opsi {{ chr(65 + $i) }}"
                                    @if($questionType === 'true_false') readonly @endif
-                                   class="flex-1 px-4 py-2.5 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 text-sm
+                                   class="flex-1 px-4 py-2.5 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 text-sm
                                           {{ $questionType === 'true_false' ? 'opacity-70 cursor-not-allowed' : '' }}">
                             @error("options.{$i}.text")<p class="text-red-500 text-xs">{{ $message }}</p>@enderror
 
                             <!-- Remove option (only for multiple choice with > 2 options) -->
                             @if($questionType === 'multiple_choice' && count($options) > 2)
                             <button type="button" wire:click="removeOption({{ $i }})"
-                                    class="p-1 text-[#595c5e] hover:text-[#b31b25] hover:bg-red-50 rounded-lg transition-colors">
+                                    class="p-1 text-[#6b6358] hover:text-[#a3402c] hover:bg-red-50 rounded-lg transition-colors">
                                 <span class="material-symbols-outlined text-sm">close</span>
                             </button>
                             @endif
@@ -389,14 +389,14 @@
 
                     @if($questionType === 'multiple_choice' && count($options) < 6)
                     <button type="button" wire:click="addOption"
-                            class="mt-2 text-sm text-[#0058ba] hover:text-[#004da4] font-semibold flex items-center gap-1 transition-colors">
+                            class="mt-2 text-sm text-[#8a5a31] hover:text-[#6f4826] font-semibold flex items-center gap-1 transition-colors">
                         <span class="material-symbols-outlined text-sm">add</span>
                         Tambah Opsi
                     </button>
                     @endif
                 </div>
                 @else
-                <div class="p-4 bg-[#eef1f3] rounded-xl text-sm text-[#595c5e] flex items-start gap-2">
+                <div class="p-4 bg-[#ebe5d8] rounded-xl text-sm text-[#6b6358] flex items-start gap-2">
                     <span class="material-symbols-outlined text-sm mt-0.5">info</span>
                     <span>Pertanyaan esai tidak memiliki opsi jawaban. Siswa akan mengetik jawaban secara bebas.</span>
                 </div>
@@ -404,22 +404,22 @@
 
                 <!-- Explanation -->
                 <div>
-                    <label class="block text-sm font-semibold text-[#2c2f31] mb-1">
+                    <label class="block text-sm font-semibold text-[#2b2721] mb-1">
                         Penjelasan Jawaban
-                        <span class="font-normal text-[#595c5e]">(opsional)</span>
+                        <span class="font-normal text-[#6b6358]">(opsional)</span>
                     </label>
                     <textarea wire:model="questionExplanation" rows="2"
                               placeholder="Penjelasan mengapa jawaban tersebut benar..."
-                              class="w-full px-4 py-3 bg-[#eef1f3] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none text-sm"></textarea>
+                              class="w-full px-4 py-3 bg-[#ebe5d8] border-none rounded-xl focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 resize-none text-sm"></textarea>
                 </div>
 
                 <div class="flex gap-3 pt-2">
                     <button type="button" wire:click="$set('showQuestionForm', false)"
-                            class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors text-sm">
+                            class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors text-sm">
                         Batal
                     </button>
                     <button type="submit"
-                            class="flex-1 py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm text-sm">
+                            class="flex-1 py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.01] transition-transform shadow-sm text-sm">
                         <span wire:loading wire:target="saveQuestion" class="inline-block animate-spin mr-1">⟳</span>
                         {{ $editingQuestionId ? 'Perbarui Soal' : 'Simpan Soal' }}
                     </button>
@@ -436,15 +436,15 @@
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8 mx-4 text-center">
             <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span class="material-symbols-outlined text-[#b31b25] text-3xl">delete_forever</span>
+                <span class="material-symbols-outlined text-[#a3402c] text-3xl">delete_forever</span>
             </div>
-            <h3 class="font-headline font-bold text-xl text-[#2c2f31] mb-2">Hapus Pertanyaan?</h3>
-            <p class="text-[#595c5e] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
+            <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Hapus Pertanyaan?</h3>
+            <p class="text-[#6b6358] text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
             <div class="flex gap-3">
                 <button wire:click="$set('showDeleteQuestionModal', false)"
-                        class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full text-sm">Batal</button>
+                        class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full text-sm">Batal</button>
                 <button wire:click="deleteQuestion"
-                        class="flex-1 py-3 bg-[#b31b25] text-white font-bold rounded-full hover:bg-[#9f0519] transition-colors text-sm">Hapus</button>
+                        class="flex-1 py-3 bg-[#a3402c] text-white font-bold rounded-full hover:bg-[#8c3624] transition-colors text-sm">Hapus</button>
             </div>
         </div>
     </div>

@@ -17,12 +17,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-screen bg-[#f5f7f9] text-[#2c2f31] flex items-center justify-center p-4">
+<body class="min-h-screen bg-[#ece7dc] text-[#2b2721] flex items-center justify-center p-4">
 
-    <!-- Background decorations -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-96 h-96 bg-[#6c9fff]/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-[#73f2dd]/10 rounded-full blur-3xl"></div>
+    <!-- The painted paper ground and botanicals of the public sketchbook -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 bg-[url('/landing-pages/meng-to-sketchbook/bg-wash.jpg')] bg-cover bg-top opacity-85"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#ece7dc]/25 via-[#ece7dc]/70 to-[#ece7dc]"></div>
+        <img src="/landing-pages/meng-to-sketchbook/botany-left.png" alt="" class="hidden md:block absolute left-0 bottom-[2%] w-[clamp(120px,15vw,250px)] opacity-50">
+        <img src="/landing-pages/meng-to-sketchbook/botany-right.png" alt="" class="hidden md:block absolute right-0 -bottom-[2%] w-[clamp(100px,12vw,200px)] opacity-50">
     </div>
 
     <div class="w-full max-w-md relative">
@@ -33,12 +35,12 @@
                  class="w-16 h-16 rounded-2xl object-contain mx-auto mb-4 shadow-lg shadow-blue-500/20"
                  alt="Logo">
             @else
-            <div class="w-16 h-16 bg-[#0058ba] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/20">
-                <span class="material-symbols-outlined text-[#f0f2ff] text-3xl">school</span>
+            <div class="w-16 h-16 bg-[#8a5a31] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/20">
+                <span class="material-symbols-outlined text-[#fbf6ee] text-3xl">school</span>
             </div>
             @endif
-            <h1 class="text-2xl font-headline font-extrabold text-[#2c2f31]">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</h1>
-            <p class="text-[#595c5e] text-sm mt-1">{{ \App\Models\Setting::get('app_tagline', 'Platform Pembelajaran Digital') }}</p>
+            <h1 class="text-2xl font-headline font-extrabold text-[#2b2721]">{{ \App\Models\Setting::get('app_name', 'LMS Arrahmah') }}</h1>
+            <p class="text-[#6b6358] text-sm mt-1">{{ \App\Models\Setting::get('app_tagline', 'Platform Pembelajaran Digital') }}</p>
         </div>
 
         {{ $slot }}

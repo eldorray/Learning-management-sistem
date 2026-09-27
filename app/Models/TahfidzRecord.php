@@ -59,7 +59,7 @@ class TahfidzRecord extends Model
     public function getJenisBadgeColorAttribute(): string
     {
         return $this->jenis_setoran === 'ziyadah'
-            ? 'bg-[#73f2dd]/30 text-[#00675c]'
-            : 'bg-[#6c9fff]/20 text-[#0058ba]';
+            ? 'bg-[#cfd8bd]/30 text-[#56663f]'
+            : 'bg-[#d9b98f]/20 text-[#8a5a31]';
     }
 }

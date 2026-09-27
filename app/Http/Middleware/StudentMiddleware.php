@@ -10,7 +10,8 @@ class StudentMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role !== 'student') {
+        // Admins may open the student area to see what students see.
+        if (!auth()->check() || !in_array(auth()->user()->role, ['student', 'admin'], true)) {
             abort(403, 'Halaman ini hanya untuk siswa.');
         }
 

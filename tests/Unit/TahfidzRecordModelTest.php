@@ -93,8 +93,8 @@ test('jenis badge color berbeda untuk ziyadah dan murojaah', function () {
     $ziyadah = makeTahfidzRecord(['jenis_setoran' => 'ziyadah']);
     $murojaah = makeTahfidzRecord(['jenis_setoran' => 'murojaah']);
 
-    expect($ziyadah->jenis_badge_color)->toContain('00675c');
-    expect($murojaah->jenis_badge_color)->toContain('0058ba');
+    expect($ziyadah->jenis_badge_color)->toContain('56663f');
+    expect($murojaah->jenis_badge_color)->toContain('8a5a31');
 });
 
 test('tahfidz record memiliki relasi ke student', function () {

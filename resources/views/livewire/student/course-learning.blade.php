@@ -1,4 +1,4 @@
-<div class="flex min-h-screen bg-[#f5f7f9]" x-data="{ mobileSidebar: false }">
+<div class="flex min-h-screen bg-[#f3efe6]" x-data="{ mobileSidebar: false }">
 
     <!-- Mobile Sidebar Overlay -->
     <div x-show="mobileSidebar"
@@ -16,15 +16,15 @@
     <div class="flex-1 min-w-0 flex flex-col">
 
         <!-- Course Top Bar -->
-        <div class="bg-white/80 backdrop-blur-xl sticky top-0 z-10 border-b border-[#abadaf]/10 px-4 md:px-6 py-3 flex items-center justify-between">
+        <div class="bg-white/80 backdrop-blur-xl sticky top-0 z-10 border-b border-[#bfb5a3]/10 px-4 md:px-6 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <a href="{{ route('student.courses') }}" class="p-2 rounded-full hover:bg-[#eef1f3] transition-colors flex-shrink-0">
-                    <span class="material-symbols-outlined text-[#595c5e] text-xl">arrow_back</span>
+                <a href="{{ route('student.courses') }}" class="p-2 rounded-full hover:bg-[#ebe5d8] transition-colors flex-shrink-0">
+                    <span class="material-symbols-outlined text-[#6b6358] text-xl">arrow_back</span>
                 </a>
                 <div class="min-w-0">
-                    <p class="text-xs text-[#595c5e] uppercase tracking-wider font-semibold truncate">{{ $course->title }}</p>
+                    <p class="text-xs text-[#6b6358] uppercase tracking-wider font-semibold truncate">{{ $course->title }}</p>
                     @if($currentLesson)
-                    <h2 class="font-headline font-bold text-[#2c2f31] text-sm md:text-base truncate">{{ $currentLesson->title }}</h2>
+                    <h2 class="font-headline font-bold text-[#2b2721] text-sm md:text-base truncate">{{ $currentLesson->title }}</h2>
                     @endif
                 </div>
             </div>
@@ -33,22 +33,22 @@
                 <!-- Progress indicator (desktop) -->
                 @if($enrollment)
                 <div class="hidden md:flex items-center gap-3">
-                    <div class="w-24 md:w-32 h-1.5 rounded-full bg-[#e5e9eb] overflow-hidden">
-                        <div class="h-full bg-[#00675c] rounded-full transition-all duration-500"
+                    <div class="w-24 md:w-32 h-1.5 rounded-full bg-[#e4dccc] overflow-hidden">
+                        <div class="h-full bg-[#56663f] rounded-full transition-all duration-500"
                              style="width: {{ $enrollment->progress_percentage }}%"></div>
                     </div>
-                    <span class="text-xs font-bold text-[#00675c]">{{ $enrollment->progress_percentage }}%</span>
+                    <span class="text-xs font-bold text-[#56663f]">{{ $enrollment->progress_percentage }}%</span>
                 </div>
                 @endif
 
                 <!-- Toggle sidebar - Livewire (desktop) + Alpine (mobile) -->
                 <button @click="mobileSidebar = !mobileSidebar"
-                        class="lg:hidden p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">menu_book</span>
+                        class="lg:hidden p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">menu_book</span>
                 </button>
                 <button wire:click="$toggle('showSidebar')"
-                        class="hidden lg:flex p-2 rounded-full hover:bg-[#eef1f3] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">
+                        class="hidden lg:flex p-2 rounded-full hover:bg-[#ebe5d8] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">
                         {{ $showSidebar ? 'menu_open' : 'menu' }}
                     </span>
                 </button>
@@ -74,10 +74,10 @@
                 <!-- Lesson Header -->
                 <div class="mb-6 md:mb-8 space-y-3 md:space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 md:w-10 md:h-10 bg-[#eef1f3] rounded-xl flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[#0058ba] text-lg">{{ $currentLesson->type_icon }}</span>
+                        <div class="w-9 h-9 md:w-10 md:h-10 bg-[#ebe5d8] rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[#8a5a31] text-lg">{{ $currentLesson->type_icon }}</span>
                         </div>
-                        <span class="text-xs uppercase tracking-widest font-semibold text-[#595c5e]">
+                        <span class="text-xs uppercase tracking-widest font-semibold text-[#6b6358]">
                             {{ match($currentLesson->type) { 'video' => 'Video', 'quiz' => 'Kuis', 'document' => 'Dokumen', default => 'Artikel' } }}
                             @if($currentLesson->type === 'quiz' && $currentLesson->quizQuestions->count() > 0)
                                 · {{ $currentLesson->quizQuestions->count() }} Soal
@@ -86,12 +86,12 @@
                             @endif
                         </span>
                     </div>
-                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-headline font-extrabold text-[#2c2f31] tracking-tight">
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-headline font-extrabold text-[#2b2721] tracking-tight">
                         {{ $currentLesson->title }}
                     </h1>
 
                     @if($isCurrentCompleted)
-                    <div class="flex items-center gap-2 text-[#00675c] text-sm font-semibold">
+                    <div class="flex items-center gap-2 text-[#56663f] text-sm font-semibold">
                         <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                         Pelajaran ini sudah selesai
                     </div>
@@ -100,24 +100,24 @@
 
                 <!-- Text Content -->
                 @if($currentLesson->content)
-                <div class="prose prose-slate max-w-none text-[#2c2f31] text-base md:text-lg leading-relaxed mb-8 md:mb-12">
+                <div class="prose prose-slate max-w-none text-[#2b2721] text-base md:text-lg leading-relaxed mb-8 md:mb-12">
                     {!! nl2br(e($currentLesson->content)) !!}
                 </div>
                 @endif
 
                 {{-- Document Attachment --}}
                 @if($currentLesson->document_path)
-                <div class="bg-white rounded-xl border border-[#abadaf]/10 shadow-sm p-5 md:p-6 mb-8 md:mb-12">
+                <div class="bg-white rounded-xl border border-[#bfb5a3]/10 shadow-sm p-5 md:p-6 mb-8 md:mb-12">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
                             <span class="material-symbols-outlined text-emerald-600 text-2xl">description</span>
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p class="font-semibold text-[#2c2f31] text-sm md:text-base truncate">{{ $currentLesson->document_name }}</p>
-                            <p class="text-xs text-[#595c5e] mt-0.5">Lampiran dokumen · {{ strtoupper($currentLesson->document_extension) }}</p>
+                            <p class="font-semibold text-[#2b2721] text-sm md:text-base truncate">{{ $currentLesson->document_name }}</p>
+                            <p class="text-xs text-[#6b6358] mt-0.5">Lampiran dokumen · {{ strtoupper($currentLesson->document_extension) }}</p>
                         </div>
                         <a href="{{ $currentLesson->document_url }}" target="_blank" download
-                           class="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-gradient-to-br from-[#00675c] to-[#005a50] text-white font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm text-sm flex-shrink-0">
+                           class="flex items-center gap-2 px-4 md:px-5 py-2.5 md:py-3 bg-gradient-to-br from-[#56663f] to-[#4b5a37] text-white font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm text-sm flex-shrink-0">
                             <span class="material-symbols-outlined text-sm">download</span>
                             <span class="hidden sm:inline">Unduh</span>
                         </a>
@@ -129,7 +129,7 @@
                 @if($currentLesson->type === 'quiz' && $currentLesson->quizQuestions->count() > 0)
 
                     @error('quiz')
-                    <div class="bg-red-50 border border-red-200 text-[#b31b25] px-4 py-3 rounded-xl flex items-center gap-3 mb-6 text-sm">
+                    <div class="bg-red-50 border border-red-200 text-[#a3402c] px-4 py-3 rounded-xl flex items-center gap-3 mb-6 text-sm">
                         <span class="material-symbols-outlined text-sm">error</span>
                         <span>{{ $message }}</span>
                     </div>
@@ -138,7 +138,7 @@
                     {{-- Quiz Result Banner --}}
                     @if($quizSubmitted)
                     <div class="mb-6 md:mb-8 rounded-xl overflow-hidden shadow-sm">
-                        <div class="p-5 md:p-6 {{ $quizPassed ? 'bg-gradient-to-br from-[#00675c] to-[#004d44]' : 'bg-gradient-to-br from-[#b31b25] to-[#8a1019]' }} relative overflow-hidden">
+                        <div class="p-5 md:p-6 {{ $quizPassed ? 'bg-gradient-to-br from-[#56663f] to-[#434f37]' : 'bg-gradient-to-br from-[#a3402c] to-[#74291b]' }} relative overflow-hidden">
                             <div class="absolute inset-0 opacity-10">
                                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-white rounded-full"></div>
                                 <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white rounded-full"></div>
@@ -178,10 +178,10 @@
                         </div>
 
                         @if(!$quizPassed)
-                        <div class="bg-white p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-[#abadaf]/10">
-                            <p class="text-sm text-[#595c5e]">Anda dapat mengulang kuis ini untuk mendapatkan nilai lebih baik.</p>
+                        <div class="bg-white p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-[#bfb5a3]/10">
+                            <p class="text-sm text-[#6b6358]">Anda dapat mengulang kuis ini untuk mendapatkan nilai lebih baik.</p>
                             <button wire:click="retryQuiz"
-                                    class="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-white font-bold rounded-full text-sm hover:scale-[1.02] transition-transform shadow-sm flex items-center justify-center gap-2">
+                                    class="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-white font-bold rounded-full text-sm hover:scale-[1.02] transition-transform shadow-sm flex items-center justify-center gap-2">
                                 <span class="material-symbols-outlined text-sm">replay</span>
                                 Ulangi Kuis
                             </button>
@@ -193,27 +193,27 @@
                     {{-- Quiz Questions --}}
                     <div class="space-y-4 md:space-y-6 mb-8 md:mb-12">
                         @foreach($currentLesson->quizQuestions as $qIndex => $question)
-                        <div class="bg-white rounded-xl border border-[#abadaf]/10 shadow-sm overflow-hidden
+                        <div class="bg-white rounded-xl border border-[#bfb5a3]/10 shadow-sm overflow-hidden
                             {{ $quizSubmitted && isset($selectedAnswers[$question->id])
-                                ? ($question->options->find($selectedAnswers[$question->id])?->is_correct ? 'ring-2 ring-[#00675c]/30' : 'ring-2 ring-[#b31b25]/30')
+                                ? ($question->options->find($selectedAnswers[$question->id])?->is_correct ? 'ring-2 ring-[#56663f]/30' : 'ring-2 ring-[#a3402c]/30')
                                 : '' }}">
 
-                            <div class="px-4 md:px-6 py-3 md:py-4 bg-[#f5f7f9] border-b border-[#abadaf]/10 flex items-center justify-between">
+                            <div class="px-4 md:px-6 py-3 md:py-4 bg-[#f3efe6] border-b border-[#bfb5a3]/10 flex items-center justify-between">
                                 <div class="flex items-center gap-2.5">
-                                    <span class="w-7 h-7 md:w-8 md:h-8 bg-[#0058ba] text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center">
+                                    <span class="w-7 h-7 md:w-8 md:h-8 bg-[#8a5a31] text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center">
                                         {{ $qIndex + 1 }}
                                     </span>
-                                    <span class="text-xs font-bold text-[#595c5e] uppercase tracking-wider">
+                                    <span class="text-xs font-bold text-[#6b6358] uppercase tracking-wider">
                                         {{ $question->getTypeLabel() }}
                                     </span>
                                 </div>
-                                <span class="text-xs font-semibold text-[#0058ba] bg-[#0058ba]/10 px-2.5 py-1 rounded-full">
+                                <span class="text-xs font-semibold text-[#8a5a31] bg-[#8a5a31]/10 px-2.5 py-1 rounded-full">
                                     {{ $question->points }} poin
                                 </span>
                             </div>
 
                             <div class="px-4 md:px-6 pt-4 pb-3">
-                                <p class="text-[#2c2f31] font-semibold text-sm md:text-base leading-relaxed">
+                                <p class="text-[#2b2721] font-semibold text-sm md:text-base leading-relaxed">
                                     {{ $question->question }}
                                 </p>
                             </div>
@@ -228,29 +228,29 @@
                                 <label class="flex items-center gap-3 p-3 md:p-4 rounded-xl cursor-pointer transition-all duration-200
                                     {{ $quizSubmitted
                                         ? ($isCorrectOption
-                                            ? 'bg-[#73f2dd]/20 border-2 border-[#00675c]/30'
+                                            ? 'bg-[#cfd8bd]/20 border-2 border-[#56663f]/30'
                                             : ($isSelected && !$isCorrectOption
-                                                ? 'bg-red-50 border-2 border-[#b31b25]/30'
-                                                : 'bg-[#f5f7f9] border-2 border-transparent'))
+                                                ? 'bg-red-50 border-2 border-[#a3402c]/30'
+                                                : 'bg-[#f3efe6] border-2 border-transparent'))
                                         : ($isSelected
-                                            ? 'bg-[#0058ba]/10 border-2 border-[#0058ba]/30'
-                                            : 'bg-[#f5f7f9] border-2 border-transparent hover:bg-[#eef1f3] hover:border-[#abadaf]/20')
+                                            ? 'bg-[#8a5a31]/10 border-2 border-[#8a5a31]/30'
+                                            : 'bg-[#f3efe6] border-2 border-transparent hover:bg-[#ebe5d8] hover:border-[#bfb5a3]/20')
                                     }}">
                                     <input type="radio"
                                            name="question_{{ $question->id }}"
                                            value="{{ $option->id }}"
                                            wire:model="selectedAnswers.{{ $question->id }}"
                                            {{ $quizSubmitted ? 'disabled' : '' }}
-                                           class="w-4 h-4 md:w-5 md:h-5 text-[#0058ba] border-2 border-[#abadaf] focus:ring-[#0058ba]/20 flex-shrink-0 {{ $quizSubmitted ? 'cursor-not-allowed' : 'cursor-pointer' }}">
-                                    <span class="flex-1 text-sm font-medium {{ $quizSubmitted && $isCorrectOption ? 'text-[#00675c]' : ($quizSubmitted && $isSelected && !$isCorrectOption ? 'text-[#b31b25]' : 'text-[#2c2f31]') }}">
+                                           class="w-4 h-4 md:w-5 md:h-5 text-[#8a5a31] border-2 border-[#bfb5a3] focus:ring-[#8a5a31]/20 flex-shrink-0 {{ $quizSubmitted ? 'cursor-not-allowed' : 'cursor-pointer' }}">
+                                    <span class="flex-1 text-sm font-medium {{ $quizSubmitted && $isCorrectOption ? 'text-[#56663f]' : ($quizSubmitted && $isSelected && !$isCorrectOption ? 'text-[#a3402c]' : 'text-[#2b2721]') }}">
                                         {{ $option->option_text }}
                                     </span>
 
                                     @if($quizSubmitted)
                                         @if($isCorrectOption)
-                                        <span class="material-symbols-outlined text-[#00675c] text-sm flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        <span class="material-symbols-outlined text-[#56663f] text-sm flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                                         @elseif($isSelected && !$isCorrectOption)
-                                        <span class="material-symbols-outlined text-[#b31b25] text-sm flex-shrink-0" style="font-variation-settings: 'FILL' 1;">cancel</span>
+                                        <span class="material-symbols-outlined text-[#a3402c] text-sm flex-shrink-0" style="font-variation-settings: 'FILL' 1;">cancel</span>
                                         @endif
                                     @endif
                                 </label>
@@ -264,7 +264,7 @@
                                           rows="4"
                                           placeholder="Tulis jawaban Anda di sini..."
                                           {{ $quizSubmitted ? 'disabled' : '' }}
-                                          class="w-full px-4 py-3 bg-[#f5f7f9] border border-[#abadaf]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0058ba]/20 resize-none {{ $quizSubmitted ? 'cursor-not-allowed opacity-60' : '' }}"></textarea>
+                                          class="w-full px-4 py-3 bg-[#f3efe6] border border-[#bfb5a3]/20 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/20 resize-none {{ $quizSubmitted ? 'cursor-not-allowed opacity-60' : '' }}"></textarea>
                                 @if($quizSubmitted)
                                     @php
                                         $essayAnswer = \App\Models\QuizAnswer::where('user_id', auth()->id())
@@ -272,23 +272,23 @@
                                             ->first();
                                     @endphp
                                     @if($essayAnswer?->graded_at)
-                                    <div class="mt-3 bg-[#0058ba]/5 border border-[#0058ba]/10 rounded-xl p-4 space-y-2">
+                                    <div class="mt-3 bg-[#8a5a31]/5 border border-[#8a5a31]/10 rounded-xl p-4 space-y-2">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm font-bold text-[#0058ba] flex items-center gap-1.5">
+                                            <p class="text-sm font-bold text-[#8a5a31] flex items-center gap-1.5">
                                                 <span class="material-symbols-outlined text-sm">grading</span>
                                                 Hasil Penilaian
                                             </p>
-                                            <span class="text-xs font-bold px-2.5 py-1 rounded-full {{ $essayAnswer->is_correct ? 'bg-[#73f2dd]/30 text-[#00675c]' : 'bg-red-50 text-[#b31b25]' }}">
+                                            <span class="text-xs font-bold px-2.5 py-1 rounded-full {{ $essayAnswer->is_correct ? 'bg-[#cfd8bd]/30 text-[#56663f]' : 'bg-red-50 text-[#a3402c]' }}">
                                                 {{ $essayAnswer->points_earned }}/{{ $question->points }} poin
                                             </span>
                                         </div>
                                         @if($essayAnswer->essay_feedback)
                                         <div class="bg-white rounded-lg p-3">
-                                            <p class="text-xs font-semibold text-[#595c5e] mb-1">Catatan dari pengajar:</p>
-                                            <p class="text-sm text-[#2c2f31] leading-relaxed">{{ $essayAnswer->essay_feedback }}</p>
+                                            <p class="text-xs font-semibold text-[#6b6358] mb-1">Catatan dari pengajar:</p>
+                                            <p class="text-sm text-[#2b2721] leading-relaxed">{{ $essayAnswer->essay_feedback }}</p>
                                         </div>
                                         @endif
-                                        <p class="text-[10px] text-[#595c5e]">
+                                        <p class="text-[10px] text-[#6b6358]">
                                             Dinilai {{ $essayAnswer->graded_at->diffForHumans() }}
                                         </p>
                                     </div>
@@ -303,12 +303,12 @@
                             @endif
 
                             @if($quizSubmitted && $question->explanation)
-                            <div class="mx-4 md:mx-6 mb-5 bg-[#0058ba]/5 border border-[#0058ba]/10 rounded-xl p-3 md:p-4">
-                                <p class="text-sm font-semibold text-[#0058ba] flex items-center gap-2 mb-1">
+                            <div class="mx-4 md:mx-6 mb-5 bg-[#8a5a31]/5 border border-[#8a5a31]/10 rounded-xl p-3 md:p-4">
+                                <p class="text-sm font-semibold text-[#8a5a31] flex items-center gap-2 mb-1">
                                     <span class="material-symbols-outlined text-sm">lightbulb</span>
                                     Penjelasan
                                 </p>
-                                <p class="text-sm text-[#595c5e] leading-relaxed">{{ $question->explanation }}</p>
+                                <p class="text-sm text-[#6b6358] leading-relaxed">{{ $question->explanation }}</p>
                             </div>
                             @endif
                         </div>
@@ -318,7 +318,7 @@
                     @if(!$quizSubmitted)
                     <div class="flex justify-center mb-8 md:mb-12">
                         <button wire:click="submitQuiz"
-                                class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full text-base md:text-lg hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-3">
+                                class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full text-base md:text-lg hover:scale-[1.02] transition-transform shadow-lg shadow-blue-500/20 flex items-center gap-3">
                             <span wire:loading.remove wire:target="submitQuiz" class="material-symbols-outlined">send</span>
                             <span wire:loading wire:target="submitQuiz" class="inline-block animate-spin">⟳</span>
                             Kirim Jawaban
@@ -327,18 +327,18 @@
                     @endif
 
                 @elseif($currentLesson->type === 'quiz' && $currentLesson->quizQuestions->count() === 0)
-                    <div class="bg-white rounded-xl border border-[#abadaf]/10 p-10 md:p-12 text-center mb-8 md:mb-12">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-[#eef1f3] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <span class="material-symbols-outlined text-[#595c5e] text-2xl md:text-3xl">quiz</span>
+                    <div class="bg-white rounded-xl border border-[#bfb5a3]/10 p-10 md:p-12 text-center mb-8 md:mb-12">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-[#ebe5d8] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-[#6b6358] text-2xl md:text-3xl">quiz</span>
                         </div>
-                        <h3 class="font-headline font-bold text-lg md:text-xl text-[#2c2f31] mb-2">Kuis Belum Tersedia</h3>
-                        <p class="text-[#595c5e] text-sm">Pengajar belum menambahkan soal. Silakan lanjut ke materi berikutnya.</p>
+                        <h3 class="font-headline font-bold text-lg md:text-xl text-[#2b2721] mb-2">Kuis Belum Tersedia</h3>
+                        <p class="text-[#6b6358] text-sm">Pengajar belum menambahkan soal. Silakan lanjut ke materi berikutnya.</p>
                     </div>
                 @endif
 
                 {{-- COURSE COMPLETION BANNER --}}
                 @if($isCourseCompleted || $courseCompleted)
-                <div class="bg-gradient-to-br from-[#00675c] to-[#005a50] rounded-2xl p-6 md:p-8 text-center mb-6 md:mb-8 relative overflow-hidden">
+                <div class="bg-gradient-to-br from-[#56663f] to-[#4b5a37] rounded-2xl p-6 md:p-8 text-center mb-6 md:mb-8 relative overflow-hidden">
                     <div class="absolute inset-0 opacity-10">
                         <div class="absolute -top-10 -right-10 w-40 h-40 bg-white rounded-full"></div>
                         <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white rounded-full"></div>
@@ -350,7 +350,7 @@
                         <h3 class="font-headline font-extrabold text-xl md:text-2xl text-white mb-2">🎉 Kursus Selesai!</h3>
                         <p class="text-white/80 text-sm mb-4">Selamat! Anda telah menyelesaikan seluruh materi pada kursus ini.</p>
                         <a href="{{ route('student.dashboard') }}"
-                           class="inline-flex items-center gap-2 px-5 md:px-6 py-3 bg-white text-[#00675c] font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg text-sm">
+                           class="inline-flex items-center gap-2 px-5 md:px-6 py-3 bg-white text-[#56663f] font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg text-sm">
                             <span class="material-symbols-outlined text-sm">arrow_back</span>
                             Kembali ke Dashboard
                         </a>
@@ -359,9 +359,9 @@
                 @endif
 
                 <!-- Action Buttons -->
-                <div class="flex items-center justify-between pt-6 md:pt-8 border-t border-[#abadaf]/10 gap-2">
+                <div class="flex items-center justify-between pt-6 md:pt-8 border-t border-[#bfb5a3]/10 gap-2">
                     <button wire:click="previousLesson"
-                            class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#eef1f3] text-[#2c2f31] font-semibold rounded-full hover:bg-[#dfe3e6] transition-colors text-sm">
+                            class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-[#ebe5d8] text-[#2b2721] font-semibold rounded-full hover:bg-[#ddd4c2] transition-colors text-sm">
                         <span class="material-symbols-outlined text-lg">arrow_back</span>
                         <span class="hidden sm:inline">Sebelumnya</span>
                     </button>
@@ -370,20 +370,20 @@
                         @if($currentLesson->type !== 'quiz')
                             @if(!$isCurrentCompleted)
                             <button wire:click="confirmMarkComplete"
-                                    class="flex items-center gap-1.5 px-4 md:px-6 py-2.5 md:py-3 bg-[#00675c] text-white font-bold rounded-full hover:bg-[#005a50] transition-colors shadow-sm text-sm">
+                                    class="flex items-center gap-1.5 px-4 md:px-6 py-2.5 md:py-3 bg-[#56663f] text-white font-bold rounded-full hover:bg-[#4b5a37] transition-colors shadow-sm text-sm">
                                 <span class="material-symbols-outlined text-sm">check_circle</span>
                                 <span class="hidden sm:inline">Tandai Selesai</span>
                                 <span class="sm:hidden">Selesai</span>
                             </button>
                             @else
-                            <div class="flex items-center gap-1.5 px-3 md:px-4 py-2.5 md:py-3 bg-[#73f2dd]/30 text-[#00675c] font-bold rounded-full text-sm">
+                            <div class="flex items-center gap-1.5 px-3 md:px-4 py-2.5 md:py-3 bg-[#cfd8bd]/30 text-[#56663f] font-bold rounded-full text-sm">
                                 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                                 <span class="hidden sm:inline">Selesai</span>
                             </div>
                             @endif
                         @else
                             @if($isCurrentCompleted)
-                            <div class="flex items-center gap-1.5 px-3 md:px-4 py-2.5 md:py-3 bg-[#73f2dd]/30 text-[#00675c] font-bold rounded-full text-sm">
+                            <div class="flex items-center gap-1.5 px-3 md:px-4 py-2.5 md:py-3 bg-[#cfd8bd]/30 text-[#56663f] font-bold rounded-full text-sm">
                                 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                                 <span class="hidden sm:inline">Lulus</span>
                             </div>
@@ -392,14 +392,14 @@
 
                         @if($isLastLesson && $allLessonsCompleted && !$isCourseCompleted && !$courseCompleted)
                         <button wire:click="completeCourse"
-                                class="flex items-center gap-1.5 px-4 md:px-8 py-2.5 md:py-3 bg-gradient-to-br from-[#00675c] to-[#005a50] text-white font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-emerald-500/20 animate-pulse text-sm">
+                                class="flex items-center gap-1.5 px-4 md:px-8 py-2.5 md:py-3 bg-gradient-to-br from-[#56663f] to-[#4b5a37] text-white font-bold rounded-full hover:scale-[1.02] transition-transform shadow-lg shadow-emerald-500/20 animate-pulse text-sm">
                             <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
                             <span class="hidden sm:inline">Selesaikan Kursus</span>
                             <span class="sm:hidden">Selesaikan</span>
                         </button>
                         @elseif(!$isLastLesson)
                         <button wire:click="nextLesson"
-                                class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-br from-[#0058ba] to-[#004da4] text-[#f0f2ff] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm shadow-blue-500/20 text-sm">
+                                class="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-br from-[#8a5a31] to-[#6f4826] text-[#fbf6ee] font-bold rounded-full hover:scale-[1.02] transition-transform shadow-sm shadow-blue-500/20 text-sm">
                             <span class="hidden sm:inline">Selanjutnya</span>
                             <span class="material-symbols-outlined text-lg">arrow_forward</span>
                         </button>
@@ -409,13 +409,13 @@
 
             @else
                 <div class="text-center py-16 md:py-24">
-                    <div class="w-16 h-16 md:w-20 md:h-20 bg-[#eef1f3] rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <span class="material-symbols-outlined text-[#595c5e] text-3xl md:text-4xl">school</span>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-[#ebe5d8] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <span class="material-symbols-outlined text-[#6b6358] text-3xl md:text-4xl">school</span>
                     </div>
-                    <h2 class="font-headline font-bold text-xl md:text-2xl text-[#2c2f31] mb-2">Pilih Pelajaran</h2>
-                    <p class="text-[#595c5e] text-sm">Pilih pelajaran dari daftar materi untuk mulai belajar.</p>
+                    <h2 class="font-headline font-bold text-xl md:text-2xl text-[#2b2721] mb-2">Pilih Pelajaran</h2>
+                    <p class="text-[#6b6358] text-sm">Pilih pelajaran dari daftar materi untuk mulai belajar.</p>
                     <button @click="mobileSidebar = true"
-                            class="mt-4 lg:hidden px-5 py-2.5 bg-[#0058ba] text-white font-bold rounded-full text-sm flex items-center gap-2 mx-auto">
+                            class="mt-4 lg:hidden px-5 py-2.5 bg-[#8a5a31] text-white font-bold rounded-full text-sm flex items-center gap-2 mx-auto">
                         <span class="material-symbols-outlined text-sm">menu_book</span>
                         Lihat Materi
                     </button>
@@ -427,43 +427,43 @@
     <!-- Right Sidebar - Course Outline (Desktop: Livewire, Mobile: Alpine) -->
     <!-- Desktop sidebar -->
     @if($showSidebar)
-    <aside class="hidden lg:block w-80 bg-[#eef1f3] h-screen sticky top-0 overflow-y-auto flex-shrink-0">
+    <aside class="hidden lg:block w-80 bg-[#ebe5d8] h-screen sticky top-0 overflow-y-auto flex-shrink-0">
         <div class="p-6">
-            <h3 class="font-headline font-bold text-lg text-[#2c2f31] mb-2">Materi Kursus</h3>
+            <h3 class="font-headline font-bold text-lg text-[#2b2721] mb-2">Materi Kursus</h3>
             @if($enrollment)
             <div class="flex items-center gap-2 mb-4">
-                <div class="flex-1 h-1.5 rounded-full bg-[#dfe3e6] overflow-hidden">
-                    <div class="h-full bg-[#00675c] rounded-full" style="width: {{ $enrollment->progress_percentage }}%"></div>
+                <div class="flex-1 h-1.5 rounded-full bg-[#ddd4c2] overflow-hidden">
+                    <div class="h-full bg-[#56663f] rounded-full" style="width: {{ $enrollment->progress_percentage }}%"></div>
                 </div>
-                <span class="text-xs font-bold text-[#00675c]">{{ $enrollment->progress_percentage }}%</span>
+                <span class="text-xs font-bold text-[#56663f]">{{ $enrollment->progress_percentage }}%</span>
             </div>
             @endif
             <div class="space-y-4">
                 @foreach($course->modules as $module)
                 <div>
-                    <h4 class="text-xs font-bold text-[#595c5e] uppercase tracking-wider mb-2 px-2">
+                    <h4 class="text-xs font-bold text-[#6b6358] uppercase tracking-wider mb-2 px-2">
                         {{ $module->title }}
                     </h4>
                     <div class="space-y-1">
                         @foreach($module->lessons as $lesson)
                         @php $lessonDone = $completedLessonIds->contains($lesson->id); @endphp
                         @if($lessonDone)
-                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#eef1f3]">
-                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#00675c]">
+                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#ebe5d8]">
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#56663f]">
                                 <span class="material-symbols-outlined text-white" style="font-size: 12px;">check</span>
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm truncate line-through text-[#595c5e]">{{ $lesson->title }}</p>
-                                <p class="text-xs text-[#595c5e]">Selesai</p>
+                                <p class="text-sm truncate line-through text-[#6b6358]">{{ $lesson->title }}</p>
+                                <p class="text-xs text-[#6b6358]">Selesai</p>
                             </div>
                         </div>
                         @else
                         <button wire:click="selectLesson({{ $lesson->id }})"
                                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200
                                     {{ $currentLesson?->id === $lesson->id
-                                        ? 'bg-white shadow-sm text-[#0058ba] font-semibold'
-                                        : 'hover:bg-[#dfe3e6] text-[#595c5e]' }}">
-                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 border-[#abadaf]"></div>
+                                        ? 'bg-white shadow-sm text-[#8a5a31] font-semibold'
+                                        : 'hover:bg-[#ddd4c2] text-[#6b6358]' }}">
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 border-[#bfb5a3]"></div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm truncate">{{ $lesson->title }}</p>
                                 @if($lesson->duration_minutes > 0)
@@ -484,49 +484,49 @@
 
     <!-- Mobile sidebar drawer -->
     <aside :class="mobileSidebar ? 'translate-x-0' : 'translate-x-full'"
-           class="lg:hidden fixed right-0 top-0 z-50 w-80 max-w-[90vw] bg-[#eef1f3] h-screen overflow-y-auto flex-shrink-0 transition-transform duration-300 shadow-2xl">
+           class="lg:hidden fixed right-0 top-0 z-50 w-80 max-w-[90vw] bg-[#ebe5d8] h-screen overflow-y-auto flex-shrink-0 transition-transform duration-300 shadow-2xl">
         <div class="p-5">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="font-headline font-bold text-lg text-[#2c2f31]">Materi Kursus</h3>
-                <button @click="mobileSidebar = false" class="p-2 rounded-full hover:bg-[#dfe3e6] transition-colors">
-                    <span class="material-symbols-outlined text-[#595c5e]">close</span>
+                <h3 class="font-headline font-bold text-lg text-[#2b2721]">Materi Kursus</h3>
+                <button @click="mobileSidebar = false" class="p-2 rounded-full hover:bg-[#ddd4c2] transition-colors">
+                    <span class="material-symbols-outlined text-[#6b6358]">close</span>
                 </button>
             </div>
             @if($enrollment)
             <div class="flex items-center gap-2 mb-4">
-                <div class="flex-1 h-1.5 rounded-full bg-[#dfe3e6] overflow-hidden">
-                    <div class="h-full bg-[#00675c] rounded-full" style="width: {{ $enrollment->progress_percentage }}%"></div>
+                <div class="flex-1 h-1.5 rounded-full bg-[#ddd4c2] overflow-hidden">
+                    <div class="h-full bg-[#56663f] rounded-full" style="width: {{ $enrollment->progress_percentage }}%"></div>
                 </div>
-                <span class="text-xs font-bold text-[#00675c]">{{ $enrollment->progress_percentage }}%</span>
+                <span class="text-xs font-bold text-[#56663f]">{{ $enrollment->progress_percentage }}%</span>
             </div>
             @endif
 
             <div class="space-y-4">
                 @foreach($course->modules as $module)
                 <div>
-                    <h4 class="text-xs font-bold text-[#595c5e] uppercase tracking-wider mb-2 px-2">
+                    <h4 class="text-xs font-bold text-[#6b6358] uppercase tracking-wider mb-2 px-2">
                         {{ $module->title }}
                     </h4>
                     <div class="space-y-1">
                         @foreach($module->lessons as $lesson)
                         @php $lessonDone = $completedLessonIds->contains($lesson->id); @endphp
                         @if($lessonDone)
-                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#eef1f3]">
-                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#00675c]">
+                        <div class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left opacity-50 cursor-not-allowed bg-[#ebe5d8]">
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-[#56663f]">
                                 <span class="material-symbols-outlined text-white" style="font-size: 12px;">check</span>
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm truncate line-through text-[#595c5e]">{{ $lesson->title }}</p>
-                                <p class="text-xs text-[#595c5e]">Selesai</p>
+                                <p class="text-sm truncate line-through text-[#6b6358]">{{ $lesson->title }}</p>
+                                <p class="text-xs text-[#6b6358]">Selesai</p>
                             </div>
                         </div>
                         @else
                         <button wire:click="selectLesson({{ $lesson->id }})" @click="mobileSidebar = false"
                                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200
                                     {{ $currentLesson?->id === $lesson->id
-                                        ? 'bg-white shadow-sm text-[#0058ba] font-semibold'
-                                        : 'hover:bg-[#dfe3e6] text-[#595c5e]' }}">
-                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 border-[#abadaf]"></div>
+                                        ? 'bg-white shadow-sm text-[#8a5a31] font-semibold'
+                                        : 'hover:bg-[#ddd4c2] text-[#6b6358]' }}">
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 border-2 border-[#bfb5a3]"></div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm truncate">{{ $lesson->title }}</p>
                                 @if($lesson->duration_minutes > 0)
@@ -548,21 +548,21 @@
     @if($showCompleteConfirm)
     <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4" wire:click.self="$set('showCompleteConfirm', false)">
         <div class="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-sm p-6 sm:p-8 text-center">
-            <div class="w-10 h-1 bg-[#abadaf]/30 rounded-full mx-auto mb-4 sm:hidden"></div>
+            <div class="w-10 h-1 bg-[#bfb5a3]/30 rounded-full mx-auto mb-4 sm:hidden"></div>
             <div class="w-14 h-14 md:w-16 md:h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span class="material-symbols-outlined text-amber-500 text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">warning</span>
             </div>
-            <h3 class="font-headline font-bold text-xl text-[#2c2f31] mb-2">Tandai Selesai?</h3>
-            <p class="text-[#595c5e] text-sm mb-2">Anda yakin ingin menandai pelajaran ini sebagai selesai?</p>
+            <h3 class="font-headline font-bold text-xl text-[#2b2721] mb-2">Tandai Selesai?</h3>
+            <p class="text-[#6b6358] text-sm mb-2">Anda yakin ingin menandai pelajaran ini sebagai selesai?</p>
             <p class="text-amber-600 text-xs font-semibold mb-6 flex items-center justify-center gap-1">
                 <span class="material-symbols-outlined" style="font-size: 14px;">info</span>
                 Pelajaran yang sudah selesai tidak dapat dibatalkan.
             </p>
             <div class="flex gap-3">
                 <button wire:click="$set('showCompleteConfirm', false)"
-                        class="flex-1 py-3 bg-[#eef1f3] text-[#595c5e] font-bold rounded-full hover:bg-[#dfe3e6] transition-colors text-sm">Batal</button>
+                        class="flex-1 py-3 bg-[#ebe5d8] text-[#6b6358] font-bold rounded-full hover:bg-[#ddd4c2] transition-colors text-sm">Batal</button>
                 <button wire:click="markComplete"
-                        class="flex-1 py-3 bg-[#00675c] text-white font-bold rounded-full hover:bg-[#005a50] transition-colors flex items-center justify-center gap-2 text-sm">
+                        class="flex-1 py-3 bg-[#56663f] text-white font-bold rounded-full hover:bg-[#4b5a37] transition-colors flex items-center justify-center gap-2 text-sm">
                     <span class="material-symbols-outlined text-sm">check_circle</span>
                     Ya, Selesai
                 </button>

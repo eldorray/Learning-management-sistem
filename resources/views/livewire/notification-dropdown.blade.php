@@ -2,12 +2,12 @@
 
     {{-- Bell Button --}}
     <button wire:click="toggle"
-            class="p-2 rounded-full hover:bg-[#e5e9eb] transition-colors relative"
-            :class="open ? 'bg-[#e5e9eb]' : ''">
-        <span class="material-symbols-outlined text-[#595c5e] text-xl"
+            class="p-2 rounded-full hover:bg-[#e4dccc] transition-colors relative"
+            :class="open ? 'bg-[#e4dccc]' : ''">
+        <span class="material-symbols-outlined text-[#6b6358] text-xl"
               style="{{ $this->unreadCount > 0 ? 'font-variation-settings: \'FILL\' 1;' : '' }}">notifications</span>
         @if($this->unreadCount > 0)
-            <span class="absolute top-1 right-1 min-w-[18px] h-[18px] bg-[#b31b25] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+            <span class="absolute top-1 right-1 min-w-[18px] h-[18px] bg-[#a3402c] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
                 {{ $this->unreadCount > 9 ? '9+' : $this->unreadCount }}
             </span>
         @else
@@ -28,9 +28,9 @@
 
         {{-- Header --}}
         <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
-            <h3 class="font-bold text-sm text-[#2c2f31]">Notifikasi</h3>
+            <h3 class="font-bold text-sm text-[#2b2721]">Notifikasi</h3>
             @if($this->notifications->isNotEmpty())
-                <button wire:click="markAllRead" class="text-xs text-[#0058ba] font-medium hover:underline">
+                <button wire:click="markAllRead" class="text-xs text-[#8a5a31] font-medium hover:underline">
                     Tandai semua dibaca
                 </button>
             @endif
@@ -49,29 +49,29 @@
                      @endif>
                     {{-- Icon --}}
                     <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center mt-0.5
-                        @if($notif->type === 'course_enrolled') bg-[#dbeafe] text-[#0058ba]
-                        @elseif($notif->type === 'tahfidz_graded') bg-[#d1fae5] text-[#00675c]
+                        @if($notif->type === 'course_enrolled') bg-[#eadcc6] text-[#8a5a31]
+                        @elseif($notif->type === 'tahfidz_graded') bg-[#d1fae5] text-[#56663f]
                         @elseif($notif->type === 'streak_reminder') bg-[#fef3c7] text-[#d97706]
-                        @elseif($notif->type === 'achievement') bg-[#ede9fe] text-[#7c3aed]
-                        @else bg-[#f3f4f6] text-[#595c5e]
+                        @elseif($notif->type === 'achievement') bg-[#f4eef0] text-[#7a5765]
+                        @else bg-[#f3f4f6] text-[#6b6358]
                         @endif">
                         <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">{{ $notif->icon }}</span>
                     </div>
                     {{-- Content --}}
                     <div class="flex-1 min-w-0">
-                        <p class="text-xs font-bold text-[#2c2f31] leading-tight">{{ $notif->title }}</p>
-                        <p class="text-xs text-[#595c5e] mt-0.5 line-clamp-2">{{ $notif->message }}</p>
-                        <p class="text-[10px] text-[#abadaf] mt-1">{{ $notif->created_at->diffForHumans() }}</p>
+                        <p class="text-xs font-bold text-[#2b2721] leading-tight">{{ $notif->title }}</p>
+                        <p class="text-xs text-[#6b6358] mt-0.5 line-clamp-2">{{ $notif->message }}</p>
+                        <p class="text-[10px] text-[#bfb5a3] mt-1">{{ $notif->created_at->diffForHumans() }}</p>
                     </div>
                     {{-- Unread dot --}}
                     @if(!$notif->isRead())
-                        <div class="shrink-0 w-2 h-2 bg-[#0058ba] rounded-full mt-1.5"></div>
+                        <div class="shrink-0 w-2 h-2 bg-[#8a5a31] rounded-full mt-1.5"></div>
                     @endif
                 </div>
             @empty
                 <div class="py-10 text-center">
                     <span class="material-symbols-outlined text-4xl text-slate-300">notifications_off</span>
-                    <p class="text-sm text-[#abadaf] mt-2">Belum ada notifikasi</p>
+                    <p class="text-sm text-[#bfb5a3] mt-2">Belum ada notifikasi</p>
                 </div>
             @endforelse
         </div>
@@ -79,7 +79,7 @@
         {{-- Footer --}}
         @if($this->notifications->count() >= 15)
             <div class="px-4 py-2.5 border-t border-slate-100 text-center">
-                <span class="text-xs text-[#abadaf]">Menampilkan 15 notifikasi terbaru</span>
+                <span class="text-xs text-[#bfb5a3]">Menampilkan 15 notifikasi terbaru</span>
             </div>
         @endif
     </div>

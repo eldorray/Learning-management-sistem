@@ -68,8 +68,8 @@ x-init="
 
     {{-- Focus Mode Trigger Button --}}
     <button @click="open = !open"
-            :class="active ? 'bg-gradient-to-br from-[#7c3aed] to-[#5b21b6] animate-pulse' : 'bg-gradient-to-br from-[#0058ba] to-[#004da4]'"
-            class="w-full text-[#f0f2ff] py-3.5 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-all">
+            :class="active ? 'bg-gradient-to-br from-[#7a5765] to-[#644755] animate-pulse' : 'bg-gradient-to-br from-[#8a5a31] to-[#6f4826]'"
+            class="w-full text-[#fbf6ee] py-3.5 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-all">
         <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;" x-text="active ? 'timer' : 'bolt'"></span>
         <span x-text="active ? 'Sesi Berjalan' : 'Focus Mode'"></span>
     </button>
@@ -92,7 +92,7 @@ x-init="
              x-transition:enter-end="opacity-100 scale-100">
 
             {{-- Header --}}
-            <div class="relative bg-gradient-to-br from-[#0058ba] to-[#004da4] px-6 py-5 text-white">
+            <div class="relative bg-gradient-to-br from-[#8a5a31] to-[#6f4826] px-6 py-5 text-white">
                 <button x-show="!active" @click="open = false"
                         class="absolute top-4 right-4 p-1 rounded-full hover:bg-white/20 transition-colors">
                     <span class="material-symbols-outlined text-lg">close</span>
@@ -113,12 +113,12 @@ x-init="
 
                 {{-- Duration Selector --}}
                 <div>
-                    <label class="block text-xs font-bold text-[#595c5e] uppercase tracking-wide mb-2">Durasi Sesi</label>
+                    <label class="block text-xs font-bold text-[#6b6358] uppercase tracking-wide mb-2">Durasi Sesi</label>
                     <div class="grid grid-cols-4 gap-2">
                         @foreach([15, 25, 45, 60] as $min)
                             <button type="button"
                                     @click="$wire.set('duration', {{ $min }})"
-                                    :class="duration == {{ $min }} ? 'bg-[#0058ba] text-white' : 'bg-[#f5f7f9] text-[#595c5e] hover:bg-[#e5e9eb]'"
+                                    :class="duration == {{ $min }} ? 'bg-[#8a5a31] text-white' : 'bg-[#f3efe6] text-[#6b6358] hover:bg-[#e4dccc]'"
                                     class="py-2 rounded-xl text-sm font-bold transition-colors">
                                 {{ $min }}m
                             </button>
@@ -126,8 +126,8 @@ x-init="
                     </div>
                     <div class="mt-2 flex items-center gap-2">
                         <input type="range" wire:model.live="duration" min="5" max="120" step="5"
-                               class="flex-1 accent-[#0058ba]">
-                        <span class="text-sm font-bold text-[#0058ba] w-12 text-right">
+                               class="flex-1 accent-[#8a5a31]">
+                        <span class="text-sm font-bold text-[#8a5a31] w-12 text-right">
                             <span x-text="duration"></span>m
                         </span>
                     </div>
@@ -135,9 +135,9 @@ x-init="
 
                 {{-- Course Selector --}}
                 <div>
-                    <label class="block text-xs font-bold text-[#595c5e] uppercase tracking-wide mb-2">Fokus pada kursus (opsional)</label>
+                    <label class="block text-xs font-bold text-[#6b6358] uppercase tracking-wide mb-2">Fokus pada kursus (opsional)</label>
                     <select wire:model="selectedCourseId"
-                            class="w-full text-sm rounded-xl border border-[#e5e9eb] px-3 py-2.5 bg-[#f5f7f9] focus:outline-none focus:ring-2 focus:ring-[#0058ba]/30">
+                            class="w-full text-sm rounded-xl border border-[#e4dccc] px-3 py-2.5 bg-[#f3efe6] focus:outline-none focus:ring-2 focus:ring-[#8a5a31]/30">
                         <option value="">Pilih bebas / tanpa kursus</option>
                         @foreach($this->activeEnrollments as $enrollment)
                             <option value="{{ $enrollment->course_id }}">
@@ -148,17 +148,17 @@ x-init="
                 </div>
 
                 {{-- Tips --}}
-                <div class="bg-[#f0f7ff] rounded-2xl p-4 flex gap-3">
-                    <span class="material-symbols-outlined text-[#0058ba] mt-0.5 shrink-0" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
-                    <p class="text-xs text-[#595c5e] leading-relaxed">
-                        Teknik <strong class="text-[#2c2f31]">Pomodoro</strong>: Fokus 25 menit, istirahat 5 menit.
+                <div class="bg-[#f7f0e4] rounded-2xl p-4 flex gap-3">
+                    <span class="material-symbols-outlined text-[#8a5a31] mt-0.5 shrink-0" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                    <p class="text-xs text-[#6b6358] leading-relaxed">
+                        Teknik <strong class="text-[#2b2721]">Pomodoro</strong>: Fokus 25 menit, istirahat 5 menit.
                         Notifikasi browser akan berbunyi saat sesi selesai.
                     </p>
                 </div>
 
                 {{-- Start Button --}}
                 <button wire:click="start"
-                        class="w-full bg-gradient-to-r from-[#0058ba] to-[#0073e6] text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.01] transition-all">
+                        class="w-full bg-gradient-to-r from-[#8a5a31] to-[#9a6a3e] text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.01] transition-all">
                     <span class="material-symbols-outlined align-middle mr-1 text-base">play_circle</span>
                     Mulai Fokus
                 </button>
@@ -171,29 +171,29 @@ x-init="
                 <div class="flex justify-center">
                     <div class="relative w-36 h-36">
                         <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e9eb" stroke-width="8"/>
-                            <circle cx="60" cy="60" r="54" fill="none" stroke="#0058ba" stroke-width="8"
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="#e4dccc" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="#8a5a31" stroke-width="8"
                                     stroke-linecap="round"
                                     :stroke-dasharray="circumference"
                                     :stroke-dashoffset="strokeDashoffset"
                                     style="transition: stroke-dashoffset 1s linear;"/>
                         </svg>
                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span class="text-3xl font-bold text-[#0058ba] tabular-nums" x-text="formatTime(timeLeft)"></span>
-                            <span class="text-xs text-[#595c5e] mt-0.5">tersisa</span>
+                            <span class="text-3xl font-bold text-[#8a5a31] tabular-nums" x-text="formatTime(timeLeft)"></span>
+                            <span class="text-xs text-[#6b6358] mt-0.5">tersisa</span>
                         </div>
                     </div>
                 </div>
 
                 {{-- Progress --}}
                 <div>
-                    <p class="text-sm font-bold text-[#2c2f31]">
+                    <p class="text-sm font-bold text-[#2b2721]">
                         <span x-text="progress"></span>% selesai
                     </p>
                     @if($selectedCourseId)
                         @php $selCourse = $this->activeEnrollments->firstWhere('course_id', $selectedCourseId) @endphp
                         @if($selCourse)
-                            <p class="text-xs text-[#595c5e] mt-1">
+                            <p class="text-xs text-[#6b6358] mt-1">
                                 <span class="material-symbols-outlined text-xs align-middle">auto_stories</span>
                                 {{ $selCourse->course->title }}
                             </p>
@@ -202,13 +202,13 @@ x-init="
                 </div>
 
                 {{-- Motivation Quote --}}
-                <div class="bg-gradient-to-r from-[#f0f7ff] to-[#f0fdf4] rounded-2xl p-4">
-                    <p class="text-xs italic text-[#595c5e]">"Sesungguhnya bersama kesulitan ada kemudahan." — QS. Al-Insyirah: 6</p>
+                <div class="bg-gradient-to-r from-[#f7f0e4] to-[#f0fdf4] rounded-2xl p-4">
+                    <p class="text-xs italic text-[#6b6358]">"Sesungguhnya bersama kesulitan ada kemudahan." — QS. Al-Insyirah: 6</p>
                 </div>
 
                 {{-- Stop Button --}}
                 <button @click="stopTimer()"
-                        class="w-full border-2 border-[#b31b25] text-[#b31b25] py-3 rounded-2xl font-bold text-sm hover:bg-[#b31b25] hover:text-white transition-all">
+                        class="w-full border-2 border-[#a3402c] text-[#a3402c] py-3 rounded-2xl font-bold text-sm hover:bg-[#a3402c] hover:text-white transition-all">
                     <span class="material-symbols-outlined align-middle mr-1 text-base">stop_circle</span>
                     Akhiri Sesi
                 </button>

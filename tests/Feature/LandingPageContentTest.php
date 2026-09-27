@@ -7,9 +7,9 @@ use Illuminate\Validation\ValidationException;
 uses(RefreshDatabase::class);
 
 test('public landing serves the React host and local authored document', function () {
-    $this->get('/')->assertOk()->assertSee('kage-root', false);
+    $this->get('/')->assertOk()->assertSee('landing-root', false);
     $this->get('/landing-pages/kage.html')->assertOk()->assertSee('id="gl"', false);
-    $this->get('/landing-preview')->assertOk()->assertSee('kage-root', false);
+    $this->get('/landing-preview')->assertOk()->assertSee('landing-root', false);
 });
 
 test('every editable source slot is unique and substitutions preserve the document', function () {
