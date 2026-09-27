@@ -85,6 +85,16 @@
                             <span class="material-symbols-outlined text-sm">edit</span>
                             Edit Profil
                         </button>
+
+                        <!-- Logout: the sidebar is hidden on phones and in the installed PWA -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                    class="w-full py-3 border border-[#a3402c]/25 text-[#a3402c] font-bold rounded-full hover:bg-[#a3402c]/10 transition-colors flex items-center justify-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-sm">logout</span>
+                                Keluar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
